@@ -35,7 +35,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">You are responsible for all modification here.</p>
+						<p class="font-18 max-width-600">Manage, Create, Update, Delete ...</p>
 					</div>
 				</div>
 			</div>
@@ -72,18 +72,17 @@
 
 						<?php
 						$status=1;
-						$sql = "SELECT id from tblleave where RegRemarks=:status";
+						$sql = "SELECT id from tbldepartments";
 						$query = $dbh -> prepare($sql);
-						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$depcount=$query->rowCount();
 						?>        
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Approved Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($depcount); ?></div>
+								<div class="font-14 text-secondary weight-500">Total Departments</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>

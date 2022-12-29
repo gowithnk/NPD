@@ -1,7 +1,8 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <body>
-	<div class="pre-loader">
+
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -12,31 +13,28 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
 	<?php include('includes/right_sidebar.php')?>
 	<?php include('includes/left_sidebar.php')?>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
 		<div class="pd-ltr-20">
 			<div class="card-box pd-20 height-100-p mb-30">
 				<div class="row align-items-center">
-					<div class="col-md-4 user-icon">
-						<img src="../vendors/images/banner-img.png" alt="">
+					<div class="col-md-3 user-icon">
+						<img src="../vendors/images/banner-img.png" width="200" alt="">
 					</div>
-					<div class="col-md-8">
-
+					<div class="col-md-9">
 						<?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 						?>
-
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">you are in an institution established to serve the wider Christian community in Ghana and Africa.</p>
+						<p class="font-18 max-width-600">Manage and Create NPD</p>
 					</div>
 				</div>
 			</div>
@@ -46,7 +44,6 @@
 			<div class="row pb-10">
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
-
 						<?php
 						$sql = "SELECT emp_id from tblemployees";
 						$query = $dbh -> prepare($sql);
@@ -54,7 +51,6 @@
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
 						$empcount=$query->rowCount();
 						?>
-
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
@@ -68,7 +64,6 @@
 				</div>
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
-
 						<?php
 						$status=1;
 						$sql = "SELECT id from tblleave where HodRemarks=:status";
@@ -78,7 +73,6 @@
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
 						$leavecount=$query->rowCount();
 						?>        
-
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($leavecount); ?></div>
@@ -92,7 +86,6 @@
 				</div>
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
-
 						<?php
 						$status=0;
 						$sql = "SELECT id from tblleave where HodRemarks=:status";
@@ -102,7 +95,6 @@
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
 						$leavecount=$query->rowCount();
 						?>        
-
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
@@ -116,7 +108,6 @@
 				</div>
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
-
 						<?php
 						$status=2;
 						$sql = "SELECT id from tblleave where HodRemarks=:status";
@@ -126,7 +117,6 @@
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
 						$leavecount=$query->rowCount();
 						?>  
-
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
@@ -224,7 +214,7 @@
 				</div>
 			</div>
 
-			<div class="card-box mb-30">
+			<!-- <div class="card-box mb-30">
 				<div class="pd-20">
 						<h2 class="text-blue h4">LATEST LEAVE APPLICATIONS</h2>
 					</div>
@@ -302,7 +292,7 @@
 						</tbody>
 					</table>
 			   </div>
-			</div>
+			</div> -->
 
 			<?php include('includes/footer.php'); ?>
 		</div>

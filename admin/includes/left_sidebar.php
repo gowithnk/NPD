@@ -36,6 +36,16 @@
 							<li><a href="staff.php">Manage Staff</a></li>
 						</ul>
 					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-calendar"></span><span class="mtext">Manage NPD</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="newnpd.php">New NPD</a></li>
+							<li><a href="#">Last NPD</a></li>
+							<li><a href="#">Search Report</a></li>
+						</ul>
+					</li>
 					<!-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-calendar"></span><span class="mtext">Manage Attendance</span>

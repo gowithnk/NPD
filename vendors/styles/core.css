@@ -1696,7 +1696,7 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(1.5em + .75rem + 2px);
+  height: calc(1.7em + .75rem + 2px) !important;
   padding: .375rem .75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -2158,13 +2158,13 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #524d7d;
-  border-color: #524d7d; }
+  background-color: #0b0258;
+  border-color: #0b0258; }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #524d7d;
-  border-color: #524d7d; }
+  background-color: #100479;
+  border-color: 100479; }
 
 .btn-primary.focus, .btn-primary:focus {
   color: #fff;

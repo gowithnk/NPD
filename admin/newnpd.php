@@ -1,6 +1,6 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-<?php $get_id = $_GET['edit']; ?>
+
 <?php 
 	 if (isset($_GET['delete'])) {
 		$department_id = $_GET['delete'];
@@ -8,25 +8,35 @@
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
 			echo "<script>alert('Department deleted Successfully');</script>";
-     		echo "<script type='text/javascript'> document.location = 'department.php'; </script>";
+     		echo "<script type='text/javascript'> document.location = 'test.php'; </script>";
 			
 		}
 	}
 ?>
 
 <?php
- if(isset($_POST['edit']))
+ if(isset($_POST['addnpd']))
 {
 	 $deptname=$_POST['departmentname'];
-	 $deptshortname=$_POST['departmentshortname'];
+	$deptshortname=$_POST['departmentshortname'];
 
-    $result = mysqli_query($conn,"update tbldepartments set DepartmentName = '$deptname' , DepartmentShortName ='$deptshortname' where id = '$get_id' ");
-    if ($result) {
-     	echo "<script>alert('Record Successfully Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'department.php'; </script>";
-	} else{
-	  die(mysqli_error());
-   }
+     $query = mysqli_query($conn,"select * from tbldepartments where DepartmentName = '$deptname'")or die(mysqli_error());
+	 $count = mysqli_num_rows($query);
+     
+     if ($count > 0){ 
+     	echo "<script>alert('Already exist');</script>";
+      }
+      else{
+        $query = mysqli_query($conn,"insert into tbldepartments (DepartmentName, DepartmentShortName)
+  		 values ('$deptname', '$deptshortname')      
+		") or die(mysqli_error()); 
+
+		if ($query) {
+			echo "<script>alert('Added Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'test.php'; </script>";
+		}
+    }
+
 }
 
 ?>
@@ -47,6 +57,7 @@
 	<?php include('includes/navbar.php')?>
 	<?php include('includes/right_sidebar.php')?>
 	<?php include('includes/left_sidebar.php')?>
+
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -56,12 +67,12 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Department List</h4>
+									<h4>New NPD</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit Department</li>
+										<li class="breadcrumb-item active" aria-current="page">New NPD</li>
 									</ol>
 								</nav>
 							</div>
@@ -69,35 +80,63 @@
 					</div>
 
 					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
+						<div class="col-lg-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Edit Department</h2>
+								<h2 class="mb-1 mt-1 h4">Add New NPD Details</h2>
+								<hr>
 								<section>
-									<?php
-									$query = mysqli_query($conn,"SELECT * from tbldepartments where id = '$get_id'")or die(mysqli_error());
-									$row = mysqli_fetch_array($query);
-									?>
-
 									<form name="save" method="post">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-lg-6 col-md-6">
 											<div class="form-group">
-												<label >Department Name</label>
-												<input name="departmentname" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['DepartmentName']; ?>">
+												<label >NPD Number</label>
+												<input name="departmentname" placeholder="NP123" type="number" class="form-control" required="true" autocomplete="off">
+											</div>
+										</div>
+										<div class="col-lg-3 col-md-3">
+											<div class="form-group">
+												<label>Revision No.</label>
+												<input name="departmentshortname" placeholder="123" type="number" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+											</div>
+										</div>
+										<div class="col-lg-3 col-md-3">
+											<div class="form-group">
+												<label>Date</label>
+												<input name="departmentshortname" type="date" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
 											</div>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-lg-4 col-md-4">
 											<div class="form-group">
-												<label>Department Short Name</label>
-												<input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase" value="<?php echo $row['DepartmentShortName']; ?>">
+												<label>Sales Order No. Lookup</label>
+												<select name="sonl" class="custom-select form-control" required="true" autocomplete="off">
+													<option value="">Sales Order No. Lookup</option>
+													<option value="male">Option 1</option>
+													<option value="female">Option 2</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class="form-group">
+												<label>Sales Line No. Lookup</label>
+												<select name="sonl" class="custom-select form-control" required="true" autocomplete="off">
+													<option value="">Sales Line No. Lookup</option>
+													<option value="male">Option 1</option>
+													<option value="female">Option 2</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class="form-group">
+												<label>Material Code</label>
+												<input name="departmentshortname" placeholder="123" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-12 text-right">
+									<div class="col-sm-12">
 										<div class="dropdown">
-										   <input class="btn btn-primary" type="submit" value="UPDATE" name="edit" id="edit">
+										   <input class="btn btn-primary btn-block mt-3" type="submit" value="SUBMIT" name="addnpd" id="add">
 									    </div>
 									</div>
 								   </form>
@@ -105,9 +144,9 @@
 							</div>
 						</div>
 						
-						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
+						<div class="col-lg-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Department List</h2>
+								<h2 class="mb-30 h4">Display List</h2>
 								<div class="pb-20">
 									<table class="data-table table stripe hover nowrap">
 										<thead>
@@ -136,6 +175,7 @@
 	                                            <td><?php echo htmlentities($result->DepartmentShortName);?></td>
 												<td>
 													<div class="table-actions">
+														<a href="edit_department.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
 														<a href="department.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>

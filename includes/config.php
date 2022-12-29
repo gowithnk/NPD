@@ -5,7 +5,7 @@ define('DB_USER','root');
 define('DB_PASS','');
 define('DB_NAME','synokemhrm');
 
-$conn = mysqli_connect('localhost','root','','synokemhrm') or die(mysqli_error());
+$conn = mysqli_connect('localhost','root','','synokemnpd') or die(mysqli_error());
 
 // Establish database connection.
 try

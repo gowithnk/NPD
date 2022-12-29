@@ -49,7 +49,7 @@ if (isset($_POST["update_image"])) {
 ?>
 
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -60,16 +60,11 @@ if (isset($_POST["update_image"])) {
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -94,7 +89,8 @@ if (isset($_POST["update_image"])) {
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 
-							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where emp_id = '$session_id'")or die(mysqli_error());
+							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = 
+							tbldepartments.DepartmentShortName where emp_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 							?>
 
@@ -155,16 +151,16 @@ if (isset($_POST["update_image"])) {
 							<div class="profile-tab height-100-p">
 								<div class="tab height-100-p">
 									<ul class="nav nav-tabs customtab" role="tablist">
-										<li class="nav-item">
+										<!-- <li class="nav-item">
 											<a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Leave Records</a>
-										</li>
+										</li> -->
 										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+											<a class="nav-link active" data-toggle="tab" href="#setting" role="tab">Settings</a>
 										</li>
 									</ul>
 									<div class="tab-content">
 										<!-- Timeline Tab start -->
-										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
+										<!-- <div class="tab-pane fade show active" id="timeline" role="tabpanel">
 											<div class="pd-20">
 												<div class="profile-timeline">
 													<?php $query= mysqli_query($conn,"SELECT * from tblleave where empid = '$session_id'")or die(mysqli_error());
@@ -202,10 +198,10 @@ if (isset($_POST["update_image"])) {
 												<?php }?>
 												</div>
 											</div>
-										</div>
+										</div> -->
 										<!-- Timeline Tab End -->
 										<!-- Setting Tab start -->
-										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+										<div class="tab-pane fade show active height-100-p" id="setting" role="tabpanel">
 											<div class="profile-setting">
 												<form method="POST" enctype="multipart/form-data">
 													<div class="profile-edit-list row">
