@@ -11,14 +11,15 @@
 	$gender=$_POST['gender']; 
 	$dob=$_POST['dob']; 
 	$department=$_POST['department']; 
-	$address=$_POST['address']; 
-	$leave_days=$_POST['leave_days']; 
+	$address=$_POST['address'];  
 	$user_role=$_POST['user_role']; 
 	$phonenumber=$_POST['phonenumber']; 
 	$position_staff=$_POST['position_staff']; 
 	$staff_id=$_POST['staff_id']; 
 
-	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Av_leave='$leave_days', role='$user_role', Phonenumber='$phonenumber', Position_Staff='$position_staff', Staff_ID='$staff_id' where emp_id='$get_id'         
+	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', 
+	Gender='$gender', Dob='$dob', Department='$department', Address='$address', role='$user_role'
+	, Phonenumber='$phonenumber', Position_Staff='$position_staff', Staff_ID='$staff_id' where emp_id='$get_id'         
 		"); 		
 	if ($result) {
      	echo "<script>alert('Record Successfully Updated');</script>";
@@ -46,11 +47,8 @@
 	</div>
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="mobile-menu-overlay"></div>
@@ -187,12 +185,6 @@
 									$new_row = mysqli_fetch_array($query);
 									?>
 								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Staff Leave Days :</label>
-											<input name="leave_days" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $new_row['Av_leave']; ?>">
-										</div>
-									</div>
 									
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">

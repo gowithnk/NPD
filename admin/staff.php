@@ -128,14 +128,15 @@ if (isset($_GET['delete'])) {
 						<h2 class="text-blue h4">ALL EMPLOYEES</h2>
 					</div>
 				<div class="pb-20">
-					<table class="data-table table stripe hover nowrap">
+					<table class="data-table-staff table stripe hover nowrap">
 						<thead>
 							<tr>
 								<th class="table-plus">FULL NAME</th>
 								<th>EMAIL</th>
 								<th>DEPARTMENT</th>
+								<th>ROLE</th>
 								<th>POSITION</th>
-								<th>AVE. LEAVE</th>
+								<th>STAFF ID</th>
 								<th class="datatable-nosort">ACTION</th>
 							</tr>
 						</thead>
@@ -143,7 +144,7 @@ if (isset($_GET['delete'])) {
 							<tr>
 
 								 <?php
-		                         $teacher_query = mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where role != 'Admin' ORDER BY tblemployees.emp_id") or die(mysqli_error());
+		                         $teacher_query = mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName ORDER BY tblemployees.emp_id") or die(mysqli_error());
 		                         while ($row = mysqli_fetch_array($teacher_query)) {
 		                         $id = $row['emp_id'];
 		                             ?>
@@ -160,8 +161,9 @@ if (isset($_GET['delete'])) {
 								</td>
 								<td><?php echo $row['EmailId']; ?></td>
 	                            <td><?php echo $row['DepartmentName']; ?></td>
+	                            <td><?php echo $row['role']; ?></td>
 								<td><?php echo $row['Position_Staff']; ?></td>
-								<td><?php echo $row['Av_leave']; ?></td>
+								<td><?php echo $row['Staff_ID']; ?></td>
 								<td>
 									<div class="dropdown">
 										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

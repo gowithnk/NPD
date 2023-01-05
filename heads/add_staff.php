@@ -41,27 +41,10 @@
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -168,7 +151,6 @@
 										<div class="form-group">
 											<label>Department :</label>
 											<select name="department" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="">Select Department</option>
 													<?php
 													$query = mysqli_query($conn,"select * from tbldepartments where DepartmentShortName = '$session_depart'");
 													while($row = mysqli_fetch_array($query)){
@@ -184,13 +166,6 @@
 								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
-											<label>Staff Leave Days :</label>
-											<input name="leave_days" type="number" class="form-control" required="true" autocomplete="off">
-										</div>
-									</div>
-									
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
 											<label>User Role :</label>
 											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="">Select Role</option>
@@ -204,7 +179,7 @@
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Add&nbsp;Staff</button>
+												<button class="btn btn-primary btn-block" name="add_staff" id="add_staff" data-toggle="modal">Add&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>

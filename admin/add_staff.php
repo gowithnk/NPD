@@ -11,8 +11,7 @@
 	$gender=$_POST['gender']; 
 	$dob=$_POST['dob']; 
 	$department=$_POST['department']; 
-	$address=$_POST['address']; 
-	$leave_days=$_POST['leave_days']; 
+	$address=$_POST['address'];  
 	$user_role=$_POST['user_role']; 
 	$phonenumber=$_POST['phonenumber']; 
 	$position_staff=$_POST['position_staff']; 
@@ -34,7 +33,10 @@
 	</script>
 	<?php
       }else{
-        mysqli_query($conn,"INSERT INTO tblemployees(FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,Av_leave,role,Phonenumber,Status, location, Staff_ID, Position_Staff) VALUES('$fname','$lname','$email','$password','$gender','$dob','$department','$address','$leave_days','$user_role','$phonenumber','$status', 'NO-IMAGE-AVAILABLE.jpg','$staff_id','$position_staff')         
+        mysqli_query($conn,"INSERT INTO tblemployees(FirstName,LastName,EmailId,Password,Gender,Dob,Department,
+		Address,role,Phonenumber,Status, location, Staff_ID, Position_Staff) VALUES('$fname','$lname','$email',
+		'$password','$gender','$dob','$department','$address','$user_role','$phonenumber','$status', 
+		'NO-IMAGE-AVAILABLE.jpg','$staff_id','$position_staff')         
 		") or die(mysqli_error()); ?>
 		<script>alert('Staff Records Successfully  Added');</script>;
 		<script>
@@ -185,16 +187,7 @@
 								</div>
 
 								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<?php 
-											
-											?>
-											<label>Total Leave Days :</label>
-											<input readonly name="leave_days" value="<?php echo $totalLeaveDays; ?>" type="number" class="form-control" required="true" autocomplete="off">
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label>User Role :</label>
 											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
@@ -206,7 +199,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">

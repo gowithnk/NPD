@@ -11,15 +11,15 @@
 	$gender=$_POST['gender']; 
 	$dob=$_POST['dob']; 
 	$department=$_POST['department']; 
-	$address=$_POST['address']; 
-	$leave_days=$_POST['leave_days']; 
+	$address=$_POST['address'];  
 	$user_role=$_POST['user_role']; 
 	$phonenumber=$_POST['phonenumber']; 
 	$position_staff=$_POST['position_staff']; 
 	$staff_id=$_POST['staff_id']; 
 
-	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Av_leave='$leave_days', role='$user_role', Phonenumber='$phonenumber', Position_Staff='$position_staff', Staff_ID='$staff_id' where emp_id='$get_id'         
-		"); 		
+	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', 
+	Gender='$gender', Dob='$dob', Department='$department', Address='$address', role='$user_role', 
+	Phonenumber='$phonenumber', Position_Staff='$position_staff', Staff_ID='$staff_id' where emp_id='$get_id' "); 		
 	if ($result) {
      	echo "<script>alert('Record Successfully Updated');</script>";
      	echo "<script type='text/javascript'> document.location = 'staff.php'; </script>";
@@ -32,27 +32,10 @@
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -173,10 +156,7 @@
 												<?php
 													$query = mysqli_query($conn,"select * from tbldepartments where DepartmentShortName = '$session_depart'");
 													while($row = mysqli_fetch_array($query)){
-													
-													?>
-													<option value="<?php echo $row['DepartmentShortName']; ?>"><?php echo $row['DepartmentName']; ?></option>
-													<?php } ?>
+													 } ?>
 											</select>
 										</div>
 									</div>
@@ -187,12 +167,6 @@
 									$new_row = mysqli_fetch_array($query);
 									?>
 								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Staff Leave Days :</label>
-											<input name="leave_days" type="text" class="form-control" required="true" autocomplete="off"value="<?php echo $new_row['Av_leave']; ?>">
-										</div>
-									</div>
 									
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
@@ -209,7 +183,7 @@
 										<div class="form-group">
 											<label style="font-size:16px;"><b></b></label>
 											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Update&nbsp;Staff</button>
+												<button class="btn btn-primary btn-block" name="add_staff" id="add_staff" data-toggle="modal">Update&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>

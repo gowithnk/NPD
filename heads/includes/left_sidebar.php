@@ -25,11 +25,11 @@
 					</li> -->
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Manage Staff</span>
+							<span class="micon dw dw-calendar"></span><span class="mtext">Manage NPD</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="add_staff.php">New Staff</a></li>
-							<li><a href="staff.php">Manage Staff</a></li>
+							<li><a href="opennpd.php">Open NPD</a></li>
+							<li><a href="#">Search Report</a></li>
 						</ul>
 					</li>
 					<!-- <li class="dropdown">

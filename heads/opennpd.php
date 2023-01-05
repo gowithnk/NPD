@@ -233,7 +233,7 @@ if (isset($_POST['addnpd'])) {
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="remark">Remark (If Any)</label>
-												<textarea id="remark" name="remark" placeholder="Message" class="form-control" required="true" rows="2" autocomplete="off"></textarea>
+												<textarea readonly id="remark" name="remark" placeholder="Message" class="form-control" required="true" rows="2" autocomplete="off"></textarea>
 											</div>
 										</div>
 									</div>
@@ -251,11 +251,27 @@ if (isset($_POST['addnpd'])) {
 											</div>
 										</div>
 									</div> -->
-									<div class="col-sm-12">
-										<div class="dropdown">
-											<input class="btn btn-primary btn-block mt-3" type="submit" value="SUBMIT FOR APPROVAL" name="addnpd" id="add">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<textarea id="remark" name="remark" placeholder="Remark (If Any)" 
+												class="form-control" required="true" rows="2" autocomplete="off"></textarea>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="dropdown">
+												<input class="btn btn-success btn-block mt-3" type="submit" 
+												value="APPROVE" name="approve" id="add">
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="dropdown">
+												<input class="btn btn-danger btn-block mt-3" type="submit" 
+												value="REJECT" name="reject" id="add">
+											</div>
 										</div>
 									</div>
+									
 								</form>
 							</section>
 						</div>

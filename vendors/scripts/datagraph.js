@@ -296,3 +296,27 @@ $('document').ready(function(){
 		},
 	});
 });
+$('document').ready(function(){
+	$('.data-table-staff').DataTable({
+		scrollCollapse: false,
+		autoWidth: false,
+		responsive: true,
+		searching: true,
+		bLengthChange: true,
+		bPaginate: true,
+		bInfo: false,
+		columnDefs: [{
+			targets: "datatable-nosort",
+			orderable: false,
+		}],
+		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		"language": {
+			"info": "_START_-_END_ of _TOTAL_ entries",
+			searchPlaceholder: "Search",
+			paginate: {
+				next: '<i class="ion-chevron-right"></i>',
+				previous: '<i class="ion-chevron-left"></i>'
+			}
+		},
+	});
+});

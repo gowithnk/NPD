@@ -160,7 +160,7 @@ p {
     width: 0%;
     height: 8px;
     display: block;
-    background: #524d7d
+    background: #0033a0
 }
 
 .pre-loader .percent {
@@ -546,11 +546,11 @@ p {
 }
 
 .bg-blue {
-    background-color: #524d7d
+    background-color: #0033a0
 }
 
 .text-blue {
-    color: #524d7d
+    color: #0033a0
 }
 
 .text-light-blue {
@@ -770,7 +770,7 @@ p {
 .dropdown-item:focus,
 .dropdown-item:hover {
     background: #ecf0f4;
-    color: #524d7d
+    color: #0033a0
 }
 
 .form-group {
@@ -822,15 +822,15 @@ p {
     padding-top: .475rem
 }
 
-textarea.form-control {
+/* textarea.form-control {
     height: 180px
-}
+} */
 
 .custom-file-input:focus,
 .custom-select:focus,
 .form-control:focus {
     color: #131e22;
-    border-color: #524d7d;
+    border-color: #0033a0;
     -webkit-box-shadow: 0 0 28px rgba(0, 0, 0, .1);
     box-shadow: 0 0 28px rgba(0, 0, 0, .1)
 }
@@ -886,7 +886,7 @@ textarea.form-control {
 }
 
 .form-control:focus~.input-group-append .fa {
-    color: #524d7d
+    color: #0033a0
 }
 
 .form-control-lg,
@@ -991,7 +991,7 @@ textarea.form-control {
 }
 
 .breadcrumb-item.active {
-    color: #524d7d;
+    color: #0033a0;
     font-weight: 500
 }
 
@@ -1015,18 +1015,18 @@ textarea.form-control {
 .datepicker--day-name,
 .datepicker--time-current-hours,
 .datepicker--time-current-minutes {
-    color: #524d7d
+    color: #0033a0
 }
 
 .datepicker--nav-action path {
-    stroke: #524d7d
+    stroke: #0033a0
 }
 
 .datepicker--cell.-focus-,
 .datepicker--nav-action:hover,
 .datepicker--nav-title:hover {
     background: #e1e1f5;
-    color: #524d7d
+    color: #0033a0
 }
 
 .datepicker--cell.-selected- {
@@ -1066,7 +1066,7 @@ textarea.form-control {
     top: 2px;
     left: -30px;
     background-color: transparent;
-    border: 2px solid #524d7d
+    border: 2px solid #0033a0
 }
 
 .custom-control-label::after {
@@ -1084,7 +1084,7 @@ textarea.form-control {
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #524d7d
+    background-color: #0033a0
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
@@ -1094,7 +1094,7 @@ textarea.form-control {
 }
 
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
-    background-color: #524d7d
+    background-color: #0033a0
 }
 
 .custom-checkbox .custom-control-input:disabled:checked~.custom-control-label::before {
@@ -1124,9 +1124,9 @@ textarea.form-control {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #524d7d;
+    background-color: #0033a0;
     color: #fff;
-    border-color: #524d7d
+    border-color: #0033a0
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -1157,12 +1157,12 @@ textarea.form-control {
 
 .bootstrap-select .dropdown-menu li .dropdown-item.active:hover,
 .select2-container--default .select2-results__option[aria-selected=true] {
-    background-color: #524d7d;
+    background-color: #0033a0;
     color: #fff
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #524d7d
+    background-color: #0033a0
 }
 
 .bootstrap-select.btn-group .dropdown-menu.inner,
@@ -1181,7 +1181,7 @@ table.dataTable>tbody>tr.child ul.dtr-details .dtr-title {
 }
 
 .bootstrap-select .dropdown-menu li .dropdown-item:hover {
-    color: #524d7d
+    color: #0033a0
 }
 
 .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
@@ -1306,7 +1306,7 @@ table.dataTable.hover tbody tr:hover.selected {
 
 table.dataTable.display tbody tr.odd.selected,
 table.dataTable.stripe tbody tr.odd.selected {
-    background-color: #524d7d !important
+    background-color: #0033a0 !important
 }
 
 table.dataTable thead .sorting:after,
@@ -1344,7 +1344,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 .fontawesome-icon-list .fa-hover:hover a,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:after {
-    color: #524d7d
+    color: #0033a0
 }
 
 table.dataTable>tbody>tr.child ul.dtr-details {
@@ -1403,8 +1403,8 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .dt-checkbox input:checked~span {
-    background: #524d7d;
-    border-color: #524d7d;
+    background: #0033a0;
+    border-color: #0033a0;
     color: #fff
 }
 
@@ -1544,7 +1544,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 .contact-directory-box:hover .view-contact a,
 .header-left .header-search .dropdown .dropdown-toggle:hover,
 .header-left .header-search .dropdown.show .dropdown-toggle {
-    background: #524d7d;
+    background: #0033a0;
     color: #fff
 }
 
@@ -1602,7 +1602,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     height: 52px;
     font-size: 24px;
     background: #ebeff3;
-    color: #524d7d;
+    color: #0033a0;
     line-height: 52px;
     text-align: center;
     display: inline-block;
@@ -1758,7 +1758,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .footer-wrap a {
-    color: #524d7d;
+    color: #0033a0;
     text-decoration: underline
 }
 
@@ -1978,7 +1978,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     top: 0;
     display: none;
     background: 0 0;
-    border-left: 2px dashed #524d7d
+    border-left: 2px dashed #0033a0
 }
 
 .sidebar-menu .submenu li>a:before {
@@ -2156,7 +2156,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 .login-menu a {
     font-size: 20px;
     font-weight: 600;
-    color: #524d7d
+    color: #0033a0
 }
 
 .login-wrap {
@@ -2229,7 +2229,7 @@ body.IE .register-page-wrap .container {
 .select-role .btn-group .btn.focus.active {
     background-color: rgba(27, 0, 255, .05);
     border-color: rgba(27, 0, 255, .5);
-    color: #524d7d
+    color: #0033a0
 }
 
 .select-role .btn-group .btn .icon {
@@ -2325,7 +2325,7 @@ body.IE .register-page-wrap .container {
 }
 
 .register-page-wrap .wizard-content .wizard>.steps>ul>li.current .step {
-    border-color: #524d7d;
+    border-color: #0033a0;
     color: #181f48;
     background-color: #fff
 }
@@ -2403,8 +2403,9 @@ body.IE .register-page-wrap .container {
     border-radius: 10px;
     -webkit-box-shadow: 0 0 28px rgba(0, 0, 0, .08);
     box-shadow: 0 0 28px rgba(0, 0, 0, .08);
-    margin-bottom: 30px;
-    padding: 20px
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-bottom: 3px solid #0033a0;
 }
 
 .page-header .row {
@@ -2910,14 +2911,14 @@ body.IE .register-page-wrap .container {
 
 .da-card .da-social ul li a:hover {
     background: #fff;
-    color: #524d7d
+    color: #0033a0
 }
 
 .nav-tabs.customtab .nav-item.show .nav-link,
 .nav-tabs.customtab .nav-link.active {
-    color: #524d7d;
+    color: #0033a0;
     border: 0;
-    border-bottom: 2px solid #524d7d
+    border-bottom: 2px solid #0033a0
 }
 
 .nav-tabs.customtab .nav-item {
@@ -2934,9 +2935,9 @@ body.IE .register-page-wrap .container {
 
 .nav-tabs.customtab .nav-link:focus,
 .nav-tabs.customtab .nav-link:hover {
-    color: #524d7d;
+    color: #0033a0;
     border: 0;
-    border-bottom: 2px solid #524d7d
+    border-bottom: 2px solid #0033a0
 }
 
 .nav.vtabs {
@@ -2953,7 +2954,7 @@ body.IE .register-page-wrap .container {
 .nav.vtabs .nav-link.active {
     border-right: 0;
     border-color: #dee2e6;
-    color: #524d7d
+    color: #0033a0
 }
 
 .nav.vtabs.nav-pills .nav-item.show .nav-link,
@@ -2965,14 +2966,14 @@ body.IE .register-page-wrap .container {
 
 .nav.vtabs.customtab .nav-item.show .nav-link,
 .nav.vtabs.customtab .nav-link.active {
-    border-color: #524d7d
+    border-color: #0033a0
 }
 
 .timeline ul:before {
     content: "";
     width: 3px;
     height: 100%;
-    background: #524d7d;
+    background: #0033a0;
     position: absolute;
     left: 150px
 }
@@ -2993,8 +2994,8 @@ body.IE .register-page-wrap .container {
     height: 18px;
     background: #fff;
     border-radius: 100%;
-    -webkit-box-shadow: 0 0 0 3px #524d7d;
-    box-shadow: 0 0 0 3px #524d7d
+    -webkit-box-shadow: 0 0 0 3px #0033a0;
+    box-shadow: 0 0 0 3px #0033a0
 }
 
 .timeline .timeline-date {
@@ -3002,7 +3003,7 @@ body.IE .register-page-wrap .container {
     left: 0;
     top: 20px;
     width: 120px;
-    background: #524d7d;
+    background: #0033a0;
     color: #fff;
     font-size: 16px;
     padding: 6px 10px;
@@ -3018,14 +3019,14 @@ body.IE .register-page-wrap .container {
 }
 
 .sitemap {
-    border-left: 2px dashed #524d7d
+    border-left: 2px dashed #0033a0
 }
 
 .sitemap h5 {
     padding: 15px;
     margin-bottom: 10px;
     font-weight: 600;
-    color: #524d7d
+    color: #0033a0
 }
 
 .sitemap ul,
@@ -3050,7 +3051,7 @@ body.IE .register-page-wrap .container {
     background: #fff;
     width: 20px;
     height: 20px;
-    border: 2px solid #524d7d;
+    border: 2px solid #0033a0;
     border-radius: 100%;
     position: absolute;
     left: 6px;
@@ -3063,7 +3064,7 @@ body.IE .register-page-wrap .container {
     left: -25px;
     top: 40%;
     position: absolute;
-    border-top: 2px dashed #524d7d
+    border-top: 2px dashed #0033a0
 }
 
 .blog-list ul li,
@@ -3188,7 +3189,7 @@ body.IE .register-page-wrap .container {
 }
 
 .latest-post ul li h4 a:hover {
-    color: #524d7d
+    color: #0033a0
 }
 
 .blog-detail,
@@ -3327,8 +3328,8 @@ body.IE .register-page-wrap .container {
     height: 40px;
     top: 50%;
     margin-top: -20px;
-    border: 1px solid #524d7d;
-    background: #524d7d;
+    border: 1px solid #0033a0;
+    background: #0033a0;
     border-radius: 0;
     cursor: pointer;
     font-size: 0;
@@ -3401,7 +3402,7 @@ body.IE .register-page-wrap .container {
     padding: 16px 40px 16px 16px;
     position: relative;
     white-space: normal;
-    color: #524d7d;
+    color: #0033a0;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out
 }
@@ -3415,7 +3416,7 @@ body.IE .register-page-wrap .container {
     font-family: "Ionicons";
     position: absolute;
     right: 10px;
-    color: #524d7d;
+    color: #0033a0;
     top: 16px
 }
 
@@ -3460,7 +3461,7 @@ body.IE .register-page-wrap .container {
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 500;
-    color: #524d7d;
+    color: #0033a0;
     letter-spacing: .15em
 }
 
@@ -3470,7 +3471,7 @@ body.IE .register-page-wrap .container {
     font-weight: 400;
     padding-bottom: 40px;
     padding-top: 20px;
-    color: #524d7d
+    color: #0033a0
 }
 
 .pricing-card .pricing-price sub {
@@ -3523,7 +3524,7 @@ body.IE .register-page-wrap .container {
 }
 
 .pricing-card-style2 .pricing-card-header .left h5 {
-    color: #524d7d;
+    color: #0033a0;
     font-size: 18px;
     font-weight: 700
 }
@@ -3627,7 +3628,7 @@ body.IE .register-page-wrap .container {
 .profile-info ul li span {
     display: block;
     font-size: 14px;
-    color: #524d7d;
+    color: #0033a0;
     font-weight: 500;
     padding-bottom: 5px
 }
@@ -3827,7 +3828,7 @@ body.IE .register-page-wrap .container {
     content: "";
     width: 2px;
     left: 4px;
-    background-color: #524d7d
+    background-color: #0033a0
 }
 
 .profile-timeline-list ul li {
@@ -3849,12 +3850,12 @@ body.IE .register-page-wrap .container {
     content: "";
     width: 12px;
     height: 12px;
-    border: 2px solid #524d7d;
+    border: 2px solid #0033a0;
     border-radius: 22px;
     position: absolute;
     left: -16px;
     top: 15px;
-    background: #524d7d
+    background: #0033a0
 }
 
 .profile-timeline-list .date {
@@ -3868,7 +3869,7 @@ body.IE .register-page-wrap .container {
 .profile-timeline-list .task-name {
     text-transform: uppercase;
     font-weight: 600;
-    color: #524d7d;
+    color: #0033a0;
     font-size: 14px;
     line-height: 22px;
     position: relative
@@ -3939,8 +3940,8 @@ body.IE .register-page-wrap .container {
 }
 
 .contact-directory-box .contact-skill .badge.badge-primary {
-    background: #524d7d;
-    border-color: #524d7d;
+    background: #0033a0;
+    border-color: #0033a0;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2)
 }
@@ -3977,7 +3978,7 @@ body.IE .register-page-wrap .container {
     content: "";
     width: 80px;
     height: 1px;
-    background: #524d7d;
+    background: #0033a0;
     position: absolute;
     left: 0;
     right: 0;
@@ -4352,19 +4353,19 @@ body.IE .register-page-wrap .container {
 }
 
 .wizard-content .wizard>.actions>ul>li>a {
-    background-color: #524d7d;
+    background-color: #0033a0;
     font-weight: 600
 }
 
 .wizard-content .wizard>.actions>ul>li>a[href="#previous"] {
-    border-color: #524d7d;
+    border-color: #0033a0;
     border-width: 2px;
-    color: #524d7d
+    color: #0033a0
 }
 
 .wizard-content .wizard>.actions>ul>li.disabled>a[href="#previous"] {
     display: none;
-    border-color: #524d7d
+    border-color: #0033a0
 }
 
 .widget-style1 {
@@ -4490,11 +4491,11 @@ body.IE .register-page-wrap .container {
 }
 
 .bootstrap-tagsinput .label-info {
-    background: #524d7d
+    background: #0033a0
 }
 
 .bootstrap-touchspin .btn {
-    background: #524d7d;
+    background: #0033a0;
     height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4526,7 +4527,7 @@ body.IE .register-page-wrap .container {
 }
 
 .dropzone {
-    border-color: #524d7d
+    border-color: #0033a0
 }
 
 .dropzone .dz-preview .dz-remove {
@@ -4534,7 +4535,7 @@ body.IE .register-page-wrap .container {
 }
 
 .fc-view-container tr:first-child>td>.fc-day-grid-event {
-    background: #524d7d
+    background: #0033a0
 }
 
 .fc-today.alert-info {
@@ -4578,7 +4579,7 @@ body.IE .register-page-wrap .container {
 .table-badge {
     padding: 8px 20px;
     font-size: 14px;
-    background: #524d7d;
+    background: #0033a0;
     color: #ebecef;
     font-weight: 500
 }
@@ -4601,6 +4602,16 @@ body.IE .register-page-wrap .container {
 
 .table-actions a+a {
     margin-left: 10px
+}
+
+.bb-1{
+    border-bottom: 1px solid #0033a0;
+}
+.bb-2{
+    border-bottom: 2px solid #0033a0;
+}
+.bb-3{
+    border-bottom: 3px solid #0033a0;
 }
 
 @media (min-width:1301px) and (max-width:1400px) {

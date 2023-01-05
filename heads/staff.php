@@ -15,25 +15,10 @@ if (isset($_GET['delete'])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -135,7 +120,6 @@ if (isset($_GET['delete'])) {
 								<th>EMAIL</th>
 								<th>PHONE NUMBER</th>
 								<th>POSITION</th>
-								<th>AVE. LEAVE</th>
 								<th class="datatable-nosort">ACTION</th>
 							</tr>
 						</thead>
@@ -161,7 +145,6 @@ if (isset($_GET['delete'])) {
 								<td><?php echo $row['EmailId']; ?></td>
 	                            <td><?php echo $row['Phonenumber']; ?></td>
 								<td><?php echo $row['Position_Staff']; ?></td>
-								<td><?php echo $row['Av_leave']; ?></td>
 								<td>
 									<div class="dropdown">
 										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
