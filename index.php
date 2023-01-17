@@ -67,9 +67,9 @@ if(isset($_POST['signin']))
 	<title>Synokem HR Manager</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/favicon-s.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-s.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-s.png">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -86,7 +86,7 @@ if(isset($_POST['signin']))
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<a href="login.html">
+				<a href="/synokemnpd">
 					<img src="vendors/images/deskapp-logo-svg.png" width="150" alt="">
 				</a>
 			</div>
@@ -100,19 +100,21 @@ if(isset($_POST['signin']))
 				</div>
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
-						<div class="login-title">
-							<h2 class="text-center text-primary">SYNOKEM HRM Portal</h2>
+						<div class="login-title text-center">
+							<img class="text-center" src="vendors/images/favicon-s.png" width="50" alt=""><br>
+							<h2 class="text-center text-primary">Synokem NPD Portal</h2>
 						</div>
 						<form name="signin" method="post">
 						
 							<div class="input-group custom">
-								<input type="text" class="form-control form-control-lg" placeholder="Email ID" name="username" id="username">
+								<input type="email" class="form-control form-control-lg" required placeholder="Email ID" name="username" id="username">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="icon-copy fa fa-envelope-o" aria-hidden="true"></i></span>
 								</div>
 							</div>
 							<div class="input-group custom">
-								<input type="password" class="form-control form-control-lg" placeholder="**********"name="password" id="password">
+								<input type="password" class="form-control form-control-lg" placeholder="**********"name="password" 
+								required id="password">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 								</div>

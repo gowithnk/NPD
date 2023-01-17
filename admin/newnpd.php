@@ -38,27 +38,14 @@ if (isset($_POST['addnpd'])) {
 ?>
 
 <body>
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
 
 	<?php include('includes/navbar.php') ?>
 	<?php include('includes/right_sidebar.php') ?>
 	<?php include('includes/left_sidebar.php') ?>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
+		<div class=" xs-pd-20-10">
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
@@ -87,31 +74,41 @@ if (isset($_POST['addnpd'])) {
 										<div class="col-lg-6 col-md-6">
 											<div class="form-group">
 												<label for="npdnumber">NPD Number</label>
-												<input id="npdnumber" name="departmentname" placeholder="NP123" type="number" class="form-control" required="true" autocomplete="off">
+												<input id="npdnumber" name="departmentname" placeholder="NP123" type="number" 
+												class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
 										<div class="col-lg-3 col-md-3">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
-												<input id="revNumber" name="revNumber" placeholder="123" type="number" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+												<input id="revNumber" name="revNumber" placeholder="123" type="number" class="form-control" 
+												required="true" autocomplete="off" style="text-transform:uppercase">
 											</div>
 										</div>
 										<div class="col-lg-3 col-md-3">
 											<div class="form-group">
+											<?php 
+											date_default_timezone_set('Asia/Kolkata'); 
+											$date = date('Y-m-d H:i A'); 
+											?>
 												<label for="date">Date</label>
-												<input id="date" name="departmentshortname" type="text" class="form-control date-picker" required="true" placeholder="00/00/0000" autocomplete="off" style="text-transform:uppercase">
+												<input id="date" name="date" value="<?= $date ?>" class="form-control" 
+												title="Automatic Current time" required="true" readonly>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4 col-md-4">
 											<div class="form-group">
-												<label for="sonl">Sales Order No. Lookup</label>
-												<select id="sonl" name="sonl" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Sales Order No. Lookup</option>
-													<option value="Option 1">Option 1</option>
-													<option value="Option 2">Option 2</option>
-												</select>
+												<label for="sonl" class="form-label">Sales Order No. Lookup</label>
+												<input class="form-control" list="datalistOptions" id="sonl" placeholder="Type to search...">
+												<datalist style="width:500px" id="datalistOptions">
+													<option style="width:500px" value="Option 1">
+													<option value="Option 2">
+													<option value="Option 3">
+													<option value="Option 4">
+													<option value="Option 5">
+												</datalist>
 											</div>
 										</div>
 										<div class="col-lg-4 col-md-4">
@@ -253,7 +250,8 @@ if (isset($_POST['addnpd'])) {
 									</div> -->
 									<div class="col-sm-12">
 										<div class="dropdown">
-											<input class="btn btn-primary btn-block mt-3" type="submit" value="SUBMIT FOR APPROVAL" name="addnpd" id="add">
+											<input class="btn btn-primary btn-block mt-3" type="submit" value="SUBMIT FOR APPROVAL" 
+											name="addnpd" id="add">
 										</div>
 									</div>
 								</form>

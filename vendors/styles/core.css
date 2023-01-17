@@ -175,7 +175,7 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: .5rem; }
+  margin-bottom: .2rem; }
 
 button {
   border-radius: 0; }
@@ -316,8 +316,8 @@ template {
   line-height: 1.2; }
 
 hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
@@ -1694,7 +1694,7 @@ pre code {
   border: 0; }
 
 input.form-control , select.form-control{
-  height: calc(1.7em + .75rem + 2px) !important;
+  height: calc(1.3em + .75rem + 2px) !important;
 }
 
 .form-control {

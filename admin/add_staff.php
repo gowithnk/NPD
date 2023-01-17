@@ -48,24 +48,10 @@
 ?>
 
 <body>
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
 
 	<?php include('includes/navbar.php')?>
 	<?php include('includes/right_sidebar.php')?>
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -201,9 +187,9 @@
 
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
-											<label style="font-size:16px;"><b></b></label>
-											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Add&nbsp;Staff</button>
+											<label style="font-size:16px;"><b>&nbsp;</b></label>
+											<div class="justify-content-center">
+												<button class="btn btn-primary btn-block" name="add_staff" id="add_staff">Add&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>

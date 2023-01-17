@@ -186,7 +186,7 @@
 									?>
 								<div class="row">
 									
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label>User Role :</label>
 											<select name="user_role" class="custom-select form-control" required="true" autocomplete="off">
@@ -198,11 +198,11 @@
 										</div>
 									</div>
 
-									<div class="col-md-4 col-sm-12">
+									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
-											<label style="font-size:16px;"><b></b></label>
-											<div class="modal-footer justify-content-center">
-												<button class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">Update&nbsp;Staff</button>
+											<label style="font-size:16px;"><b>&nbsp;</b></label>
+											<div class="justify-content-center">
+												<button class="btn btn-primary btn-block" name="add_staff" id="add_staff">Update&nbsp;Staff</button>
 											</div>
 										</div>
 									</div>
