@@ -15,12 +15,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Closed NPD</h4>
+								<h4>Approved NPDs</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Closed NPD</li>
+									<li class="breadcrumb-item active" aria-current="page">Approved NPDs</li>
 								</ol>
 							</nav>
 						</div>
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">All Closed NPD</h2>
+							<h2 class="mb-1 mt-1 h4">Approved NPDs</h2>
 							<hr>
 							<section>
 								<div class="pb-10">

@@ -29,7 +29,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="newnpd.php">New NPDs</a></li>
-							<li><a href="pendingnpds.php">Approval Pending NPDs</a></li>
+							<li><a href="pendingnpds.php">Pending NPDs</a></li>
 							<li><a href="approvednpds.php">Approved NPDs</a></li>
 						</ul>
 					</li>

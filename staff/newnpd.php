@@ -21,13 +21,10 @@ $row_npd = mysqli_fetch_array($query_npd);
 $last_npd = $row_npd['NPDNumber'];
 $new_npd = $last_npd + 1;
 
-if (isset($_POST['addnpd'])) {
+if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 	$npdNumber = $new_npd;
 	$revNumber = 00 ;
 	$date = $_POST['date'];
-	// $sonl = $_POST['sonl'];
-	// $slnl = $_POST['slnl'];
-	// $materialCode = $_POST['materialCode'];
 	$department = $row_staff['Department'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
@@ -61,6 +58,8 @@ if (isset($_POST['addnpd'])) {
 			echo "<script type='text/javascript'> document.location = 'newnpd.php'; </script>";
 		}
 	}
+}else{
+	echo 'please fill the form first';
 }
 
 ?>
@@ -236,7 +235,7 @@ if (isset($_POST['addnpd'])) {
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-20 pt-10 height-100-p">
 							<h2 class="mb-30 h4">NPD List</h2>
@@ -286,7 +285,7 @@ if (isset($_POST['addnpd'])) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<?php include('includes/footer.php'); ?>
 		</div>
