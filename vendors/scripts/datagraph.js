@@ -297,7 +297,7 @@ $('document').ready(function(){
 	});
 });
 $('document').ready(function(){
-	$('.data-table-staff').DataTable({
+	$('.data-table-ten').DataTable({
 		scrollCollapse: false,
 		autoWidth: false,
 		responsive: true,
@@ -318,5 +318,9 @@ $('document').ready(function(){
 				previous: '<i class="ion-chevron-left"></i>'
 			}
 		},
+		dom: 'Bfrtp',
+		buttons: [
+		'copy', 'csv', 'pdf', 'print'
+		]
 	});
 });

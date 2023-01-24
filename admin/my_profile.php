@@ -13,7 +13,8 @@ if(isset($_POST['new_update']))
 	$gender=$_POST['gender'];  
 	$phonenumber=$_POST['phonenumber'];
 
-    $result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Phonenumber='$phonenumber' where emp_id='$session_id'         
+    $result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', 
+	Address='$address', Phonenumber='$phonenumber' where emp_id='$session_id'         
 		")or die(mysqli_error());
     if ($result) {
      	echo "<script>alert('Your records Successfully Updated');</script>";
@@ -49,27 +50,10 @@ if (isset($_POST["update_image"])) {
 ?>
 
 <body>
-	<div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div>
 
 	<?php include('includes/navbar.php')?>
-
 	<?php include('includes/right_sidebar.php')?>
-
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -94,7 +78,8 @@ if (isset($_POST["update_image"])) {
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 
-							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where emp_id = '$session_id'")or die(mysqli_error());
+							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentName
+							 where emp_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 							?>
 
@@ -123,7 +108,7 @@ if (isset($_POST["update_image"])) {
 								</form>
 							</div>
 							<h5 class="text-center h5 mb-0"><?php echo $row['FirstName']. " " .$row['LastName']; ?></h5>
-							<p class="text-center text-muted font-14"><?php echo $row['DepartmentName']; ?></p>
+							<p class="text-center text-muted font-14"><?php echo $row['DepartmentShortName']; ?></p>
 							<div class="profile-info">
 								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
 								<ul>
@@ -153,56 +138,12 @@ if (isset($_POST["update_image"])) {
 								<div class="tab height-100-p">
 									<ul class="nav nav-tabs customtab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Leave Records</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+											<a class="nav-link active" data-toggle="tab" href="#setting" role="tab">Settings</a>
 										</li>
 									</ul>
 									<div class="tab-content">
-										<!-- Timeline Tab start -->
-										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
-											<div class="pd-20">
-												<div class="profile-timeline">
-													<?php $query= mysqli_query($conn,"SELECT * from tblleave where empid = '$session_id'")or die(mysqli_error($conn));
-																while ($row = mysqli_fetch_array($query)) {
-		                        								$id = $row['id'];
-															?>
-													<div class="timeline-month">
-														<h5><?php echo date('d M Y', strtotime($row['PostingDate'])); ?></h5>
-													</div>
-													<div class="profile-timeline-list">
-														<ul>
-															
-															<li>
-																<div class="date"><?php echo $row['num_days']; ?> Days</div>
-																<div class="task-name"><i class="ion-ios-chatboxes"></i><?php echo $row['LeaveType']; ?></div>
-																<p>From <?php echo $row['FromDate']; ?> to <?php echo $row['ToDate']; ?></p>
-
-																<div class="task-time">
-																	<?php $stats=$row['HodRemarks'];
-								                                       if($stats==1){
-								                                        ?>
-								                                           <span style="color: green">Approved</span>
-								                                            <?php } if($stats==2)  { ?>
-								                                           <span style="color: red">Not Approved</span>
-								                                            <?php } if($stats==0)  { ?>
-									                                       <span style="color: blue">Pending</span>
-									                                <?php } ?>
-																</div>
-
-															</li>
-															
-															
-														</ul>
-													</div>
-												<?php }?>
-												</div>
-											</div>
-										</div>
-										<!-- Timeline Tab End -->
 										<!-- Setting Tab start -->
-										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+										<div class="tab-pane fade show active height-100-p" id="setting" role="tabpanel">
 											<div class="profile-setting">
 												<form method="POST" enctype="multipart/form-data">
 													<div class="profile-edit-list row">
@@ -279,17 +220,7 @@ if (isset($_POST["update_image"])) {
 																</select>
 															</div>
 														</div>
-														<div class="weight-500 col-md-6">
-															<?php
-																$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id' ")or die(mysqli_error());
-																$row = mysqli_fetch_array($query);
-															?>
-															<div class="form-group">
-																<label>Available Leave Days</label>
-																<input class="form-control form-control-lg" type="text" required="true" autocomplete="off" readonly value="<?php echo $row['Av_leave']; ?>">
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
+														<div class="weight-500 col-md-12">
 															<div class="form-group">
 																<label></label>
 																<div class="modal-footer justify-content-center">

@@ -17,7 +17,7 @@
 				<div class="dropdown">
 
 					<?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
+						  $row = mysqli_fetch_array($query);
 						?>
 
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">

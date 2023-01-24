@@ -95,17 +95,16 @@
 
 						<?php
 						$status=0;
-						$sql = "SELECT id from tblleave where RegRemarks=:status";
+						$sql = "SELECT id from tblnpd";
 						$query = $dbh -> prepare($sql);
-						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$npdcount=$query->rowCount();
 						?>        
 
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
+								<div class="weight-700 font-24 text-dark"><?php echo($npdcount); ?></div>
 								<div class="font-14 text-secondary weight-500">Total NPD</div>
 							</div>
 							<div class="widget-icon">

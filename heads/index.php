@@ -2,19 +2,6 @@
 <?php include('../includes/session.php')?>
 <body>
 
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
-
 	<?php include('includes/navbar.php')?>
 	<?php include('includes/right_sidebar.php')?>
 	<?php include('includes/left_sidebar.php')?>
@@ -66,20 +53,19 @@
 					<div class="card-box height-100-p widget-style3">
 						<?php
 						$status=1;
-						$sql = "SELECT id from tblleave where HodRemarks=:status";
+						$sql = "SELECT id from tblnpd where L1Status=0";
 						$query = $dbh -> prepare($sql);
-						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
+						$openNPD=$query->rowCount();
 						?>        
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Approved Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($openNPD); ?></div>
+								<div class="font-14 text-secondary weight-500">Open NPDs</div>
 							</div>
 							<div class="widget-icon">
-								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
+								<div class="icon" data-color="#fbef00"><span class="icon-copy fa fa-hourglass"></span></div>
 							</div>
 						</div>
 					</div>
@@ -88,20 +74,19 @@
 					<div class="card-box height-100-p widget-style3">
 						<?php
 						$status=0;
-						$sql = "SELECT id from tblleave where HodRemarks=:status";
+						$sql = "SELECT id from tblnpd where L1Status=1";
 						$query = $dbh -> prepare($sql);
-						$query->bindParam(':status',$status,PDO::PARAM_STR);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$leavecount=$query->rowCount();
-						?>        
+						$inProcessNPD=$query->rowCount();
+						?>         
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Pending Leave</div>
+								<div class="weight-700 font-24 text-dark"><?php echo($inProcessNPD); ?></div>
+								<div class="font-14 text-secondary weight-500">In Process NPD</div>
 							</div>
 							<div class="widget-icon">
-								<div class="icon"><i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i></div>
+								<div class="icon" data-color="#09cc06"><i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i></div>
 							</div>
 						</div>
 					</div>

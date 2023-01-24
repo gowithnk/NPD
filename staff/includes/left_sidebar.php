@@ -17,21 +17,28 @@
 						</a>
 						
 					</li>
+					<!-- <li class="dropdown">
+						<a href="signature.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-house-1"></span><span class="mtext">Signature</span>
+						</a>
+						
+					</li> -->
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-apartment"></span><span class="mtext"> Leave </span>
+							<span class="micon dw dw-calendar"></span><span class="mtext">Manage NPD</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="apply_leaves.php">Apply Leave</a></li>
-							<li><a href="leave_history.php">Leave History</a></li>
+							<li><a href="newnpd.php">New NPDs</a></li>
+							<li><a href="pendingnpds.php">Approval Pending NPDs</a></li>
+							<li><a href="approvednpds.php">Approved NPDs</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="chat.php" class="dropdown-toggle no-arrow">
+					<!-- <li class="dropdown">
+						<a href="chat.php?sender=9&receiver=11" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
 						</a>
 						
-					</li>
+					</li> -->
                     <!-- micon dw dw-chat3 -->
 					<li>
 						<div class="dropdown-divider"></div>

@@ -3,7 +3,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','synokemhrm');
+define('DB_NAME','synokemnpd');
 
 $conn = mysqli_connect('localhost','root','','synokemnpd') or die(mysqli_error());
 

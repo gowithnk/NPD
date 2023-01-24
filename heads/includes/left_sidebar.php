@@ -28,7 +28,8 @@
 							<span class="micon dw dw-calendar"></span><span class="mtext">Manage NPD</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="opennpd.php">Open NPD</a></li>
+							<li><a href="opennpds.php">Open NPDs</a></li>
+							<li><a href="closednpds.php">Closed NPDs</a></li>
 							<li><a href="#">Search Report</a></li>
 						</ul>
 					</li>

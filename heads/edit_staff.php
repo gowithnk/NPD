@@ -70,13 +70,14 @@
 								<?php
 									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
 									$row = mysqli_fetch_array($query);
-									?>
+								?>
 
 								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label >First Name :</label>
-											<input name="firstname" type="text" class="form-control wizard-required" required="true" autocomplete="off" value="<?php echo $row['FirstName']; ?>">
+											<input name="firstname" type="text" class="form-control wizard-required" required="true" autocomplete="off" 
+											value="<?php echo $row['FirstName']; ?>">
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">

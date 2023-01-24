@@ -140,74 +140,57 @@
 				</div>
 			</div>
 
-			<div class="card-box mb-30">
-				<div class="pd-20">
-					<h2 class="text-blue h4">LEAVE HISTORY</h2>
+			<div class="row">
+					<div class="col-lg-12 mb-30">
+						<div class="card-box pd-20 pt-10 height-100-p">
+							<h2 class="mb-30 h4">NPD List</h2>
+							<div class="pb-10">
+								<table class="data-table-ten table stripe hover nowrap">
+									<thead>
+										<tr>
+											<th>SR NO.</th>
+											<th class="table-plus">NPD No.</th>
+											<th>Material Name</th>
+											<th>Date</th>
+											<th>Status</th>
+											<th class="datatable-nosort">ACTION</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<?php $sql = "SELECT * from tblnpd";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetchAll(PDO::FETCH_OBJ);
+										$cnt = 1;
+										if ($query->rowCount() > 0) {
+											foreach ($results as $result) {               ?>
+												<tr>
+													<td> <?php echo htmlentities($cnt); ?></td>
+													<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
+													<td><?php echo htmlentities($result->MaterialName); ?></td>
+													<td><?php echo htmlentities($result->Date); ?></td>
+													<td><?php echo htmlentities($result->L1Status); ?></td>
+													<td>
+														<div class="table-actions">
+															<a href="edit_department.php?edit=<?php echo htmlentities($result->id); ?>" data-color="#265ed7">
+																<i class="icon-copy dw dw-edit2"></i></a>
+															<a href="newnpd.php?delete=<?php echo htmlentities($result->id); ?>" data-color="#e95959">
+																<i class="icon-copy dw dw-delete-3"></i></a>
+														</div>
+													</td>
+												</tr>
+
+										<?php $cnt++;
+											}
+										} ?>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="pb-20">
-					<table class="data-table table stripe hover nowrap">
-						<thead>
-							<tr>
-								<th class="table-plus">LEAVE TYPE</th>
-								<th>DATE FROM</th>
-								<th>DATE TO</th>
-								<th>NO. OF DAYS</th>
-								<th>HOD STATUS</th>
-								<th>REG. STATUS</th>
-								<th class="datatable-nosort">ACTION</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								
-								 <?php 
-                                    $sql = "SELECT * from tblleave where empid = '$session_id'";
-                                    $query = $dbh -> prepare($sql);
-                                    $query->execute();
-                                    $results=$query->fetchAll(PDO::FETCH_OBJ);
-                                    $cnt=1;
-                                    if($query->rowCount() > 0)
-                                    {
-                                    foreach($results as $result)
-                                    {               ?>  
-
-								  <td><?php echo htmlentities($result->LeaveType);?></td>
-                                  <td><?php echo htmlentities($result->FromDate);?></td>
-                                  <td><?php echo htmlentities($result->ToDate);?></td>
-                                  <td><?php echo htmlentities($result->num_days);?></td>
-                                  <td><?php $stats=$result->HodRemarks;
-                                       if($stats==1){
-                                        ?>
-                                           <span style="color: green">Approved</span>
-                                            <?php } if($stats==2)  { ?>
-                                           <span style="color: red">Not Approved</span>
-                                            <?php } if($stats==0)  { ?>
-	                                       <span style="color: blue">Pending</span>
-	                                       <?php } ?>
-
-                                    </td>
-                                    <td><?php $stats=$result->RegRemarks;
-                                       if($stats==1){
-                                        ?>
-                                           <span style="color: green">Approved</span>
-                                            <?php } if($stats==2)  { ?>
-                                           <span style="color: red">Not Approved</span>
-                                            <?php } if($stats==0)  { ?>
-	                                       <span style="color: blue">Pending</span>
-	                                       <?php } ?>
-
-                                    </td>
-								   <td>
-									  <div class="table-actions">
-										<a title="VIEW" href="view_leaves.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
-									  </div>
-								   </td>
-							</tr>
-							<?php $cnt++;} }?>  
-						</tbody>
-					</table>
-			   </div>
-			</div>
 
 			<?php include('includes/footer.php'); ?>
 		</div>
