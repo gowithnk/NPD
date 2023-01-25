@@ -28,16 +28,23 @@
 							<span class="micon dw dw-calendar"></span><span class="mtext">Manage NPD</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="newnpd.php">New NPDs</a></li>
-							<li><a href="pendingnpds.php">Pending NPDs</a></li>
-							<li><a href="approvednpds.php">Approved NPDs</a></li>
+							<?php 
+								$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+								$empDept = $row['Department'];
+								if($empDept == 'INFORMATION TECHNOLOGY'){   ?>
+									<li><a href="newnpd.php">New NPDs</a></li>
+									<li><a href="pendingnpds.php">Pending NPDs</a></li>
+									<li><a href="approvednpds.php">Approved NPDs</a></li>
+								<?php } ?>
+								<li><a href="opennpdsl2.php">Open NPDs</a></li>
+								<li><a href="#">Approved NPDs</a></li>
 						</ul>
 					</li>
 					<!-- <li class="dropdown">
 						<a href="chat.php?sender=9&receiver=11" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
 						</a>
-						
 					</li> -->
                     <!-- micon dw dw-chat3 -->
 					<li>
@@ -49,12 +56,6 @@
 					<!-- <li>
 						<a href="https://aci.edu.gh/" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-edit-2"></span><span class="mtext">Visit Us</span>
-						</a>
-					</li>
-					<li>
-						<a href="https://aci.edu.gh/faculty" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-paper-plane1"></span>
-							<span class="mtext">Faculty </span>
 						</a>
 					</li> -->
 				</ul>

@@ -18,8 +18,14 @@
 
 					<?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 						  $row = mysqli_fetch_array($query);
-						?>
-
+						
+						  if($session_role != 'HOD'){
+							echo '<script>
+									alert("Please login with HOD Account");
+									document.location = "/SynokemNPD/index.php";
+								</script>';
+						} 
+					?>
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
 							<img src="<?php echo (!empty($row['location'])) ? '../uploads/'.$row['location'] : '../uploads/NO-IMAGE-AVAILABLE.jpg'; ?>" alt="">

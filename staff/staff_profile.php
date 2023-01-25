@@ -13,7 +13,8 @@ if(isset($_POST['new_update']))
 	$gender=$_POST['gender'];  
 	$phonenumber=$_POST['phonenumber'];
 
-    $result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', Phonenumber='$phonenumber' where emp_id='$session_id'         
+    $result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', 
+	Address='$address', Phonenumber='$phonenumber' where emp_id='$session_id'         
 		")or die(mysqli_error());
     if ($result) {
      	echo "<script>alert('Your records Successfully Updated');</script>";
@@ -49,25 +50,10 @@ if (isset($_POST["update_image"])) {
 ?>
 
 <body>
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
 
 	<?php include('includes/navbar.php')?>
 	<?php include('includes/right_sidebar.php')?>
 	<?php include('includes/left_sidebar.php')?>
-
-	<div class="mobile-menu-overlay"></div>
-
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
@@ -92,7 +78,8 @@ if (isset($_POST["update_image"])) {
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 
-							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName where emp_id = '$session_id'")or die(mysqli_error());
+							<?php $query= mysqli_query($conn,"SELECT * FROM tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentName 
+							where emp_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 							?>
 

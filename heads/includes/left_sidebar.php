@@ -29,8 +29,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="opennpds.php">Open NPDs</a></li>
-							<li><a href="closednpds.php">Closed NPDs</a></li>
-							<li><a href="#">Search Report</a></li>
+							<li><a href="approvednpds.php">In Process NPDs</a></li>
 						</ul>
 					</li>
 					<!-- <li class="dropdown">

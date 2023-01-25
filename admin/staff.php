@@ -129,7 +129,7 @@ if (isset($_GET['delete'])) {
 							<tr>
 
 								 <?php
-		                         $teacher_query = mysqli_query($conn,"select * from tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentShortName ORDER BY tblemployees.emp_id") or die(mysqli_error());
+		                         $teacher_query = mysqli_query($conn,"SELECT * FROM tblemployees LEFT JOIN tbldepartments ON tblemployees.Department = tbldepartments.DepartmentName ORDER BY tblemployees.emp_id") or die(mysqli_error());
 		                         while ($row = mysqli_fetch_array($teacher_query)) {
 		                         $id = $row['emp_id'];
 		                             ?>
