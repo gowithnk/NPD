@@ -15,12 +15,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Approved NPDs</h4>
+								<h4>Pending NPDs</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Approved NPDs</li>
+									<li class="breadcrumb-item active" aria-current="page">Pending NPDs</li>
 								</ol>
 							</nav>
 						</div>
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">Approved NPDs</h2>
+							<h2 class="mb-1 mt-1 h4">Pending NPDs</h2>
 							<hr>
 							<section>
 								<div class="pb-10">
@@ -58,7 +58,10 @@
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblnpd where L1Status=1 ";
+											<?php 
+											// $sql = "SELECT * FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 AND tblnpd.LevelStatus='1' ";
+											$sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpCode as Emp1Code, tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON 
+											tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 AND tblnpd.LevelStatus='1'";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -87,7 +90,7 @@
 														<td><?php echo htmlentities($result->Rate); ?></td>
 														<td><?php echo htmlentities($result->MRP); ?></td>
 														<td><?php echo htmlentities($result->EmpRemark); ?></td>
-														<td><?php echo htmlentities($result->HODRemark); ?></td>
+														<td><?php echo htmlentities($result->HOD1Remark); ?></td>
 													</tr>
 
 											<?php }} ?>

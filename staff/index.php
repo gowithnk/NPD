@@ -140,57 +140,57 @@
 				</div>
 			</div>
 
-			<div class="row">
-					<div class="col-lg-12 mb-30">
-						<div class="card-box pd-20 pt-10 height-100-p">
-							<h2 class="mb-30 h4">NPD List</h2>
-							<div class="pb-10">
-								<table class="data-table-ten table stripe hover nowrap">
-									<thead>
-										<tr>
-											<th>SR NO.</th>
-											<th class="table-plus">NPD No.</th>
-											<th>Material Name</th>
-											<th>Date</th>
-											<th>Status</th>
-											<th class="datatable-nosort">ACTION</th>
-										</tr>
-									</thead>
-									<tbody>
+			<!-- <div class="row">
+				<div class="col-lg-12 mb-30">
+					<div class="card-box pd-20 pt-10 height-100-p">
+						<h2 class="mb-30 h4">NPD List</h2>
+						<div class="pb-10">
+							<table class="data-table-ten table stripe hover nowrap">
+								<thead>
+									<tr>
+										<th>SR NO.</th>
+										<th class="table-plus">NPD No.</th>
+										<th>Material Name</th>
+										<th>Date</th>
+										<th>Status</th>
+										<th class="datatable-nosort">ACTION</th>
+									</tr>
+								</thead>
+								<tbody>
 
-										<?php $sql = "SELECT * from tblnpd";
-										$query = $dbh->prepare($sql);
-										$query->execute();
-										$results = $query->fetchAll(PDO::FETCH_OBJ);
-										$cnt = 1;
-										if ($query->rowCount() > 0) {
-											foreach ($results as $result) {               ?>
-												<tr>
-													<td> <?php echo htmlentities($cnt); ?></td>
-													<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
-													<td><?php echo htmlentities($result->MaterialName); ?></td>
-													<td><?php echo htmlentities($result->Date); ?></td>
-													<td><?php echo htmlentities($result->L1Status); ?></td>
-													<td>
-														<div class="table-actions">
-															<a href="edit_department.php?edit=<?php echo htmlentities($result->id); ?>" data-color="#265ed7">
-																<i class="icon-copy dw dw-edit2"></i></a>
-															<a href="newnpd.php?delete=<?php echo htmlentities($result->id); ?>" data-color="#e95959">
-																<i class="icon-copy dw dw-delete-3"></i></a>
-														</div>
-													</td>
-												</tr>
+									<?php $sql = "SELECT * from tblnpd";
+									$query = $dbh->prepare($sql);
+									$query->execute();
+									$results = $query->fetchAll(PDO::FETCH_OBJ);
+									$cnt = 1;
+									if ($query->rowCount() > 0) {
+										foreach ($results as $result) {               ?>
+											<tr>
+												<td> <?php echo htmlentities($cnt); ?></td>
+												<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
+												<td><?php echo htmlentities($result->MaterialName); ?></td>
+												<td><?php echo htmlentities($result->Date); ?></td>
+												<td><?php echo htmlentities($result->Status); ?></td>
+												<td>
+													<div class="table-actions">
+														<a href="edit_department.php?edit=<?php echo htmlentities($result->id); ?>" data-color="#265ed7">
+															<i class="icon-copy dw dw-edit2"></i></a>
+														<a href="newnpd.php?delete=<?php echo htmlentities($result->id); ?>" data-color="#e95959">
+															<i class="icon-copy dw dw-delete-3"></i></a>
+													</div>
+												</td>
+											</tr>
 
-										<?php $cnt++;
-											}
-										} ?>
+									<?php $cnt++;
+										}
+									} ?>
 
-									</tbody>
-								</table>
-							</div>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
+			</div> -->
 
 			<?php include('includes/footer.php'); ?>
 		</div>

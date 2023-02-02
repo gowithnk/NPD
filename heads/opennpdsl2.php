@@ -50,7 +50,9 @@
 											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
-											$sql = "SELECT * from tblnpd where Status=0 and Department = '$empDept' ";
+											$sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
+											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 
+											AND tblnpd.LevelStatus='1'";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -64,7 +66,7 @@
 														<td><?php echo htmlentities($result->Date); ?></td>
 														<td>
 															<div class="table-actions">
-																<a href="opennpd.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">
+																<a href="opennpdl2.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">
 																<i class="icon-copy dw dw-edit2"></i></a>
 															</div>
 														</td>

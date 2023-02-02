@@ -58,7 +58,7 @@
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblnpd where L1Status=0 ";
+											<?php $sql = "SELECT * from tblnpd where Status=0 ";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);

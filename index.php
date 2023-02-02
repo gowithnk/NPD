@@ -64,7 +64,7 @@ if(isset($_POST['signin']))
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Synokem HR Manager</title>
+	<title>Synokem NPD Manager</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/favicon-s.png">

@@ -15,12 +15,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Closed NPD</h4>
+								<h4>Pending NPDs</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Closed NPD</li>
+									<li class="breadcrumb-item active" aria-current="page">Pending NPDs</li>
 								</ol>
 							</nav>
 						</div>
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">All Closed NPD</h2>
+							<h2 class="mb-1 mt-1 h4">Pending NPDs</h2>
 							<hr>
 							<section>
 								<div class="pb-10">
@@ -53,12 +53,27 @@
 												<th>Rate</th>
 												<th>MRP</th>
 												<th>Employee Remark</th>
+												<th>Employee Name</th>
 												<th>HOD Remark</th>
+												<th>HOD Name</th>
+												<th>Batch Series</th>
+												<th>FDA Approval</th>
+												<th>FDA Approval Date</th>
+												<th>Colour</th>
+												<th>Average Weight</th>
+												<th>Shape</th>
+												<th>Size</th>
+												<th>General Info</th>
+												<th>Other Remarks</th>
+												<th>Remark</th>
+												<th>Emp. Name</th>
 											</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblnpd where Status=1 ";
+											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
+											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 
+											AND tblnpd.LevelStatus='1'";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -86,8 +101,21 @@
 														<td><?php echo htmlentities($result->SelfLife); ?></td>
 														<td><?php echo htmlentities($result->Rate); ?></td>
 														<td><?php echo htmlentities($result->MRP); ?></td>
+														<td><?php echo htmlentities($result->Emp1Remark); ?></td>
+														<td><?php echo htmlentities($result->Emp1Name); ?></td>
+														<td><?php echo htmlentities($result->HOD1Remark); ?></td>
+														<td><?php echo htmlentities($result->HOD1Name); ?></td>
+														<td><?php echo htmlentities($result->BatchSeries); ?></td>
+														<td><?php echo htmlentities($result->FDAApproval); ?></td>
+														<td><?php echo htmlentities($result->FDAApprovalDate); ?></td>
+														<td><?php echo htmlentities($result->Colour); ?></td>
+														<td><?php echo htmlentities($result->AverageWeight); ?></td>
+														<td><?php echo htmlentities($result->Shape); ?></td>
+														<td><?php echo htmlentities($result->Size); ?></td>
+														<td><?php echo htmlentities($result->GeneralInfo); ?></td>
+														<td><?php echo htmlentities($result->OtherRemarks); ?></td>
 														<td><?php echo htmlentities($result->EmpRemark); ?></td>
-														<td><?php echo htmlentities($result->HODRemark); ?></td>
+														<td><?php echo htmlentities($result->EmpName); ?></td>
 													</tr>
 
 											<?php }} ?>
@@ -214,16 +242,81 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="empRemark">Employee Remark</label>
-												<textarea readonly id="empRemark" name="empRemark" class="form-control" rows="2"></textarea>
+												<label for="emp1Remark">Employee Remark <small>(<label id="emp1Name"></label>)</small></label>
+												<textarea readonly id="emp1Remark" name="emp1Remark" class="form-control" rows="2"></textarea>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<label for="hodRemark">HOD Remark</label>
+												<label for="hodRemark">HOD Remark <small>(<label id="hod1Name"></label>)</small></label>
 												<textarea id="hodRemark" name="hodRemark" class="form-control" rows="2" readonly></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="l2">
+										<hr>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="batchSeries">Batch Series</label>
+													<input id="batchSeries" name="batchSeries" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="fdaApproval">FDA Approval</label>
+													<input id="fdaApproval" name="fdaApproval" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="fdaApprovalDate">FDA Approval Date</label>
+													<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="colour">Colour</label>
+													<input id="colour" name="colour" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="averageWeight">Average Weight</label>
+													<input id="averageWeight" name="averageWeight" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="shape">Shape</label>
+													<input id="shape" name="shape" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="size">Size</label>
+													<input id="size" name="size" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="generalInfo">General Info</label>
+													<input id="generalInfo" name="generalInfo" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="otherRemarks">Other Remarks</label>
+													<input id="otherRemarks" name="otherRemarks" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="empRemark">Remark <small>(<label id="empName"></label>)</small></label>
+													<input id="empRemark" name="empRemark" type="text" class="form-control" readonly>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -269,8 +362,21 @@
 				$('#selfLife').val(data[12]);
 				$('#rate').val(data[13]);
 				$('#mrp').val(data[14]);
-				$('#empRemark').val(data[15]);
-				$('#hodRemark').val(data[16]);
+				$('#emp1Remark').val(data[15]);
+				$('#emp1Name').html(data[16]);
+				$('#hodRemark').val(data[17]);
+				$('#hod1Name').html(data[18]);
+				$('#batchSeries').val(data[19]);
+				$('#fdaApproval').val(data[20]);
+				$('#fdaApprovalDate').val(data[21]);
+				$('#colour').val(data[22]);
+				$('#averageWeight').val(data[23]);
+				$('#shape').val(data[24]);
+				$('#size').val(data[25]);
+				$('#generalInfo').val(data[26]);
+				$('#otherRemarks').val(data[27]);
+				$('#empRemark').val(data[28]);
+				$('#empName').html(data[29]);
 				printSection(el);
 			});
 		});

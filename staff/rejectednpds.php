@@ -50,7 +50,7 @@
 											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
-											$sql = "SELECT * from tblnpd where Status=0 and Department = '$empDept' ";
+											$sql = "SELECT * from tblnpd where Status=2 and Department = '$empDept' ";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -64,7 +64,7 @@
 														<td><?php echo htmlentities($result->Date); ?></td>
 														<td>
 															<div class="table-actions">
-																<a href="opennpd.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">
+																<a href="rejectednpd.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">
 																<i class="icon-copy dw dw-edit2"></i></a>
 															</div>
 														</td>

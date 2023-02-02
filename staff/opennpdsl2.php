@@ -41,6 +41,7 @@
 											<th class="table-plus">NPD Num</th>
 											<th>Material Name</th>
 											<th>Date</th>
+											<th>Status</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
 									</thead>
@@ -50,7 +51,7 @@
 											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
-											$sql = "SELECT * from tblnpd where L1Status=1 ";
+											$sql = "SELECT * FROM tblnpd WHERE Status=1 AND LevelStatus=0";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -62,6 +63,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
+														<td><?php echo htmlentities($result->Status); ?></td>
 														<td>
 															<div class="table-actions">
 																<a href="opennpdl2.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">

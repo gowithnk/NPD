@@ -34,11 +34,14 @@
 								$empDept = $row['Department'];
 								if($empDept == 'INFORMATION TECHNOLOGY'){   ?>
 									<li><a href="newnpd.php">New NPDs</a></li>
-									<li><a href="pendingnpds.php">Pending NPDs</a></li>
-									<li><a href="approvednpds.php">Approved NPDs</a></li>
-								<?php } ?>
-								<li><a href="opennpdsl2.php">Open NPDs</a></li>
-								<li><a href="#">Approved NPDs</a></li>
+									<li><a href="pendingnpds.php">Open NPDs</a></li>
+									<li><a href="inprocessnpds.php">In Process NPDs</a></li>
+									<li><a href="rejectednpds.php">Rejected NPDs</a></li>
+								<?php }else{ ?>
+									<li><a href="opennpdsl2.php">Open NPDs</a></li>
+									<li><a href="pendingnpdsl2.php">Pending NPDs</a></li>
+									<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
+							<?php } ?>
 						</ul>
 					</li>
 					<!-- <li class="dropdown">

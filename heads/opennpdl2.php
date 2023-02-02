@@ -75,7 +75,8 @@ if (isset($_POST['reject'])) {
 								<form name="save" method="post">
 									<div class="row">
 										<?php
-											$query = mysqli_query($conn,"select * from tblnpd where NPDNumber = '$npdNumber' ")or die(mysqli_error());
+											$query = mysqli_query($conn,"SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
+											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.NPDNumber = '$npdNumber' ") or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
 										<div class="col-lg-6 col-md-6">
@@ -178,8 +179,82 @@ if (isset($_POST['reject'])) {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="empRemark">Employee Remark <small>(<?php echo $row['EmpName']; ?>)</small></label>
-												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" ></textarea>
+												<label for="empRemark">Employee Remark <small>(<?php echo $row['Emp1Name']; ?>)</small></label>
+												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['Emp1Remark']; ?>" class="form-control" rows="2" ></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<label for="hodRemark">HOD Remark <small>(<?php echo $row['HOD1Name']; ?>)</small></label>
+												<textarea readonly id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HOD1Remark']; ?>" class="form-control" rows="2" ></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="lvl2 mt-2">
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="batchSeries">Batch Series</label>
+													<input id="batchSeries" value="<?php echo $row['BatchSeries']; ?>" name="batchSeries" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="fdaApproval">FDA Approval</label>
+													<input id="fdaApproval" value="<?php echo $row['FDAApproval']; ?>" name="fdaApproval" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<?php
+													date_default_timezone_set('Asia/Kolkata');
+													$date = date('Y-m-d H:i A');
+													?>
+													<label for="fdaApprovalDate">FDA Approval Date</label>
+													<input id="fdaApprovalDate" name="fdaApprovalDate" value="<?php echo $row['FDAApprovalDate']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="colour">Colour</label>
+													<input id="colour" name="colour" value="<?php echo $row['Colour']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="averageWeight">Average Weight</label>
+													<input id="averageWeight" name="averageWeight" value="<?php echo $row['AverageWeight']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shape">Shape</label>
+													<input id="shape" name="shape" value="<?php echo $row['Shape']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="size">Size</label>
+													<input id="size" name="size" value="<?php echo $row['Size']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="generalInfo">General Information</label>
+													<input id="generalInfo" name="generalInfo" value="<?php echo $row['GeneralInfo']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="otherRemark">Other Remarks</label>
+													<textarea id="otherRemark" name="otherRemark" class="form-control" rows="1" readonly><?php echo $row['OtherRemarks']; ?></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="empRemarkl2">Employee Remark</label>
+													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="2" readonly><?php echo $row['EmpRemark']; ?></textarea>
+												</div>
 											</div>
 										</div>
 									</div>

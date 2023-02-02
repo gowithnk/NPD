@@ -1,34 +1,18 @@
 <?php include('includes/header.php') ?>
 <?php include('../includes/session.php') ?>
 
+<?php $npdNumber = $_GET['edit']; ?>
 <?php
-if (isset($_GET['delete'])) {
-	$id = $_GET['delete'];
-	$sql = "DELETE FROM tblnpd where id = " . $id;
-	$result = mysqli_query($conn, $sql);
-	if ($result) {
-		echo "<script>alert('NPD deleted Successfully');</script>";
-		echo "<script type='text/javascript'> document.location = 'newnpd.php'; </script>";
-	}
-}
-?>
-<?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "select * from tblemployees join tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
-$query_npd = mysqli_query($conn, "SELECT * FROM tblnpd ORDER BY id DESC LIMIT 1") or die(mysqli_error());
-$row_npd = mysqli_fetch_array($query_npd);
-$last_npd = $row_npd['NPDNumber'];
-$new_npd = $last_npd + 1;
-
-if (isset($_POST['addnpd'])) {
-	$npdNumber = $new_npd;
-	$revNumber = 00 ;
+if (isset($_POST['npdupdate'])) {
+	$status = 0;
+	$npdNumber = $_POST['npdNumber'];
+	$revNumber = $_POST['revNumber']; 
 	$date = $_POST['date'];
-	// $sonl = $_POST['sonl'];
-	// $slnl = $_POST['slnl'];
-	// $materialCode = $_POST['materialCode'];
 	$department = $row_staff['Department'];
+	$empCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
@@ -45,24 +29,16 @@ if (isset($_POST['addnpd'])) {
 	$mrp = $_POST['mrp'];
 	$empRemark = $_POST['empRemark'];
 
-	$query = mysqli_query($conn, "select * from tblnpd where NPDNumber = '$npdNumber'") or die(mysqli_error());
-	$count = mysqli_num_rows($query);
-
-	if ($count > 0) {
-		echo "<script>alert('NPD Already exist');</script>";
-	} else {
-		$query = mysqli_query($conn, "INSERT INTO tblnpd (NPDNumber, RevisionNo, Date, Department, EmpName, PackStyle, MaterialName, Division, Market, Unit, GenericName, 
-		Composition, PCN, SelfLife, Rate, MRP, EmpRemark)
-  		VALUES ('$npdNumber', '$revNumber', '$date', '$department', '$empName' ,'$packStyle','$materialName','$division','$market','$unit','$genericName','$composition',
-		'$pcn' ,'$selfLife','$rate','$mrp','$empRemark')") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', NPDNumber = '$npdNumber', RevisionNo = '$revNumber', Date = '$date', Department = '$department', 
+		EmpCode = '$empCode', EmpName = '$empName', PackStyle = '$packStyle', MaterialName = '$materialName', Division = '$division', Market = '$market', Unit = '$unit', 
+		GenericName = '$genericName', Composition = '$composition', PCN = '$pcn', SelfLife = '$selfLife', Rate = '$rate', MRP = '$mrp', EmpRemark = '$empRemark'
+		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
-			echo "<script>alert('NPD Added Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'newnpd.php'; </script>";
+			echo "<script>alert('Updated Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
 		}
 	}
-}
-
 ?>
 
 <body>
@@ -73,7 +49,7 @@ if (isset($_POST['addnpd'])) {
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class=" xs-pd-20-10">
+		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
@@ -99,20 +75,24 @@ if (isset($_POST['addnpd'])) {
 							<section>
 								<form name="save" method="post">
 									<div class="row">
+										<?php
+											$query = mysqli_query($conn,"select * from tblnpd where NPDNumber = '$npdNumber' ")or die(mysqli_error());
+											$row = mysqli_fetch_array($query);
+										?>
 										<div class="col-lg-6 col-md-6">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
-												<input id="npdNumber" name="npdNumber" value="<?php echo 'NP-' . $new_npd ?>" type="text" class="form-control" required="true" readonly>
+												<input id="npdNumber" name="npdNumber" value="<?php echo $row['NPDNumber']; ?>" type="text" class="form-control" readonly>
 											</div>
 										</div>
 										<div class="col-lg-3 col-md-3">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
-												<input id="revNumber" name="revNumber" value="00" type="number" class="form-control" required="true" readonly>
+												<input id="revNumber" name="revNumber" value="<?php echo $row['RevisionNo'] + 1; ?>" type="number" class="form-control" readonly>
 											</div>
 										</div>
 										<div class="col-lg-3 col-md-3">
-											<div class="form-group">
+										<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');
 												$date = date('Y-m-d H:i:s A');
@@ -126,13 +106,13 @@ if (isset($_POST['addnpd'])) {
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
-												<input type="text" name="packStyle" id="packStyle" class="form-control" required="true" autocomplete="on">
+												<input  id="packStyle" name="packStyle" value="<?php echo $row['PackStyle']; ?>" type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="materialName">Material Name</label>
-												<input id="materialName" name="materialName" placeholder="type name" type="text" required="true" class="form-control" autocomplete="off">
+												<input  id="materialName" name="materialName" value="<?php echo $row['MaterialName']; ?>" type="text" class="form-control">
 											</div>
 										</div>
 									</div>
@@ -141,7 +121,7 @@ if (isset($_POST['addnpd'])) {
 											<div class="form-group">
 												<label for="division">Division</label>
 												<select id="division" name="division" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select Division</option>
+													<option value="<?php echo $row['Division']; ?>"><?php echo $row['Division']; ?></option>
 													<option value="Hormone">Hormone</option>
 													<option value="General">General</option>
 												</select>
@@ -151,7 +131,7 @@ if (isset($_POST['addnpd'])) {
 											<div class="form-group">
 												<label for="marketDistribution">Market/Distribution</label>
 												<select id="market" name="market" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select Market</option>
+													<option value="<?php echo $row['Market']; ?>"><?php echo $row['Market']; ?></option>
 													<option value="Domestic">Domestic</option>
 													<option value="Deemed Export">Deemed Export</option>
 													<option value="Export">Export</option>
@@ -165,7 +145,7 @@ if (isset($_POST['addnpd'])) {
 											<div class="form-group">
 												<label for="unit">Unit</label>
 												<select id="unit" name="unit" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select Unit</option>
+													<option value="<?php echo $row['Unit']; ?>"><?php echo $row['Unit']; ?></option>
 													<option value="Synokem Pharma MFG, Unit-I">Synokem Pharma MFG, Unit-I</option>
 													<option value="Synokem Pharma MFG, Unit-II">Synokem Pharma MFG, Unit-II</option>
 													<option value="Synokem Life Sciences, Unit-III">Synokem Life Sciences, Unit-III</option>
@@ -177,13 +157,13 @@ if (isset($_POST['addnpd'])) {
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="genericName">Generic Name</label>
-												<input id="genericName" name="genericName" placeholder="type name" type="text" required="true" class="form-control" autocomplete="on">
+												<input id="genericName" name="genericName" value="<?php echo $row['GenericName']; ?>" type="text" class="form-control" >
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="composition">Composition</label>
-												<input id="composition" name="composition" placeholder="Composition" type="text" required="true" class="form-control" autocomplete="on">
+												<input id="composition" name="composition" value="<?php echo $row['Composition']; ?>" type="text" class="form-control" >
 											</div>
 										</div>
 									</div>
@@ -192,7 +172,7 @@ if (isset($_POST['addnpd'])) {
 											<div class="form-group">
 												<label for="partyCodeName">Party Code & Name</label>
 												<select id="partyCodeName" name="pcn" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Party Code & Name</option>
+													<option value="<?php echo $row['PCN']; ?>"><?php echo $row['PCN']; ?></option>
 													<option value="Option 1">Option 1</option>
 													<option value="Option 2">Option 2</option>
 												</select>
@@ -201,89 +181,48 @@ if (isset($_POST['addnpd'])) {
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="selfLife">Self Life</label>
-												<input id="selfLife" name="selfLife" placeholder="Self Life" type="number" required="true" class="form-control" autocomplete="on">
+												<input id="selfLife" name="selfLife" value="<?php echo $row['SelfLife']; ?>" type="text" class="form-control" >
 											</div>
 										</div>
 										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="rate">Rate</label>
-												<input id="rate" name="rate" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="off">
+												<input id="rate" name="rate" value="<?php echo $row['Rate']; ?>" type="number" class="form-control" >
 											</div>
 										</div>
 										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="mrp">MRP</label>
-												<input id="mrp" name="mrp" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="off">
+												<input id="mrp" name="mrp" value="<?php echo $row['MRP']; ?>" type="number" class="form-control" >
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="empRemark">Remark</label>
-												<textarea id="empRemark" name="empRemark" placeholder="Message" class="form-control" required="true" rows="2" 
-												autocomplete="on"></textarea>
+												<label for="empRemark">Employee Remark <small>(<?php echo $row['EmpName']; ?>)</small></label>
+												<textarea  id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" ></textarea>
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-12">
-										<div class="dropdown">
-											<input class="btn btn-primary btn-block mt-3" type="submit" value="SUBMIT FOR APPROVAL" name="addnpd" id="add">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+											<label for="hodRemark">HOD Remark <small>(<?php echo $row['HODName']; ?>)</small></label>
+												<textarea id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HODRemark']; ?>" 
+												class="form-control" rows="2" readonly></textarea>
+											</div>
+										</div>
+										<div class="col-lg-6 mt-2">
+											<div class="dropdown">
+												<input class="btn btn-success btn-block mt-4" type="submit" 
+												value="RESUBMIT FOR APPROVAL" name="npdupdate" id="add">
+											</div>
 										</div>
 									</div>
+									
 								</form>
 							</section>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12 mb-30">
-						<div class="card-box pd-20 pt-10 height-100-p">
-							<h2 class="mb-30 h4">NPD List</h2>
-							<div class="pb-10">
-								<table class="data-table-ten table stripe hover nowrap">
-									<thead>
-										<tr>
-											<th>SR NO.</th>
-											<th class="table-plus">NPD No.</th>
-											<th>Material Name</th>
-											<th>Date</th>
-											<th>Status</th>
-											<th class="datatable-nosort">ACTION</th>
-										</tr>
-									</thead>
-									<tbody>
-
-										<?php $sql = "SELECT * from tblnpd";
-										$query = $dbh->prepare($sql);
-										$query->execute();
-										$results = $query->fetchAll(PDO::FETCH_OBJ);
-										$cnt = 1;
-										if ($query->rowCount() > 0) {
-											foreach ($results as $result) {               ?>
-												<tr>
-													<td> <?php echo htmlentities($cnt); ?></td>
-													<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
-													<td><?php echo htmlentities($result->MaterialName); ?></td>
-													<td><?php echo htmlentities($result->Date); ?></td>
-													<td><?php echo htmlentities($result->Status); ?></td>
-													<td>
-														<div class="table-actions">
-															<a href="edit_department.php?edit=<?php echo htmlentities($result->id); ?>" data-color="#265ed7">
-																<i class="icon-copy dw dw-edit2"></i></a>
-															<a href="newnpd.php?delete=<?php echo htmlentities($result->id); ?>" data-color="#e95959">
-																<i class="icon-copy dw dw-delete-3"></i></a>
-														</div>
-													</td>
-												</tr>
-
-										<?php $cnt++;
-											}
-										} ?>
-
-									</tbody>
-								</table>
-							</div>
 						</div>
 					</div>
 				</div>
