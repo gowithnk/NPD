@@ -1,3 +1,3 @@
 <div class="footer-wrap pd-20 mb-20 card-box">
-	Synokem HRM <a href="#" target="_blank"><span>Developed by </span> Synokem</a>
+	Synokem NPD <a href="#" target="_blank"><span>Developed by </span> Synokem</a>
 </div>

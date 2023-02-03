@@ -3,38 +3,38 @@
 
 <?php $npdNumber = $_GET['edit']; ?>
 <?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "select * from tblemployees join tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
-if (isset($_POST['approve'])) {
-	$status = 1;
-	$hodCode = $row_staff['Staff_ID'];
-	$fn = $row_staff['FirstName'];
-	$ln = $row_staff['LastName'];
-	$hodName = $fn . ' ' . $ln;
-	$hodRemark = $_POST['hodRemark'];
-
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
-
-		if ($query) {
-			echo "<script>alert('Approved Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
-		}
-	}
-?>
-<?php
-if (isset($_POST['reject'])) {
-	$status = 2;
+if (isset($_POST['npdupdate'])) {
+	$status = 0;
+	$npdNumber = $_POST['npdNumber']; 
+	$date = $_POST['date'];
+	$department = $row_staff['Department'];
 	$empCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
-	$hodRemark = $_POST['hodRemark'];
+	$packStyle = $_POST['packStyle'];
+	$materialName = $_POST['materialName'];
+	$division = $_POST['division'];
+	$market = $_POST['market'];
+	$unit = $_POST['unit'];
+	$genericName = $_POST['genericName'];
+	$composition = $_POST['composition'];
+	$pcn = $_POST['pcn'];
+	$selfLife = $_POST['selfLife'];
+	$rate = $_POST['rate'];
+	$mrp = $_POST['mrp'];
+	$empRemark = $_POST['empRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', NPDNumber = '$npdNumber', Date = '$date', Department = '$department', 
+		EmpCode = '$empCode', EmpName = '$empName', PackStyle = '$packStyle', MaterialName = '$materialName', Division = '$division', Market = '$market', Unit = '$unit', 
+		GenericName = '$genericName', Composition = '$composition', PCN = '$pcn', SelfLife = '$selfLife', Rate = '$rate', MRP = '$mrp', EmpRemark = '$empRemark'
+		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
-			echo "<script>alert('Submitted for an update');</script>";
+			echo "<script>alert('Updated Successfully');</script>";
 			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
 		}
 	}
@@ -75,7 +75,8 @@ if (isset($_POST['reject'])) {
 								<form name="save" method="post">
 									<div class="row">
 										<?php
-											$query = mysqli_query($conn,"select * from tblnpd where NPDNumber = '$npdNumber' ")or die(mysqli_error());
+											$query = mysqli_query($conn,"SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
+											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.NPDNumber = '$npdNumber' ")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
 										<div class="col-lg-6 col-md-6">
@@ -178,33 +179,101 @@ if (isset($_POST['reject'])) {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="empRemark">Employee Remark <small>(<?php echo $row['EmpName']; ?>)</small></label>
-												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" ></textarea>
+												<label for="empRemark">Employee Remark <small>(<?php echo $row['Emp1Name']; ?>)</small></label>
+												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['Emp1Remark']; ?>" class="form-control" rows="2" ></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<label for="hodRemark">HOD Remark <small>(<?php echo $row['HOD1Name']; ?>)</small></label>
+												<textarea readonly id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HOD1Remark']; ?>" class="form-control" rows="2" ></textarea>
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<!-- Level 2 -->
+									<hr class="my-4" style="background-color:indianred">
+									<div class="lvl2 mt-2">
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="batchSeries">Batch Series</label>
+													<input id="batchSeries" name="batchSeries" type="text" value="<?php echo $row['BatchSeries']; ?>" class="form-control">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="fdaApproval">FDA Approval</label>
+													<select id="fdaApproval" name="fdaApproval" class="custom-select form-control">
+														<option value="<?php echo $row['FDAApproval']; ?>"><?php echo $row['FDAApproval']; ?></option>
+														<option value="Yes">YES</option>
+														<option value="No">NO</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-4">
+											<div class="form-group">
+												<label for="fdaApprovalDate">FDA Approval Date</label>
+												<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control date-picker" 
+												value="<?php echo $row['FDAApprovalDate']; ?>">
+											</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="colour">Colour</label>
+													<input id="colour" name="colour" type="text" class="form-control" value="<?php echo $row['Colour']; ?>">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="averageWeight">Average Weight</label>
+													<input id="averageWeight" name="averageWeight" type="text" class="form-control" value="<?php echo $row['AverageWeight']; ?>">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shape">Shape</label>
+													<input id="shape" name="shape" type="text" class="form-control" value="<?php echo $row['Shape']; ?>">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="size">Size</label>
+													<input id="size" name="size" type="text" class="form-control" value="<?php echo $row['Size']; ?>">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="generalInfo">General Information</label>
+													<input id="generalInfo" name="generalInfo" type="text" class="form-control" value="<?php echo $row['GeneralInfo']; ?>">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="otherRemark">Other Remarks</label>
+													<textarea id="otherRemark" name="otherRemark" class="form-control" rows="1" required><?php echo $row['OtherRemarks']; ?></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="empRemarkl2">Remark</label>
+													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="2" required><?php echo $row['EmpRemark']; ?></textarea>
+												</div>
+											</div>
 										<div class="col-sm-6">
 											<div class="form-group">
-											<label for="hodRemark">HOD Remark</label>
-												<textarea id="hodRemark" name="hodRemark" placeholder="Remark" 
-												class="form-control" required="true" rows="1" autocomplete="off"></textarea>
+											<label for="hodRemark">HOD Remark <small>(<?php echo $row['HODName']; ?>)</small></label>
+												<textarea id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HODRemark']; ?>" 
+												class="form-control" rows="2" readonly></textarea>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-6 mt-2">
 											<div class="dropdown">
 												<input class="btn btn-success btn-block mt-4" type="submit" 
-												value="APPROVE" name="approve" id="add">
+												value="RESUBMIT FOR APPROVAL" name="npdupdate" id="add">
 											</div>
 										</div>
-										<div class="col-lg-3">
-											<div class="dropdown">
-												<input class="btn btn-danger btn-block mt-4" type="submit" 
-												value="REJECT" name="reject" id="add">
-											</div>
 										</div>
 									</div>
-									
 								</form>
 							</section>
 						</div>

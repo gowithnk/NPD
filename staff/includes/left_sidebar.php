@@ -41,6 +41,7 @@
 									<li><a href="opennpdsl2.php">Open NPDs</a></li>
 									<li><a href="pendingnpdsl2.php">Pending NPDs</a></li>
 									<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
+									<li><a href="rejectednpdsl2.php">Rejected NPDs</a></li>
 							<?php } ?>
 						</ul>
 					</li>
@@ -57,7 +58,7 @@
 						<div class="sidebar-small-cap">Extra</div>
 					</li>
 					<!-- <li>
-						<a href="https://aci.edu.gh/" class="dropdown-toggle no-arrow">
+						<a href="#" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-edit-2"></span><span class="mtext">Visit Us</span>
 						</a>
 					</li> -->

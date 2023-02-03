@@ -29,16 +29,16 @@
 						</a>
 						<ul class="submenu">
 						<?php 
-								$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-								$empDept = $row['Department'];
-								if($empDept == 'INFORMATION TECHNOLOGY'){   ?>
-									<li><a href="opennpds.php">Open NPDs</a></li>
-									<li><a href="inprocessnpds.php">In Process NPDs</a></li>
-								<?php }else{ ?>
-									<li><a href="opennpdsl2.php">Open NPDs</a></li>
-									<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
-							<?php } ?>
+							$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);
+							$empDept = $row['Department'];
+							if($empDept == 'INFORMATION TECHNOLOGY'){   ?>
+								<li><a href="opennpds.php">Open NPDs</a></li>
+								<li><a href="inprocessnpds.php">In Process NPDs</a></li>
+							<?php }else{ ?>
+								<li><a href="opennpdsl2.php">Open NPDs</a></li>
+								<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
+						<?php } ?>
 							
 						</ul>
 					</li>

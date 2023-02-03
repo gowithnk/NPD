@@ -88,7 +88,7 @@ if (isset($_POST['npdupdate'])) {
 										<div class="col-lg-3 col-md-3">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
-												<input id="revNumber" name="revNumber" value="<?php echo $row['RevisionNo'] + 1; ?>" type="number" class="form-control" readonly>
+												<input id="revNumber" name="revNumber" value="<?php echo $row['RevisionNo']; ?>" type="number" class="form-control" readonly>
 											</div>
 										</div>
 										<div class="col-lg-3 col-md-3">

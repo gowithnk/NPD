@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">Pending NPDs</h2>
+							<h2 class="mb-1 mt-1 h4">All Pending NPDs</h2>
 							<hr>
 							<section>
 								<div class="pb-10">

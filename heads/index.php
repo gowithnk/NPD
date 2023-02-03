@@ -53,7 +53,7 @@
 					<div class="card-box height-100-p widget-style3">
 						<?php
 						$status=1;
-						$sql = "SELECT id from tblnpd where L1Status=0";
+						$sql = "SELECT id from tblnpd where Status=0";
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -74,7 +74,7 @@
 					<div class="card-box height-100-p widget-style3">
 						<?php
 						$status=0;
-						$sql = "SELECT id from tblnpd where L1Status=1";
+						$sql = "SELECT id from tblnpd where Status=1";
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -105,7 +105,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Rejected Leave</div>
+								<div class="font-14 text-secondary weight-500">Rejected NPDs</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>

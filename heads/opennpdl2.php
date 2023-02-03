@@ -14,11 +14,14 @@ if (isset($_POST['approve'])) {
 	$hodName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' 
+		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
+		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		
 		if ($query) {
 			echo "<script>alert('Approved Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'closednpds.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'opennpdsl2.php'; </script>";
 		}
 	}
 ?>

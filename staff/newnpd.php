@@ -200,7 +200,7 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										</div>
 										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="selfLife">Self Life</label>
+												<label for="selfLife">Self Life (In Months)</label>
 												<input id="selfLife" name="selfLife" placeholder="Self Life" type="number" required="true" class="form-control" autocomplete="on">
 											</div>
 										</div>
