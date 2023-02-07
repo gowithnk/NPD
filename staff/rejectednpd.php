@@ -76,7 +76,7 @@ if (isset($_POST['npdupdate'])) {
 								<form name="save" method="post">
 									<div class="row">
 										<?php
-											$query = mysqli_query($conn,"select * from tblnpd where NPDNumber = '$npdNumber' ")or die(mysqli_error());
+											$query = mysqli_query($conn,"SELECT * FROM tblnpd WHERE NPDNumber = '$npdNumber' ")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
 										<div class="col-lg-6 col-md-6">
@@ -201,7 +201,7 @@ if (isset($_POST['npdupdate'])) {
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="empRemark">Employee Remark <small>(<?php echo $row['EmpName']; ?>)</small></label>
-												<textarea  id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" ></textarea>
+												<textarea  id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" required></textarea>
 											</div>
 										</div>
 									</div>

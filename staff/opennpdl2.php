@@ -20,7 +20,6 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$shape = $_POST['shape'];
 	$size = $_POST['size'];
 	$generalInfo = $_POST['generalInfo'];
-	$otherRemark = $_POST['otherRemark'];
 	$empRemarkl2 = $_POST['empRemarkl2'];
 
 	$query = mysqli_query($conn, "SELECT * from l2npd where NPDNumber = '$npdNumber'") or die(mysqli_error());
@@ -30,10 +29,10 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 		echo "<script>alert('NPD Already exist');</script>";
 	} else {
 		$query1 = mysqli_query($conn, "INSERT INTO l2npd (NPDNumber, BatchSeries, Department, EmpName, EmpCode, FDAApproval, FDAApprovalDate, Colour, AverageWeight, Shape, 
-		Size, GeneralInfo, OtherRemarks, EmpRemark) VALUES ('$npdNumber', 'batchSeries', '$department', '$empName', '$empCode' ,'$fdaApproval','$fdaApprovalDate', '$colour', 
-		'$averageWeight','$shape', '$size', '$generalInfo', '$otherRemark', '$empRemarkl2')") or die(mysqli_error());
+		Size, GeneralInfo, EmpRemark) VALUES ('$npdNumber', 'batchSeries', '$department', '$empName', '$empCode' ,'$fdaApproval','$fdaApprovalDate', '$colour', 
+		'$averageWeight','$shape', '$size', '$generalInfo', '$empRemarkl2')") or die(mysqli_error());
 
-		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '1' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query1) {
 			echo "<script>alert('NPD Updated Successfully');</script>";
@@ -251,12 +250,6 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 												<div class="form-group">
 													<label for="generalInfo">General Information</label>
 													<input id="generalInfo" name="generalInfo" type="text" class="form-control" required="true" autocomplete="on">
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="otherRemark">Other Remarks</label>
-													<textarea id="otherRemark" name="otherRemark" placeholder="Mark your remarks here..." class="form-control" rows="1" required></textarea>
 												</div>
 											</div>
 											<div class="col-lg-12">

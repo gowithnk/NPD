@@ -51,7 +51,7 @@
 											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
-											$sql = "SELECT * FROM tblnpd WHERE Status=1 AND LevelStatus=0";
+											$sql = "SELECT * FROM tblnpd WHERE Status=1 AND LevelStatus=1";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);

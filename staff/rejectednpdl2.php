@@ -3,41 +3,41 @@
 
 <?php $npdNumber = $_GET['edit']; ?>
 <?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
-if (isset($_POST['npdupdate'])) {
+if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$status = 0;
-	$npdNumber = $_POST['npdNumber']; 
-	$date = $_POST['date'];
+	$batchSeries = $_POST['batchSeries'];
 	$department = $row_staff['Department'];
 	$empCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
-	$packStyle = $_POST['packStyle'];
-	$materialName = $_POST['materialName'];
-	$division = $_POST['division'];
-	$market = $_POST['market'];
-	$unit = $_POST['unit'];
-	$genericName = $_POST['genericName'];
-	$composition = $_POST['composition'];
-	$pcn = $_POST['pcn'];
-	$selfLife = $_POST['selfLife'];
-	$rate = $_POST['rate'];
-	$mrp = $_POST['mrp'];
-	$empRemark = $_POST['empRemark'];
+	$fdaApproval = $_POST['fdaApproval'];
+	$fdaApprovalDate = $_POST['fdaApprovalDate'];
+	$colour = $_POST['colour'];
+	$averageWeight = $_POST['averageWeight'];
+	$shape = $_POST['shape'];
+	$size = $_POST['size'];
+	$generalInfo = $_POST['generalInfo'];
+	$empRemarkl2 = $_POST['empRemarkl2'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', NPDNumber = '$npdNumber', Date = '$date', Department = '$department', 
-		EmpCode = '$empCode', EmpName = '$empName', PackStyle = '$packStyle', MaterialName = '$materialName', Division = '$division', Market = '$market', Unit = '$unit', 
-		GenericName = '$genericName', Composition = '$composition', PCN = '$pcn', SelfLife = '$selfLife', Rate = '$rate', MRP = '$mrp', EmpRemark = '$empRemark'
-		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+	$query = mysqli_query($conn, "SELECT * from l2npd where NPDNumber = '$npdNumber'") or die(mysqli_error());
+	$count = mysqli_num_rows($query);
+
+		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', BatchSeries = '$batchSeries', Department = '$department', 
+		EmpCode = '$empCode', EmpName = '$empName', FDAApproval = '$fdaApproval', FDAApprovalDate = '$fdaApprovalDate', Colour = '$colour', AverageWeight = '$averageWeight', 
+		Shape = '$shape', Size = '$size', GeneralInfo = '$generalInfo', EmpRemark = '$empRemarkl2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
-			echo "<script>alert('Updated Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
+			echo "<script>alert('NPD Updated Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'rejectednpdsl2.php'; </script>";
 		}
-	}
+}else{
+	echo 'please fill the form first';
+}
+
 ?>
 
 <body>
@@ -247,12 +247,6 @@ if (isset($_POST['npdupdate'])) {
 													<input id="generalInfo" name="generalInfo" type="text" class="form-control" value="<?php echo $row['GeneralInfo']; ?>">
 												</div>
 											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="otherRemark">Other Remarks</label>
-													<textarea id="otherRemark" name="otherRemark" class="form-control" rows="1" required><?php echo $row['OtherRemarks']; ?></textarea>
-												</div>
-											</div>
 											<div class="col-lg-12">
 												<div class="form-group">
 													<label for="empRemarkl2">Remark</label>
@@ -269,7 +263,7 @@ if (isset($_POST['npdupdate'])) {
 										<div class="col-lg-6 mt-2">
 											<div class="dropdown">
 												<input class="btn btn-success btn-block mt-4" type="submit" 
-												value="RESUBMIT FOR APPROVAL" name="npdupdate" id="add">
+												value="RESUBMIT FOR APPROVAL" name="updatenpd" id="add">
 											</div>
 										</div>
 										</div>

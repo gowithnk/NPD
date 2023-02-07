@@ -58,7 +58,7 @@
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblnpd where Status=0 ";
+											<?php $sql = "SELECT * FROM tblnpd WHERE Status=0 AND LevelStatus=0";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -114,19 +114,19 @@
 							<div class="modal-body">
 								<div class="pb-10">
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
 												<input id="npdNumber" name="npdNumber" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
 												<input id="revNumber" name="revNumber" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');

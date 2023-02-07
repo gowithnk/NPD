@@ -16,8 +16,6 @@ if (isset($_POST['approve'])) {
 
 		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' 
 		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
-
-		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 		
 		if ($query) {
 			echo "<script>alert('Approved Successfully');</script>";
@@ -34,7 +32,8 @@ if (isset($_POST['reject'])) {
 	$empName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' 
+		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('Submitted for an update');</script>";
@@ -245,12 +244,6 @@ if (isset($_POST['reject'])) {
 												<div class="form-group">
 													<label for="generalInfo">General Information</label>
 													<input id="generalInfo" name="generalInfo" value="<?php echo $row['GeneralInfo']; ?>" type="text" class="form-control" readonly>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="otherRemark">Other Remarks</label>
-													<textarea id="otherRemark" name="otherRemark" class="form-control" rows="1" readonly><?php echo $row['OtherRemarks']; ?></textarea>
 												</div>
 											</div>
 											<div class="col-lg-12">

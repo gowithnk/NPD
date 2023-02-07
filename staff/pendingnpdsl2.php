@@ -64,7 +64,6 @@
 												<th>Shape</th>
 												<th>Size</th>
 												<th>General Info</th>
-												<th>Other Remarks</th>
 												<th>Remark</th>
 												<th>Emp. Name</th>
 											</tr>
@@ -73,7 +72,7 @@
 
 											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
 											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 
-											AND tblnpd.LevelStatus='1'";
+											AND tblnpd.LevelStatus=2 AND l2npd.Status=0";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -113,7 +112,6 @@
 														<td><?php echo htmlentities($result->Shape); ?></td>
 														<td><?php echo htmlentities($result->Size); ?></td>
 														<td><?php echo htmlentities($result->GeneralInfo); ?></td>
-														<td><?php echo htmlentities($result->OtherRemarks); ?></td>
 														<td><?php echo htmlentities($result->EmpRemark); ?></td>
 														<td><?php echo htmlentities($result->EmpName); ?></td>
 													</tr>
@@ -142,19 +140,19 @@
 							<div class="modal-body">
 								<div class="pb-10">
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
 												<input id="npdNumber" name="npdNumber" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
 												<input id="revNumber" name="revNumber" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');
@@ -258,61 +256,55 @@
 									<div class="l2">
 										<hr>
 										<div class="row">
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="batchSeries">Batch Series</label>
 													<input id="batchSeries" name="batchSeries" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="fdaApproval">FDA Approval</label>
 													<input id="fdaApproval" name="fdaApproval" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="fdaApprovalDate">FDA Approval Date</label>
 													<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="colour">Colour</label>
 													<input id="colour" name="colour" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="averageWeight">Average Weight</label>
 													<input id="averageWeight" name="averageWeight" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="shape">Shape</label>
 													<input id="shape" name="shape" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="size">Size</label>
 													<input id="size" name="size" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="generalInfo">General Info</label>
 													<input id="generalInfo" name="generalInfo" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label for="otherRemarks">Other Remarks</label>
-													<input id="otherRemarks" name="otherRemarks" type="text" class="form-control" readonly>
-												</div>
-											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="empRemark">Remark <small>(<label id="empName"></label>)</small></label>
 													<input id="empRemark" name="empRemark" type="text" class="form-control" readonly>
@@ -374,9 +366,8 @@
 				$('#shape').val(data[24]);
 				$('#size').val(data[25]);
 				$('#generalInfo').val(data[26]);
-				$('#otherRemarks').val(data[27]);
-				$('#empRemark').val(data[28]);
-				$('#empName').html(data[29]);
+				$('#empRemark').val(data[27]);
+				$('#empName').html(data[28]);
 				printSection(el);
 			});
 		});

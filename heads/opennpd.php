@@ -8,13 +8,14 @@ $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['approve'])) {
 	$status = 1;
+	$levelStatus = 1;
 	$hodCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$hodName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', LevelStatus = '$levelStatus', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('Approved Successfully');</script>";
@@ -25,17 +26,18 @@ if (isset($_POST['approve'])) {
 <?php
 if (isset($_POST['reject'])) {
 	$status = 2;
-	$empCode = $row_staff['Staff_ID'];
+	$levelStatus = 0;
+	$hodCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
-	$empName = $fn . ' ' . $ln;
+	$hodName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', LevelStatus = '$levelStatus', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('Submitted for an update');</script>";
-			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'opennpds.php'; </script>";
 		}
 	}
 ?>

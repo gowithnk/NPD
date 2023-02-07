@@ -38,18 +38,6 @@
 ?>
 
 <body>
-	<!-- <div class="pre-loader">
-        <div class="pre-loader-box">
-            <div class="loader-logo"><img src="../vendors/images/deskapp-logo-svg.png" width="150" alt=""></div>
-            <div class='loader-progress' id="progress_div">
-                <div class='bar' id='bar1'></div>
-            </div>
-            <div class='percent' id='percent1'>0%</div>
-            <div class="loading-text">
-                Loading...
-            </div>
-        </div>
-    </div> -->
 
     <!-- Getting Sender & Receiver Id through hidden inputs -->
     <input type="hidden" id="receive" value="<?php echo $receiver; ?>"> 
@@ -279,7 +267,7 @@
 				</div>
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Synokem NPD <a href="#" target="_blank"><span>Developed by </span> Synokem</a>
 			</div>
 		</div>
 	</div>
