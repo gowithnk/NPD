@@ -37,11 +37,16 @@
 									<li><a href="pendingnpds.php">Open NPDs</a></li>
 									<li><a href="inprocessnpds.php">In Process NPDs</a></li>
 									<li><a href="rejectednpds.php">Rejected NPDs</a></li>
-								<?php }else{ ?>
+								<?php }elseif($empDept == 'MIS'){ ?>
 									<li><a href="opennpdsl2.php">Open NPDs</a></li>
 									<li><a href="pendingnpdsl2.php">Pending NPDs</a></li>
 									<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
 									<li><a href="rejectednpdsl2.php">Rejected NPDs</a></li>
+								<?php }else{ ?>
+									<li><a href="opennpdsl3.php">Open NPDs</a></li>
+									<li><a href="pendingnpdsl3.php">Pending NPDs</a></li>
+									<li><a href="inprocessnpdsl3.php">In Process NPDs</a></li>
+									<!--  <li><a href="rejectednpdsl3.php">Rejected NPDs</a></li> -->
 							<?php } ?>
 						</ul>
 					</li>

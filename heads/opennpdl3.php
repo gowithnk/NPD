@@ -14,12 +14,12 @@ if (isset($_POST['approve'])) {
 	$hodName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' 
+		$query = mysqli_query($conn, "UPDATE l3npd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', HODCode = '$hodCode' 
 		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 		
 		if ($query) {
 			echo "<script>alert('Approved Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'opennpdsl2.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'opennpdsl3.php'; </script>";
 		}
 	}
 ?>
@@ -32,12 +32,12 @@ if (isset($_POST['reject'])) {
 	$empName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' 
+		$query = mysqli_query($conn, "UPDATE l3npd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' 
 		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('Submitted for an update');</script>";
-			echo "<script type='text/javascript'> document.location = 'opennpdsl2.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'opennpdsl3.php'; </script>";
 		}
 	}
 ?>
@@ -78,8 +78,9 @@ if (isset($_POST['reject'])) {
 									<!-- Level 1 -->
 									<div class="row">
 										<?php
-											$query = mysqli_query($conn,"SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
-											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.NPDNumber = '$npdNumber' ") or die(mysqli_error());
+											$query = mysqli_query($conn,"SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name,	tblnpd.HODRemark as 
+											HOD1Remark, l2npd.EmpName as Emp2Name, l2npd.EmpRemark as Emp2Remark, l2npd.HODName as HOD2Name, l2npd.HODRemark as HOD2Remark 
+											FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber JOIN l3npd ON l2npd.NPDNumber = l3npd.NPDNumber WHERE tblnpd.NPDNumber = '$npdNumber' ") or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
 										<div class="col-lg-2">
@@ -247,28 +248,124 @@ if (isset($_POST['reject'])) {
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="form-group">
-											<label for="hodRemark">HOD Remark</label>
-												<textarea id="hodRemark" name="hodRemark" placeholder="Remark" 
-												class="form-control" required="true" rows="1" autocomplete="off"></textarea>
+									<!-- Level 3 -->
+									<div class="lvl3">
+										<hr class="my-3">
+										<div class="row">
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="packingType">Packing Type</label>
+													<input id="packingType" name="packingType" type="text" value="<?php echo $row['PackingType']; ?>" class="form-control" readonly>
+												</div>
 											</div>
-										</div>
-										<div class="col-lg-3">
-											<div class="dropdown">
-												<input class="btn btn-success btn-block mt-4" type="submit" 
-												value="APPROVE" name="approve" id="add">
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="lFColour">Leading Foil (Colour)</label>
+													<input id="lFColour" name="lFColour" type="text" value="<?php echo $row['LFColour']; ?>" class="form-control" readonly>
+												</div>
 											</div>
-										</div>
-										<div class="col-lg-3">
-											<div class="dropdown">
-												<input class="btn btn-danger btn-block mt-4" type="submit" 
-												value="REJECT" name="reject" id="add">
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="baseFoil">Base Foil</label>
+													<input id="baseFoil" name="baseFoil" type="text" value="<?php echo $row['BaseFoil']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="pVCPVDC">PVC / PVDC</label>
+													<input id="pVCPVDC" name="pVCPVDC" type="text" value="<?php echo $row['PVCPVDC']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-5">
+												<div class="form-group">
+													<label for="changePart">Change Part</label>
+													<input id="changePart" name="changePart" type="text" value="<?php echo $row['ChangePart']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-7">
+												<div class="form-group">
+													<label for="empRemark">Remarks</label>
+													<input id="empRemark" name="empRemark" type="text" value="<?php echo $row['EmpRemark']; ?>" class="form-control" readonly>
+												</div>
+												
+											</div>
+											<div class="col-lg-12"><hr class="mx-5"></div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="monoCarton">Mono Carton</label>
+													<input id="monoCarton" name="monoCarton" type="text" value="<?php echo $row['MonoCarton']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="insert3">Insert</label>
+													<input id="insert3" name="insert3" type="text" value="<?php echo $row['Insert3']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="silicaGel">Silica Gel</label>
+													<input id="silicaGel" name="silicaGel" type="text" value="<?php echo $row['SilicaGel']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="outerCarton">Outer Carton</label>
+													<input id="outerCarton" name="outerCarton" type="text" value="<?php echo $row['OuterCarton']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shrink">Shrink</label>
+													<input id="shrink" name="shrink" type="text" value="<?php echo $row['Shrink']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shipperSpecs">Shipper Specs</label>
+													<input id="shipperSpecs" name="shipperSpecs" type="text" value="<?php echo $row['ShipperSpecs']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="shipperPacking">Shipper Packing</label>
+													<input id="shipperPacking" name="shipperPacking" type="text" value="<?php echo $row['ShipperPacking']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="referenceProduct">Reference Product</label>
+													<input id="referenceProduct" name="referenceProduct" type="text" value="<?php echo $row['ReferenceProduct']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="otherRemark">Other Remarks</label>
+													<input id="otherRemark" name="otherRemark" type="text" value="<?php echo $row['OtherRemark']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+												<label for="hodRemark">HOD Remark</label>
+													<textarea id="hodRemark" name="hodRemark" placeholder="Remark" 
+													class="form-control" required="true" rows="1" autocomplete="off"></textarea>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="dropdown">
+													<input class="btn btn-success btn-block mt-4" type="submit" 
+													value="APPROVE" name="approve" id="add">
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="dropdown">
+													<input class="btn btn-danger btn-block mt-4" type="submit" 
+													value="REJECT" name="reject" id="add">
+												</div>
 											</div>
 										</div>
 									</div>
-									
 								</form>
 							</section>
 						</div>

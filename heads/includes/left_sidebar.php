@@ -33,9 +33,12 @@
 							if ($empDept == 'INFORMATION TECHNOLOGY') {   ?>
 								<li><a href="opennpds.php">Open NPDs</a></li>
 								<li><a href="inprocessnpds.php">In Process NPDs</a></li>
-						<?php } else { ?>
+						<?php } elseif($empDept == 'MIS') { ?>
 							<li><a href="opennpdsl2.php">Open NPDs</a></li>
 							<li><a href="inprocessnpdsl2.php">In Process NPDs</a></li>
+						<?php } else { ?>
+							<li><a href="opennpdsl3.php">Open NPDs</a></li>
+							<li><a href="inprocessnpdsl3.php">In Process NPDs</a></li>	
 						<?php } ?>
 					</ul>
 				</li>

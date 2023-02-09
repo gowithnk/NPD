@@ -19,7 +19,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
 									<li class="breadcrumb-item active" aria-current="page">In Process NPDs</li>
 								</ol>
 							</nav>
@@ -58,7 +58,7 @@
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblnpd where Status=1 ";
+											<?php $sql = "SELECT * from tblnpd where Status=1";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);

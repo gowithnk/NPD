@@ -7,40 +7,48 @@ $query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartme
 $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
-	$batchSeries = $_POST['batchSeries'];
 	$department = $row_staff['Department'];
 	$empCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
-	$fdaApproval = $_POST['fdaApproval'];
-	$fdaApprovalDate = $_POST['fdaApprovalDate'];
-	$colour = $_POST['colour'];
-	$averageWeight = $_POST['averageWeight'];
-	$shape = $_POST['shape'];
-	$size = $_POST['size'];
-	$generalInfo = $_POST['generalInfo'];
-	$empRemarkl2 = $_POST['empRemarkl2'];
+	$packingType = $_POST['packingType'];
+	$lFColour = $_POST['lFColour'];
+	$baseFoil = $_POST['baseFoil'];
+	echo $baseFoil;
+	$pVCPVDC = $_POST['pVCPVDC'];
+	$changePart = $_POST['changePart'];
+	$empRemark = $_POST['empRemark'];
+	$monoCarton = $_POST['monoCarton'];
+	$insert3 = $_POST['insert3'];
+	$silicaGel = $_POST['silicaGel'];
+	$outerCarton = $_POST['outerCarton'];
+	$shrink = $_POST['shrink'];
+	$shipperSpecs = $_POST['shipperSpecs'];
+	$shipperPacking = $_POST['shipperPacking'];
+	$referenceProduct = $_POST['referenceProduct'];
+	$otherRemark = $_POST['otherRemark'];
 
-	$query = mysqli_query($conn, "SELECT * from l2npd where NPDNumber = '$npdNumber'") or die(mysqli_error());
+	$query = mysqli_query($conn, "SELECT * FROM l3npd WHERE NPDNumber = '$npdNumber'") or die(mysqli_error());
 	$count = mysqli_num_rows($query);
 
 	if ($count > 0) {
 		echo "<script>alert('NPD Already exist');</script>";
 	} else {
-		$query1 = mysqli_query($conn, "INSERT INTO l2npd (NPDNumber, BatchSeries, Department, EmpName, EmpCode, FDAApproval, FDAApprovalDate, Colour, AverageWeight, Shape, 
-		Size, GeneralInfo, EmpRemark) VALUES ('$npdNumber', 'batchSeries', '$department', '$empName', '$empCode' ,'$fdaApproval','$fdaApprovalDate', '$colour', 
-		'$averageWeight','$shape', '$size', '$generalInfo', '$empRemarkl2')") or die(mysqli_error());
+		$query1 = mysqli_query($conn, "INSERT INTO l3npd (NPDNumber, Department, EmpName, EmpCode, PackingType, LFColour, BaseFoil, PVCPVDC, ChangePart, EmpRemark, 
+		MonoCarton, Insert3, SilicaGel, OuterCarton, Shrink, ShipperSpecs, ShipperPacking, ReferenceProduct, OtherRemark) VALUES ('$npdNumber', '$department', '$empName', 
+		'$empCode' ,'$packingType','$lFColour', '$baseFoil', '$pVCPVDC','$changePart', '$empRemark', '$monoCarton', '$insert3', '$silicaGel', '$outerCarton', '$shrink',
+		'$shipperSpecs', '$shipperPacking', '$referenceProduct', '$otherRemark')") or die(mysqli_error());
 
-		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '3' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query1) {
 			echo "<script>alert('NPD Updated Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'opennpdsl2.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'opennpdsl3.php'; </script>";
 		}
 	}
 }else{
-	echo 'please fill the form first';
+	echo 'Please fill the form first';
 }
 
 ?>
@@ -81,7 +89,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 									<!-- Level 1 -->
 									<div class="lvl1">
 										<div class="row">
-											<?php
+											<?php 
 												$query = mysqli_query($conn,"select * from tblnpd where NPDNumber = '$npdNumber' ")or die(mysqli_error());
 												$row = mysqli_fetch_array($query);
 											?>
@@ -197,65 +205,176 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 										</div>
 									</div>
 									<!-- level 2 -->
-									<hr id="l2" class="my-3">
+									<hr class="my-3 ">
 									<div class="lvl2 mt-2">
 										<div class="row">
+											<?php
+												$query = mysqli_query($conn,"SELECT * FROM l2npd WHERE NPDNumber = '$npdNumber' ")or die(mysqli_error());
+												$row = mysqli_fetch_array($query);
+											?>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="batchSeries">Batch Series</label>
-													<input id="batchSeries" name="batchSeries" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="batchSeries" name="batchSeries" value="<?php echo $row['BatchSeries']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="fdaApproval">FDA Approval</label>
-													<select id="fdaApproval" name="fdaApproval" class="custom-select form-control" required="true" autocomplete="on">
-														<option value="">Select Option</option>
-														<option value="Yes">YES</option>
-														<option value="No">NO</option>
-													</select>
+													<input id="fdaApproval" name="fdaApproval" value="<?php echo $row['FDAApproval']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 											<div class="form-group">
 												<label for="fdaApprovalDate">FDA Approval Date</label>
-												<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control date-picker" placeholder="00/00/0000" required="true" autocomplete="off">
+												<input id="fdaApprovalDate" name="fdaApprovalDate" value="<?php echo $row['FDAApprovalDate']; ?>" type="text" class="form-control" readonly>
 											</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="colour">Colour</label>
-													<input id="colour" name="colour" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="colour" name="colour" value="<?php echo $row['Colour']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="averageWeight">Average Weight</label>
-													<input id="averageWeight" name="averageWeight" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="averageWeight" name="averageWeight" value="<?php echo $row['AverageWeight']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="shape">Shape</label>
-													<input id="shape" name="shape" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="shape" name="shape" value="<?php echo $row['Shape']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="size">Size</label>
-													<input id="size" name="size" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="size" name="size" value="<?php echo $row['Size']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="generalInfo">General Information</label>
-													<input id="generalInfo" name="generalInfo" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="generalInfo" name="generalInfo" value="<?php echo $row['GeneralInfo']; ?>" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="empRemarkl2">Remark</label>
+													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="1" readonly><?php echo $row['EmpRemark']; ?></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- level 3 -->
+									<hr class="my-3">
+									<div id="l3" class="lvl3 mt-2">
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="packingType">Packing Type</label>
+													<select id="packingType" name="packingType" class="custom-select form-control" required="true" autocomplete="on">
+														<option value="">Select Option</option>
+														<option>Alu Alu Blister</option>
+														<option>Strip</option>
+														<option>Blister</option>
+														<option>Manual</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="lFColour">Leading Foil (Colour)</label>
+													<input id="lFColour" name="lFColour" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="baseFoil">Base Foil</label>
+													<select id="baseFoil" name="baseFoil" class="custom-select form-control" required="true" autocomplete="on">
+														<option value="">Select Option</option>
+														<option>Colour</option>
+														<option>Plain</option>
+														<option>Printer</option>
+														<option>Manual</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="pVCPVDC">PVC / PVDC</label>
+													<input id="pVCPVDC" name="pVCPVDC" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="changePart">Change Part</label>
+													<input id="changePart" name="changePart" type="text" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="form-group">
-													<label for="empRemarkl2">Remark</label>
-													<textarea id="empRemarkl2" name="empRemarkl2" placeholder="Mark your remarks here..." class="form-control" rows="2" required></textarea>
+													<label for="empRemark">Remarks (If Any)</label>
+													<textarea id="empRemark" name="empRemark" placeholder="Mark your remarks here..." class="form-control" rows="1" required></textarea>
+												</div>
+												<hr class="mt-3">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="monoCarton">Mono Carton</label>
+													<input id="monoCarton" name="monoCarton" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="insert3">Insert</label>
+													<input id="insert3" name="insert3" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="silicaGel">Silica Gel</label>
+													<input id="silicaGel" name="silicaGel" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="outerCarton">Outer Carton</label>
+													<input id="outerCarton" name="outerCarton" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shrink">Shrink</label>
+													<input id="shrink" name="shrink" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shipperSpecs">Shipper Specs</label>
+													<input id="shipperSpecs" name="shipperSpecs" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="shipperPacking">Shipper Packing</label>
+													<input id="shipperPacking" name="shipperPacking" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="referenceProduct">Reference Product</label>
+													<input id="referenceProduct" name="referenceProduct" type="text" class="form-control" required="true" autocomplete="on">
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="otherRemark">OtherRemark (if any)</label>
+													<textarea id="otherRemark" name="otherRemark" placeholder="Mark your remarks here..." class="form-control" rows="1" required></textarea>
 												</div>
 											</div>
 										</div>

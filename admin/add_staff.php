@@ -18,11 +18,6 @@
 	$staff_id=$_POST['staff_id']; 
 	$status=1;
 
-	$sql = "SELECT SUM(LeaveDays) FROM tblleavetype";
-	$result1 = mysqli_query($conn, $sql);
-	while ($row = mysqli_fetch_array($result1)) {
-		$totalLeaveDays = $row['SUM(LeaveDays)'];
-	}
 
 	 $query = mysqli_query($conn,"select * from tblemployees where EmailId = '$email'")or die(mysqli_error());
 	 $count = mysqli_num_rows($query);
@@ -37,11 +32,12 @@
 		Address,role,Phonenumber,Status, location, Staff_ID, Position_Staff) VALUES('$fname','$lname','$email',
 		'$password','$gender','$dob','$department','$address','$user_role','$phonenumber','$status', 
 		'NO-IMAGE-AVAILABLE.jpg','$staff_id','$position_staff')         
-		") or die(mysqli_error()); ?>
-		<script>alert('Staff Records Successfully  Added');</script>;
-		<script>
-		window.location = "staff.php"; 
-		</script>
+		") or die(mysqli_error()); die(); ?>
+
+		<script>alert('Staff Records Successfully  Added');
+				//window.location = "staff.php"; 
+		</script>;
+		
 		<?php   }
 }
 

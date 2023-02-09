@@ -85,11 +85,9 @@
 	</div>
 
     <?php include('includes/right_sidebar.php')?>
-
     <?php include('includes/left_sidebar.php')?>
-
 	<div class="mobile-menu-overlay"></div>
-
+	
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">

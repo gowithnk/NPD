@@ -19,7 +19,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
 									<li class="breadcrumb-item active" aria-current="page">OPEN NPD</li>
 								</ol>
 							</nav>
@@ -66,7 +66,7 @@
 														<td><?php echo htmlentities($result->Status); ?></td>
 														<td>
 															<div class="table-actions">
-																<a href="opennpdl2.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">
+																<a href="opennpdl2.php?edit=<?php echo htmlentities($result->NPDNumber); ?>#l2" data-color="#265ed7">
 																<i class="icon-copy dw dw-edit2"></i></a>
 															</div>
 														</td>
