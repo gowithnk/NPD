@@ -73,8 +73,7 @@
 										<tbody>
 
 											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name, 
-											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 AND
-											tblnpd.LevelStatus=2 AND l2npd.Status=1";
+											tblnpd.HODRemark as HOD1Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE tblnpd.Status=1 AND l2npd.Status=1";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
