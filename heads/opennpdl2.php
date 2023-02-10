@@ -26,13 +26,13 @@ if (isset($_POST['approve'])) {
 <?php
 if (isset($_POST['reject'])) {
 	$status = 2;
-	$empCode = $row_staff['Staff_ID'];
+	$hodCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
-	$empName = $fn . ' ' . $ln;
+	$hodName = $fn . ' ' . $ln;
 	$hodRemark = $_POST['hodRemark'];
 
-		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', EmpName = '$empName', EmpCode = '$empCode' 
+		$query = mysqli_query($conn, "UPDATE l2npd SET Status = '$status', HODRemark = '$hodRemark', HODName = '$hodName', hodCode = '$hodCode' 
 		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
@@ -173,13 +173,13 @@ if (isset($_POST['reject'])) {
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="empRemark">Employee Remark <small>(<?php echo $row['Emp1Name']; ?>)</small></label>
-												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['Emp1Remark']; ?>" class="form-control" rows="1" ></textarea>
+												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['Emp1Remark']; ?>" class="form-control" rows="2" ></textarea>
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="hodRemark">HOD Remark <small>(<?php echo $row['HOD1Name']; ?>)</small></label>
-												<textarea readonly id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HOD1Remark']; ?>" class="form-control" rows="1" ></textarea>
+												<textarea readonly id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HOD1Remark']; ?>" class="form-control" rows="2" ></textarea>
 											</div>
 										</div>
 									</div>
@@ -242,7 +242,7 @@ if (isset($_POST['reject'])) {
 											<div class="col-lg-5">
 												<div class="form-group">
 													<label for="empRemarkl2">Employee Remark</label>
-													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="1" readonly><?php echo $row['EmpRemark']; ?></textarea>
+													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="2" readonly><?php echo $row['EmpRemark']; ?></textarea>
 												</div>
 											</div>
 										</div>
@@ -252,18 +252,18 @@ if (isset($_POST['reject'])) {
 											<div class="form-group">
 											<label for="hodRemark">HOD Remark</label>
 												<textarea id="hodRemark" name="hodRemark" placeholder="Remark" 
-												class="form-control" required="true" rows="1" autocomplete="off"></textarea>
+												class="form-control" required="true" rows="2" autocomplete="off"></textarea>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-3 mt-4">
 											<div class="dropdown">
-												<input class="btn btn-success btn-block mt-4" type="submit" 
+												<input class="btn btn-success btn-block" type="submit" 
 												value="APPROVE" name="approve" id="add">
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-3 mt-4">
 											<div class="dropdown">
-												<input class="btn btn-danger btn-block mt-4" type="submit" 
+												<input class="btn btn-danger btn-block" type="submit" 
 												value="REJECT" name="reject" id="add">
 											</div>
 										</div>

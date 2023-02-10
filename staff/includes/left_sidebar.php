@@ -46,7 +46,7 @@
 									<li><a href="opennpdsl3.php">Open NPDs</a></li>
 									<li><a href="pendingnpdsl3.php">Pending NPDs</a></li>
 									<li><a href="inprocessnpdsl3.php">In Process NPDs</a></li>
-									<!--  <li><a href="rejectednpdsl3.php">Rejected NPDs</a></li> -->
+									 <li><a href="rejectednpdsl3.php">Rejected NPDs</a></li>
 							<?php } ?>
 						</ul>
 					</li>

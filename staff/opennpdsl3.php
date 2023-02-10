@@ -63,7 +63,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
-														<td><?php echo htmlentities($result->LevelStatus); ?></td>
+														<td data-color="#00cb0c"><?php echo htmlentities($result->LevelStatus); ?></td>
 														<td>
 															<div class="table-actions">
 																<a href="opennpdl3.php?edit=<?php echo htmlentities($result->NPDNumber); ?>#l3" data-color="#265ed7">

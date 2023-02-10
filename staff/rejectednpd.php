@@ -36,7 +36,7 @@ if (isset($_POST['npdupdate'])) {
 
 		if ($query) {
 			echo "<script>alert('Updated Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'inprocessnpds.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'pendingnpds.php'; </script>";
 		}
 	}
 ?>
@@ -55,12 +55,12 @@ if (isset($_POST['npdupdate'])) {
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>New NPD</h4>
+								<h4>Rejected NPD</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">New NPD</li>
+									<li class="breadcrumb-item active" aria-current="page">Rejected NPD</li>
 								</ol>
 							</nav>
 						</div>
@@ -70,7 +70,7 @@ if (isset($_POST['npdupdate'])) {
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">Add New NPD Details</h2>
+							<h2 class="mb-1 mt-1 h4 text-primary">"Update NPD Details mensioned in remark section"</h2>
 							<hr>
 							<section>
 								<form name="save" method="post">
@@ -79,19 +79,19 @@ if (isset($_POST['npdupdate'])) {
 											$query = mysqli_query($conn,"SELECT * FROM tblnpd WHERE NPDNumber = '$npdNumber' ")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
-										<div class="col-lg-6 col-md-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
 												<input id="npdNumber" name="npdNumber" value="<?php echo $row['NPDNumber']; ?>" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-3">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
 												<input id="revNumber" name="revNumber" value="<?php echo $row['RevisionNo']; ?>" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-3">
+										<div class="col-lg-4">
 										<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');

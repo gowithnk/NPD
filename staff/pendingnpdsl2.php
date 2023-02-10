@@ -139,20 +139,21 @@
 							</div>
 							<div class="modal-body">
 								<div class="pb-10">
+									<!-- Level 1 -->
 									<div class="row">
-										<div class="col-lg-4">
+										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
 												<input id="npdNumber" name="npdNumber" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
 												<input id="revNumber" name="revNumber" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');
@@ -162,22 +163,18 @@
 												<input id="date" name="date" class="form-control" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-5">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
 												<input readonly id="packStyle" name="packStyle" type="text" class="form-control">
 											</div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="materialName">Material Name</label>
 												<input readonly id="materialName" name="materialName" type="text" class="form-control">
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="division">Division</label>
@@ -196,22 +193,18 @@
 												<input id="unit" name="unit" type="text" class="form-control" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="genericName">Generic Name</label>
 												<input id="genericName" name="genericName" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="composition">Composition</label>
 												<input id="composition" name="composition" type="text" class="form-control" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="partyCodeName">Party Code & Name</label>
@@ -236,25 +229,22 @@
 												<input id="mrp" name="mrp" type="number" class="form-control" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="emp1Remark">Employee Remark <small>(<label id="emp1Name"></label>)</small></label>
 												<textarea readonly id="emp1Remark" name="emp1Remark" class="form-control" rows="2"></textarea>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-12">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="hodRemark">HOD Remark <small>(<label id="hod1Name"></label>)</small></label>
 												<textarea id="hodRemark" name="hodRemark" class="form-control" rows="2" readonly></textarea>
 											</div>
 										</div>
 									</div>
-									<div class="l2">
-										<hr>
+									<!-- Level 2 -->
+									<div class="lvl2">
+										<hr class="my-3">
 										<div class="row">
 											<div class="col-lg-4">
 												<div class="form-group">
@@ -274,40 +264,40 @@
 													<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="colour">Colour</label>
 													<input id="colour" name="colour" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="averageWeight">Average Weight</label>
 													<input id="averageWeight" name="averageWeight" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="shape">Shape</label>
 													<input id="shape" name="shape" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="size">Size</label>
 													<input id="size" name="size" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="generalInfo">General Info</label>
 													<input id="generalInfo" name="generalInfo" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="empRemark">Remark <small>(<label id="empName"></label>)</small></label>
-													<input id="empRemark" name="empRemark" type="text" class="form-control" readonly>
+													<textarea name="empRemark" id="empRemark" class="form-control" rows="2" readonly></textarea>
 												</div>
 											</div>
 										</div>

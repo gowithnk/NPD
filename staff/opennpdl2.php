@@ -7,12 +7,13 @@ $query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartme
 $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
-	$batchSeries = $_POST['batchSeries'];
+	
 	$department = $row_staff['Department'];
 	$empCode = $row_staff['Staff_ID'];
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
+	$batchSeries = $_POST['batchSeries'];
 	$fdaApproval = $_POST['fdaApproval'];
 	$fdaApprovalDate = $_POST['fdaApprovalDate'];
 	$colour = $_POST['colour'];
@@ -29,7 +30,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 		echo "<script>alert('NPD Already exist');</script>";
 	} else {
 		$query1 = mysqli_query($conn, "INSERT INTO l2npd (NPDNumber, BatchSeries, Department, EmpName, EmpCode, FDAApproval, FDAApprovalDate, Colour, AverageWeight, Shape, 
-		Size, GeneralInfo, EmpRemark) VALUES ('$npdNumber', 'batchSeries', '$department', '$empName', '$empCode' ,'$fdaApproval','$fdaApprovalDate', '$colour', 
+		Size, GeneralInfo, EmpRemark) VALUES ('$npdNumber', '$batchSeries', '$department', '$empName', '$empCode' ,'$fdaApproval','$fdaApprovalDate', '$colour', 
 		'$averageWeight','$shape', '$size', '$generalInfo', '$empRemarkl2')") or die(mysqli_error());
 
 		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '2' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
@@ -203,10 +204,10 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="batchSeries">Batch Series</label>
-													<input id="batchSeries" name="batchSeries" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="batchSeries" name="batchSeries" type="text" placeholder="Batch Series" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="fdaApproval">FDA Approval</label>
 													<select id="fdaApproval" name="fdaApproval" class="custom-select form-control" required="true" autocomplete="on">
@@ -216,40 +217,40 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													</select>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 											<div class="form-group">
 												<label for="fdaApprovalDate">FDA Approval Date</label>
 												<input id="fdaApprovalDate" name="fdaApprovalDate" type="text" class="form-control date-picker" placeholder="00/00/0000" required="true" autocomplete="off">
 											</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="colour">Colour</label>
-													<input id="colour" name="colour" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="colour" name="colour" type="text" placeholder="white..." class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="averageWeight">Average Weight</label>
-													<input id="averageWeight" name="averageWeight" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="averageWeight" name="averageWeight" type="text" placeholder="20 mg" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="shape">Shape</label>
-													<input id="shape" name="shape" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="shape" name="shape" type="text" placeholder="Circular" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="size">Size</label>
-													<input id="size" name="size" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="size" name="size" type="text" placeholder="50 mm" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="generalInfo">General Information</label>
-													<input id="generalInfo" name="generalInfo" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="generalInfo" name="generalInfo" type="text" placeholder="General Information" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
 											<div class="col-lg-12">

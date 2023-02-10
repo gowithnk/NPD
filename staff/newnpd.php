@@ -121,22 +121,19 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 												<input id="date" name="date" value="<?= $date ?>" class="form-control" title="Automatic Current time" required="true" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
-												<input type="text" name="packStyle" id="packStyle" class="form-control" required="true" autocomplete="on">
+												<input type="text" name="packStyle" id="packStyle" placeholder="Pack Style" class="form-control" required="true" autocomplete="on">
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="materialName">Material Name</label>
-												<input id="materialName" name="materialName" placeholder="type name" type="text" required="true" class="form-control" autocomplete="off">
+												<input id="materialName" name="materialName" placeholder="Material name" type="text" required="true" class="form-control" 
+												autocomplete="on">
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="division">Division</label>
@@ -172,12 +169,10 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 												</select>
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="genericName">Generic Name</label>
-												<input id="genericName" name="genericName" placeholder="type name" type="text" required="true" class="form-control" autocomplete="on">
+												<input id="genericName" name="genericName" placeholder="Generic Name" type="text" required="true" class="form-control" autocomplete="on">
 											</div>
 										</div>
 										<div class="col-lg-6">
@@ -186,8 +181,6 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 												<input id="composition" name="composition" placeholder="Composition" type="text" required="true" class="form-control" autocomplete="on">
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="partyCodeName">Party Code & Name</label>
@@ -207,17 +200,15 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="rate">Rate</label>
-												<input id="rate" name="rate" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="off">
+												<input id="rate" name="rate" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="on">
 											</div>
 										</div>
 										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="mrp">MRP</label>
-												<input id="mrp" name="mrp" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="off">
+												<input id="mrp" name="mrp" placeholder="500" type="number" step="0.01" required="true" class="form-control" autocomplete="on">
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="empRemark">Remark</label>

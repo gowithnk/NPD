@@ -44,7 +44,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 
 		if ($query1) {
 			echo "<script>alert('NPD Updated Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'opennpdsl3.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'pendingnpdsl3.php'; </script>";
 		}
 	}
 }else{
@@ -224,25 +224,25 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													<input id="fdaApproval" name="fdaApproval" value="<?php echo $row['FDAApproval']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-lg-3">
 											<div class="form-group">
 												<label for="fdaApprovalDate">FDA Approval Date</label>
 												<input id="fdaApprovalDate" name="fdaApprovalDate" value="<?php echo $row['FDAApprovalDate']; ?>" type="text" class="form-control" readonly>
 											</div>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="colour">Colour</label>
 													<input id="colour" name="colour" value="<?php echo $row['Colour']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="averageWeight">Average Weight</label>
 													<input id="averageWeight" name="averageWeight" value="<?php echo $row['AverageWeight']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="shape">Shape</label>
 													<input id="shape" name="shape" value="<?php echo $row['Shape']; ?>" type="text" class="form-control" readonly>
@@ -260,17 +260,23 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													<input id="generalInfo" name="generalInfo" value="<?php echo $row['GeneralInfo']; ?>" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="empRemarkl2">Remark</label>
-													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="1" readonly><?php echo $row['EmpRemark']; ?></textarea>
+													<label for="empRemarkl2">Employee Remark (<small><?php echo $row['EmpName']; ?></small>)</label>
+													<textarea id="empRemarkl2" name="empRemarkl2" class="form-control" rows="2" readonly><?php echo $row['EmpRemark']; ?></textarea>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="hodRemarkl2">HOD Remark (<small><?php echo $row['HODName']; ?></small>)</label>
+													<textarea id="hodRemarkl2" name="hodRemarkl2" class="form-control" rows="2" readonly><?php echo $row['HODRemark']; ?></textarea>
 												</div>
 											</div>
 										</div>
 									</div>
 									<!-- level 3 -->
-									<hr class="my-3">
-									<div id="l3" class="lvl3 mt-2">
+									<hr id="l3" class="my-3">
+									<div class="lvl3 mt-2">
 										<div class="row">
 											<div class="col-lg-4">
 												<div class="form-group">
@@ -302,25 +308,25 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													</select>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="pVCPVDC">PVC / PVDC</label>
 													<input id="pVCPVDC" name="pVCPVDC" type="text" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="changePart">Change Part</label>
 													<input id="changePart" name="changePart" type="text" class="form-control" required="true" autocomplete="on">
 												</div>
 											</div>
-											<div class="col-lg-12">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="empRemark">Remarks (If Any)</label>
-													<textarea id="empRemark" name="empRemark" placeholder="Mark your remarks here..." class="form-control" rows="1" required></textarea>
+													<textarea id="empRemark" name="empRemark" placeholder="Mark your remarks here..." class="form-control" rows="2" required></textarea>
 												</div>
-												<hr class="mt-3">
 											</div>
+											<div class="col-lg-12"><hr class="mt-3"></div>
 										</div>
 										<div class="row">
 											<div class="col-lg-4">
@@ -374,7 +380,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 											<div class="col-lg-12">
 												<div class="form-group">
 													<label for="otherRemark">OtherRemark (if any)</label>
-													<textarea id="otherRemark" name="otherRemark" placeholder="Mark your remarks here..." class="form-control" rows="1" required></textarea>
+													<textarea id="otherRemark" name="otherRemark" placeholder="Mark your remarks here..." class="form-control" rows="2" required></textarea>
 												</div>
 											</div>
 										</div>

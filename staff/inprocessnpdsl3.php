@@ -85,6 +85,7 @@
 												<th>Other Remark</th>
 												<th>HOD Remark</th>
 												<th>HOD Name</th>
+												<th>Emp Name</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -154,6 +155,7 @@
 														<td><?php echo htmlentities($result->OtherRemark); ?></td>
 														<td><?php echo htmlentities($result->HODRemark); ?></td>
 														<td><?php echo htmlentities($result->HODName); ?></td>
+														<td><?php echo htmlentities($result->EmpName); ?></td>
 													</tr>
 
 											<?php $cnt++;
@@ -434,13 +436,13 @@
 													<input id="shipperSpecs" name="shipperSpecs" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="shipperPacking">Shipper Packing</label>
 													<input id="shipperPacking" name="shipperPacking" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="referenceProduct">Reference Product</label>
 													<input id="referenceProduct" name="referenceProduct" type="text" class="form-control" readonly>
@@ -449,7 +451,7 @@
 											
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="otherRemark">Other Remarks</label>
+													<label for="otherRemark">Other Remarks <small>(<label id="empName"></label>)</small></label>
 													<input id="otherRemark" name="otherRemark" type="text" class="form-control" readonly>
 												</div>
 											</div>
@@ -536,6 +538,7 @@
 				$('#otherRemark').val(data[45]);
 				$('#hodRemark').val(data[46]);
 				$('#hodName').html(data[47]);
+				$('#empName').html(data[48]);
 				printSection(el);
 			});
 		});
