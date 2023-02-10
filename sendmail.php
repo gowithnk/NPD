@@ -25,7 +25,7 @@
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;                           // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
-        $mail->setFrom('synokem.apps@gmail.com', 'SHRM Leave Application');
+        $mail->setFrom('synokem.apps@gmail.com', 'NPD Leave Application');
         $mail->addAddress($email, $name);              // Name is optional
         //$mail->addReplyTo(EMAIL);
         

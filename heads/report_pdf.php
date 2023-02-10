@@ -57,8 +57,8 @@
 
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
-	$pdf->SetAuthor('Synokem HRM System');
-	$pdf->SetTitle('Synokem HRM System');
+	$pdf->SetAuthor('Synokem NPD System');
+	$pdf->SetTitle('Synokem NPD System');
 	$pdf->SetSubject('');
 	$pdf->SetKeywords('');
 
