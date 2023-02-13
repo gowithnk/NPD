@@ -94,7 +94,7 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 				<div class="row">
 					<div class="col-lg-12 mb-30">
 						<div class="card-box pd-30 pt-10 height-100-p">
-							<h2 class="mb-1 mt-1 h4">Add New NPD Details </h2>
+							<h2 class="mb-1 mt-1 h4">Please fill the details </h2>
 							<hr>
 							<section>
 								<form name="save" method="post">
