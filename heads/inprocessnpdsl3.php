@@ -90,9 +90,7 @@
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name,	tblnpd.HODRemark as 
-											HOD1Remark, l2npd.EmpName as Emp2Name, l2npd.EmpRemark as Emp2Remark, l2npd.HODName as HOD2Name, l2npd.HODRemark as HOD2Remark 
-											FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber JOIN l3npd ON l2npd.NPDNumber = l3npd.NPDNumber 
+											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name,	tblnpd.HODRemark as HOD1Remark, l2npd.EmpName as Emp2Name, l2npd.EmpRemark as Emp2Remark, l2npd.HODName as HOD2Name, l2npd.HODRemark as HOD2Remark FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber JOIN l3npd ON l2npd.NPDNumber = l3npd.NPDNumber 
 											WHERE tblnpd.Status=1 AND l2npd.Status=1 AND l3npd.Status=1 ";
 											$query = $dbh->prepare($sql);
 											$query->execute();

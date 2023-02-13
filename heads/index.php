@@ -52,8 +52,14 @@
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
 						<?php
-						$status=1;
-						$sql = "SELECT id from tblnpd where Status=0";
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=0";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM l2npd WHERE Department='$dept' AND Status=0";
+						}else{
+							$sql = "SELECT * FROM l3npd WHERE Department='$dept' AND Status=0";
+						}
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -73,8 +79,14 @@
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 					<div class="card-box height-100-p widget-style3">
 						<?php
-						$status=0;
-						$sql = "SELECT id from tblnpd where Status=1";
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=1";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM l2npd WHERE Department='$dept' AND Status=1";
+						}else{
+							$sql = "SELECT * FROM l3npd WHERE Department='$dept' AND Status=1";
+						}
 						$query = $dbh -> prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);

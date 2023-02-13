@@ -41,6 +41,143 @@
 				</div>
 			</div>
 
+			<div class="title pb-20">
+				<h2 class="h3 mb-0">Data Information</h2>
+			</div>
+			<div class="row pb-10">
+				<!-- <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<div class="card-box height-100-p widget-style3">
+						<?php
+						$sql = "SELECT emp_id from tblemployees";
+						$query = $dbh -> prepare($sql);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$empcount=$query->rowCount();
+						?>
+						<div class="d-flex flex-wrap">
+							<div class="widget-data">
+								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
+								<div class="font-14 text-secondary weight-500">Total Staffs</div>
+							</div>
+							<div class="widget-icon">
+								<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-user-2"></i></div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<div class="card-box height-100-p widget-style3">
+						<?php
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=0";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM tblnpd WHERE Status=1 AND LevelStatus=1";
+						}else{
+							$sql = "SELECT * FROM tblnpd JOIN l2npd ON tblnpd.NPDNumber=l2npd.NPDNumber WHERE tblnpd.Status=1 AND tblnpd.LevelStatus=2 AND l2npd.Status=1";
+						}
+						
+						$query = $dbh -> prepare($sql);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$openNPD=$query->rowCount();
+						?>        
+						<div class="d-flex flex-wrap">
+							<div class="widget-data">
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($openNPD); ?></div>
+								<div class="font-14 text-secondary weight-500">Open NPDs</div>
+							</div>
+							<div class="widget-icon">
+								<div class="icon" data-color="#b9c3ff"><span class="icon-copy fa fa-hourglass"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<div class="card-box height-100-p widget-style3">
+						<?php
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=0";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM l2npd WHERE Department='$dept' AND Status=0";
+						}else{
+							$sql = "SELECT * FROM l3npd WHERE Department='$dept' AND Status=0";
+						}
+						
+						$query = $dbh -> prepare($sql);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$openNPD=$query->rowCount();
+						?>        
+						<div class="d-flex flex-wrap">
+							<div class="widget-data">
+								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($openNPD); ?></div>
+								<div class="font-14 text-secondary weight-500">Pending NPDs</div>
+							</div>
+							<div class="widget-icon">
+								<div class="icon" data-color="#fbef00"><span class="icon-copy fa fa-hourglass"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<div class="card-box height-100-p widget-style3">
+						<?php
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=1";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM l2npd WHERE Department='$dept' AND Status=1";
+						}else{
+							$sql = "SELECT * FROM l3npd WHERE Department='$dept' AND Status=1";
+						}
+						$query = $dbh -> prepare($sql);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$inProcessNPD=$query->rowCount();
+						?>         
+						<div class="d-flex flex-wrap">
+							<div class="widget-data">
+								<div class="weight-700 font-24 text-dark"><?php echo($inProcessNPD); ?></div>
+								<div class="font-14 text-secondary weight-500">In Process NPD</div>
+							</div>
+							<div class="widget-icon">
+								<div class="icon" data-color="#09cc06"><i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<div class="card-box height-100-p widget-style3">
+						<?php
+						$dept = $_SESSION['adepart'];
+						if($dept=='INFORMATION TECHNOLOGY'){
+							$sql = "SELECT * FROM tblnpd WHERE Department='$dept' AND Status=2";
+						}elseif($dept=='MIS'){
+							$sql = "SELECT * FROM l2npd WHERE Department='$dept' AND Status=2";
+						}else{
+							$sql = "SELECT * FROM l3npd WHERE Department='$dept' AND Status=2";
+						}
+						$query = $dbh -> prepare($sql);
+						$query->bindParam(':status',$status,PDO::PARAM_STR);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$leavecount=$query->rowCount();
+						?>  
+						<div class="d-flex flex-wrap">
+							<div class="widget-data">
+								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
+								<div class="font-14 text-secondary weight-500">Rejected NPDs</div>
+							</div>
+							<div class="widget-icon">
+								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-lg-4 col-md-6 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
