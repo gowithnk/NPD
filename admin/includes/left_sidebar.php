@@ -46,6 +46,21 @@
 							<li><a href="approvednpds.php">In Process NPD</a></li>
 						</ul>
 					</li>
+					<li class="dropdown">
+						<a href="bdnames.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-group"></span><span class="mtext">Manage BD Name</span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="packstyle.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-box"></span><span class="mtext">Manage Pack Style</span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="partyname.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-briefcase"></span><span class="mtext">Manage Party Name</span>
+						</a>
+					</li>
 					<!-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-calendar"></span><span class="mtext">Manage Attendance</span>
