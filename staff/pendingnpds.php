@@ -54,6 +54,7 @@
 												<th>MRP</th>
 												<th>Employee Remark</th>
 												<th>HOD Remark</th>
+												<th>BD Name</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -88,6 +89,7 @@
 														<td><?php echo htmlentities($result->MRP); ?></td>
 														<td><?php echo htmlentities($result->EmpRemark); ?></td>
 														<td><?php echo htmlentities($result->HODRemark); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 													</tr>
 
 											<?php }} ?>
@@ -160,22 +162,28 @@
 												<input id="marketDistribution" name="market" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="unit">Unit</label>
 												<input id="unit" name="unit" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="genericName">Generic Name</label>
 												<input id="genericName" name="genericName" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="composition">Composition</label>
 												<input id="composition" name="composition" type="text" class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label for="bdName">BD Name</label>
+												<input id="bdName" name="bdName" type="text" class="form-control" readonly>
 											</div>
 										</div>
 									</div>
@@ -263,6 +271,7 @@
 				$('#mrp').val(data[14]);
 				$('#empRemark').val(data[15]);
 				$('#hodRemark').val(data[16]);
+				$('#bdName').val(data[17]);
 				printSection(el);
 			});
 		});

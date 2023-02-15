@@ -42,6 +42,7 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 	$rate = $_POST['rate'];
 	$mrp = $_POST['mrp'];
 	$empRemark = $_POST['empRemark'];
+	$bdName = $_POST['bdName'];
 
 	$query = mysqli_query($conn, "select * from tblnpd where NPDNumber = '$npdNumber'") or die(mysqli_error());
 	$count = mysqli_num_rows($query);
@@ -49,10 +50,9 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 	if ($count > 0) {
 		echo "<script>alert('NPD Already exist');</script>";
 	} else {
-		$query = mysqli_query($conn, "INSERT INTO tblnpd (NPDNumber, RevisionNo, Date, Department, EmpName, EmpCode, PackStyle, MaterialName, Division, Market, Unit, GenericName, 
+		$query = mysqli_query($conn, "INSERT INTO tblnpd (NPDNumber, RevisionNo, Date, BDName, Department, EmpName, EmpCode, PackStyle, MaterialName, Division, Market, Unit, GenericName, 
 		Composition, PCN, SelfLife, Rate, MRP, EmpRemark)
-  		VALUES ('$npdNumber', '$revNumber', '$date', '$department', '$empName', '$empCode' ,'$packStyle','$materialName','$division','$market','$unit','$genericName','$composition',
-		'$pcn' ,'$selfLife','$rate','$mrp','$empRemark')") or die(mysqli_error());
+  		VALUES ('$npdNumber', '$revNumber', '$date', '$bdName', '$department', '$empName', '$empCode' ,'$packStyle','$materialName','$division','$market','$unit','$genericName','$composition', '$pcn', '$selfLife', '$rate','$mrp','$empRemark')") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('NPD Added Successfully');</script>";
@@ -99,19 +99,19 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 							<section>
 								<form name="save" method="post">
 									<div class="row">
-										<div class="col-lg-6 col-md-6">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<label for="npdNumber">NPD Number</label>
 												<input id="npdNumber" name="npdNumber" value="<?php echo 'NP-' . $new_npd ?>" type="text" class="form-control" required="true" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-3">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<label for="revNumber">Revision No.</label>
 												<input id="revNumber" name="revNumber" value="00" type="number" class="form-control" required="true" readonly>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-3">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');
@@ -121,10 +121,32 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 												<input id="date" name="date" value="<?= $date ?>" class="form-control" title="Automatic Current time" required="true" readonly>
 											</div>
 										</div>
+										<div class="col-lg-3">
+											<div class="form-group">
+												<label for="bdName">BD Name</label>
+												<select name="bdName" id="bdName" class="custom-select form-control" required="true" autocomplete="off">
+													<option value="">Select BD Name</option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblbd");
+													
+													while($row = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row['BDName']; ?>"><?php echo $row['BDName']; ?></option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
-												<input type="text" name="packStyle" id="packStyle" placeholder="Pack Style" class="form-control" required="true" autocomplete="on">
+												<select name="packStyle" id="packStyle" class="custom-select form-control" required="true" autocomplete="off">
+													<option value="">Select Pack Style</option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblpack");
+													
+													while($row = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row['PackStyle']; ?>"><?php echo $row['PackStyle']; ?></option>
+													<?php } ?>
+												</select>
 											</div>
 										</div>
 										<div class="col-lg-6">
@@ -183,11 +205,15 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										</div>
 										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="partyCodeName">Party Code & Name</label>
-												<select id="partyCodeName" name="pcn" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Party Code & Name</option>
-													<option value="Option 1">Option 1</option>
-													<option value="Option 2">Option 2</option>
+												<label for="pcn">Party Code & Name</label>
+												<select name="pcn" id="pcn" class="custom-select form-control" required="true" autocomplete="off">
+													<option value="">Select Party Name</option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblpartyname");
+													
+													while($row = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row['PartyName']; ?>"><?php echo $row['PartyName']; ?></option>
+													<?php } ?>
 												</select>
 											</div>
 										</div>
