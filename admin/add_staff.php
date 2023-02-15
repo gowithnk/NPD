@@ -35,7 +35,7 @@
 		") or die(mysqli_error()); die(); ?>
 
 		<script>alert('Staff Records Successfully  Added');
-				//window.location = "staff.php"; 
+				window.location = "staff.php"; 
 		</script>;
 		
 		<?php   }

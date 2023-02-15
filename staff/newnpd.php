@@ -64,7 +64,6 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 }
 
 ?>
-
 <body>
 
 	<?php include('includes/navbar.php') ?>
@@ -124,8 +123,8 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										<div class="col-lg-3">
 											<div class="form-group">
 												<label for="bdName">BD Name</label>
-												<select name="bdName" id="bdName" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select BD Name</option>
+												<select name="bdName" id="bdName" required="true" autocomplete="off">
+													<option value="">...</option>
 													<?php
 													$query = mysqli_query($conn,"SELECT * FROM tblbd");
 													
@@ -138,8 +137,8 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
-												<select name="packStyle" id="packStyle" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select Pack Style</option>
+												<select name="packStyle" id="packStyle" required="true" autocomplete="off">
+													<option value="">...</option>
 													<?php
 													$query = mysqli_query($conn,"SELECT * FROM tblpack");
 													
@@ -206,8 +205,8 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="pcn">Party Code & Name</label>
-												<select name="pcn" id="pcn" class="custom-select form-control" required="true" autocomplete="off">
-													<option value="">Select Party Name</option>
+												<select name="pcn" id="pcn"  required="true" autocomplete="off">
+													<option value="">...</option>
 													<?php
 													$query = mysqli_query($conn,"SELECT * FROM tblpartyname");
 													
@@ -258,7 +257,11 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 		</div>
 	</div>
 	<!-- js -->
-
+	<script>
+		$('#packStyle').selectize({ normalize: true });
+		$('#pcn').selectize({ normalize: true });
+		$('#bdName').selectize({ normalize: true });
+	</script>
 	<?php include('includes/scripts.php') ?>
 </body>
 
