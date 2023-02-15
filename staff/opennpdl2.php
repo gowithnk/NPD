@@ -3,7 +3,7 @@
 
 <?php $npdNumber = $_GET['edit']; ?>
 <?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "SELECT * FROM tblemployees JOIN  tbldepartments WHERE emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {

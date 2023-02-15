@@ -3,7 +3,7 @@
 
 <?php $npdNumber = $_GET['edit']; ?>
 <?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "SELECT * FROM tblemployees JOIN  tbldepartments WHERE emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
@@ -15,7 +15,6 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$packingType = $_POST['packingType'];
 	$lFColour = $_POST['lFColour'];
 	$baseFoil = $_POST['baseFoil'];
-	echo $baseFoil;
 	$pVCPVDC = $_POST['pVCPVDC'];
 	$changePart = $_POST['changePart'];
 	$empRemark = $_POST['empRemark'];
@@ -29,16 +28,13 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$referenceProduct = $_POST['referenceProduct'];
 	$otherRemark = $_POST['otherRemark'];
 
-	$query = mysqli_query($conn, "SELECT * FROM l3npd WHERE NPDNumber = '$npdNumber'") or die(mysqli_error());
+	$query = mysqli_query($conn, "SELECT * FROM l4npd WHERE NPDNumber = '$npdNumber'") or die(mysqli_error());
 	$count = mysqli_num_rows($query);
 
 	if ($count > 0) {
-		echo "<script>alert('NPD Already exist');</script>";
+		echo "<script>alert('NPD Already Exists');</script>";
 	} else {
-		$query1 = mysqli_query($conn, "INSERT INTO l3npd (NPDNumber, Department, EmpName, EmpCode, PackingType, LFColour, BaseFoil, PVCPVDC, ChangePart, EmpRemark, 
-		MonoCarton, Insert3, SilicaGel, OuterCarton, Shrink, ShipperSpecs, ShipperPacking, ReferenceProduct, OtherRemark) VALUES ('$npdNumber', '$department', '$empName', 
-		'$empCode' ,'$packingType','$lFColour', '$baseFoil', '$pVCPVDC','$changePart', '$empRemark', '$monoCarton', '$insert3', '$silicaGel', '$outerCarton', '$shrink',
-		'$shipperSpecs', '$shipperPacking', '$referenceProduct', '$otherRemark')") or die(mysqli_error());
+		$query1 = mysqli_query($conn, "INSERT INTO l3npd (NPDNumber, Department, EmpName, EmpCode, PackingType, LFColour, BaseFoil, PVCPVDC, ChangePart, EmpRemark, MonoCarton, Insert3, SilicaGel, OuterCarton, Shrink, ShipperSpecs, ShipperPacking, ReferenceProduct, OtherRemark) VALUES ('$npdNumber', '$department', '$empName', '$empCode' ,'$packingType','$lFColour', '$baseFoil', '$pVCPVDC','$changePart', '$empRemark', '$monoCarton', '$insert3', '$silicaGel', '$outerCarton', '$shrink',	'$shipperSpecs', '$shipperPacking', '$referenceProduct', '$otherRemark')") or die(mysqli_error());
 
 		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '3' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
@@ -276,118 +272,152 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 									</div>
 									<!-- level 3 -->
 									<hr id="l3" class="my-3">
-									<div class="lvl3 mt-2">
+									<div class="lvl-3">
 										<div class="row">
-											<div class="col-lg-4">
+											<?php
+												$query = mysqli_query($conn,"SELECT * FROM l3npd WHERE NPDNumber = '$npdNumber' ")or die(mysqli_error());
+												$row = mysqli_fetch_array($query);
+											?>
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="packingType">Packing Type</label>
-													<select id="packingType" name="packingType" class="custom-select form-control" required="true" autocomplete="on">
-														<option value="">Select Option</option>
-														<option>Alu Alu Blister</option>
-														<option>Strip</option>
-														<option>Blister</option>
-														<option>Manual</option>
-													</select>
+													<input id="packingType" name="packingType" type="text" value="<?php echo $row['PackingType']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="lFColour">Leading Foil (Colour)</label>
-													<input id="lFColour" name="lFColour" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="lFColour" name="lFColour" type="text" value="<?php echo $row['LFColour']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="baseFoil">Base Foil</label>
-													<select id="baseFoil" name="baseFoil" class="custom-select form-control" required="true" autocomplete="on">
-														<option value="">Select Option</option>
-														<option>Colour</option>
-														<option>Plain</option>
-														<option>Printer</option>
-														<option>Manual</option>
-													</select>
+													<input id="baseFoil" name="baseFoil" type="text" value="<?php echo $row['BaseFoil']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="pVCPVDC">PVC / PVDC</label>
-													<input id="pVCPVDC" name="pVCPVDC" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="pVCPVDC" name="pVCPVDC" type="text" value="<?php echo $row['PVCPVDC']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-5">
 												<div class="form-group">
 													<label for="changePart">Change Part</label>
-													<input id="changePart" name="changePart" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="changePart" name="changePart" type="text" value="<?php echo $row['ChangePart']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<div class="col-lg-7">
 												<div class="form-group">
-													<label for="empRemark">Remarks (If Any)</label>
-													<textarea id="empRemark" name="empRemark" placeholder="Mark your remarks here..." class="form-control" rows="2" required></textarea>
+													<label for="empRemark">Remarks</label>
+													<input id="empRemark" name="empRemark" type="text" value="<?php echo $row['EmpRemark']; ?>" class="form-control" readonly>
 												</div>
+												
 											</div>
-											<div class="col-lg-12"><hr class="mt-3"></div>
-										</div>
-										<div class="row">
+											<div class="col-lg-12"><hr class="mx-5"></div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="monoCarton">Mono Carton</label>
-													<input id="monoCarton" name="monoCarton" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="monoCarton" name="monoCarton" type="text" value="<?php echo $row['MonoCarton']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="insert3">Insert</label>
-													<input id="insert3" name="insert3" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="insert3" name="insert3" type="text" value="<?php echo $row['Insert3']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="silicaGel">Silica Gel</label>
-													<input id="silicaGel" name="silicaGel" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="silicaGel" name="silicaGel" type="text" value="<?php echo $row['SilicaGel']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="outerCarton">Outer Carton</label>
-													<input id="outerCarton" name="outerCarton" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="outerCarton" name="outerCarton" type="text" value="<?php echo $row['OuterCarton']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="shrink">Shrink</label>
-													<input id="shrink" name="shrink" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="shrink" name="shrink" type="text" value="<?php echo $row['Shrink']; ?>" class="form-control" readonly>
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="shipperSpecs">Shipper Specs</label>
-													<input id="shipperSpecs" name="shipperSpecs" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="shipperSpecs" name="shipperSpecs" type="text" value="<?php echo $row['ShipperSpecs']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="shipperPacking">Shipper Packing</label>
-													<input id="shipperPacking" name="shipperPacking" type="text" class="form-control" required="true" autocomplete="on">
+													<input id="shipperPacking" name="shipperPacking" type="text" value="<?php echo $row['ShipperPacking']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="referenceProduct">Reference Product</label>
+													<input id="referenceProduct" name="referenceProduct" type="text" value="<?php echo $row['ReferenceProduct']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="otherRemark">Other Remarks <small>(<?php echo $row['EmpName']; ?>)</small></label>
+													<input id="otherRemark" name="otherRemark" type="text" value="<?php echo $row['OtherRemark']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="hodRemark">HOD Remarks <small>(<?php echo $row['HODName']; ?>)</small></label>
+													<input id="hodRemark" name="hodRemark" type="text" value="<?php echo $row['HODRemark']; ?>" class="form-control" readonly>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!-- Level 4 -->
+									<hr id="l4" class="my-3">
+									<div class="lvl-4">
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="batchSize">Batch Size</label>
+													<input type="number" class="form-control" id="batchSize" name="batchSize" placeholder="Batch Size"id="batchSize" required>
+												</div>
+											</div>
+											<div class="col-lg-1">
+												<div class="form-group">
+												  <label for="uom">U.O.M</label>
+												  <select class="form-control custom-select" name="uom" id="uom">
+													<option value=""></option>
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+												  </select>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+												  <label for="factor">Factor</label>
+												  <input type="text" class="form-control" name="factor" id="factor" placeholder="Factor">
 												</div>
 											</div>
 											<div class="col-lg-4">
 												<div class="form-group">
-													<label for="referenceProduct">Reference Product</label>
-													<input id="referenceProduct" name="referenceProduct" type="text" class="form-control" required="true" autocomplete="on">
+												  <label for="component">Component</label>
+												  <input type="text"
+													class="form-control" name="component" id="component" placeholder="Component">
 												</div>
 											</div>
-											<div class="col-lg-12">
-												<div class="form-group">
-													<label for="otherRemark">Other Remark (if any)</label>
-													<textarea id="otherRemark" name="otherRemark" placeholder="Mark your remarks here..." class="form-control" rows="2" required></textarea>
+											<div class="col-sm-12">
+												<div class="dropdown">
+													<input class="btn btn-primary btn-block mt-3" type="submit" value="UPDATE NPD" name="updatenpd" id="add">
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="dropdown">
-											<input class="btn btn-primary btn-block mt-3" type="submit" value="UPDATE NPD" name="updatenpd" id="add">
 										</div>
 									</div>
 								</form>
