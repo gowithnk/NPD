@@ -22,7 +22,7 @@
 						  if($session_role != 'HOD'){
 							echo '<script>
 									alert("Please login with HOD Account");
-									document.location = "/SynokemNPD/index.php";
+									document.location = "/index.php";
 								</script>';
 						} 
 					?>

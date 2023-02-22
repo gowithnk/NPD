@@ -113,6 +113,12 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 										</div>
 										<div class="col-lg-5">
 											<div class="form-group">
+												<label for="bdName">BD Name</label>
+												<input readonly id="bdName" name="bdName" value="<?php echo $row['BDName']; ?>" type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
 												<input readonly id="packStyle" name="packStyle" value="<?php echo $row['PackStyle']; ?>" type="text" class="form-control">
 											</div>
@@ -159,7 +165,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 												<input id="partyCodeName" name="pcn" value="<?php echo $row['PCN']; ?>" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-2">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="selfLife">Self Life (in Months)</label>
 												<input id="selfLife" name="selfLife" value="<?php echo $row['SelfLife']; ?>" type="text" class="form-control" readonly>

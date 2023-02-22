@@ -1,6 +1,23 @@
 <?php
+
 session_start();
+
 include('includes/config.php');
+$msg = '';
+if (isset($_SESSION['arole']) != '' && $_SESSION['arole'] != 'undefined'){
+
+	if($_SESSION['arole'] == 'HOD'){
+		echo "<script type='text/javascript'> document.location = 'heads/index.php'; </script>";
+	}elseif($_SESSION['arole'] == 'Admin'){
+		echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
+	}elseif($_SESSION['arole'] == 'Staff'){
+		echo "<script type='text/javascript'> document.location = 'staff/index.php'; </script>";
+	}
+}else{
+	$msg = 'Please Login !!!';
+}
+
+
 if(isset($_POST['signin']))
 {
 	$username=$_POST['username'];
@@ -9,6 +26,7 @@ if(isset($_POST['signin']))
 	$sql ="SELECT * FROM tblemployees where EmailId ='$username' AND Password ='$password'";
 	$query= mysqli_query($conn, $sql);
 	$count = mysqli_num_rows($query);
+	
 	if($count > 0)
 	{
 		while ($row = mysqli_fetch_assoc($query)) {
@@ -55,6 +73,7 @@ if(isset($_POST['signin']))
 	}
 
 }
+
 // $_SESSION['alogin']=$_POST['username'];
 // 	echo "<script type='text/javascript'> document.location = 'changepassword.php'; </script>";
 ?>
@@ -86,13 +105,13 @@ if(isset($_POST['signin']))
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
-				<a href="/synokemnpd">
+				<a href="/">
 					<img src="vendors/images/deskapp-logo-svg.png" width="150" alt="">
 				</a>
 			</div>
 		</div>
 	</div>
-	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+	<div  id="bdt" class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6 col-lg-7">
@@ -103,6 +122,7 @@ if(isset($_POST['signin']))
 						<div class="login-title text-center">
 							<img class="text-center" src="vendors/images/favicon-s.png" width="50" alt=""><br>
 							<h2 class="text-center text-primary">Synokem NPD Portal</h2>
+								<!-- <?php echo '<div class="alert alert-danger" role="alert">' .$msg .'</div' ?> -->
 						</div>
 						<form name="signin" method="post">
 						

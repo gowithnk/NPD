@@ -2,18 +2,7 @@
 <?php include('../includes/session.php') ?>
 
 <?php
-if (isset($_GET['delete'])) {
-	$id = $_GET['delete'];
-	$sql = "DELETE FROM tblnpd where id = " . $id;
-	$result = mysqli_query($conn, $sql);
-	if ($result) {
-		echo "<script>alert('NPD deleted Successfully');</script>";
-		echo "<script type='text/javascript'> document.location = 'newnpd.php'; </script>";
-	}
-}
-?>
-<?php
-$query_staff = mysqli_query($conn, "select * from tblemployees join  tbldepartments where emp_id = '$session_id'") or die(mysqli_error());
+$query_staff = mysqli_query($conn, "SELECT * FROM tblemployees JOIN  tbldepartments WHERE emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
 $query_npd = mysqli_query($conn, "SELECT * FROM tblnpd ORDER BY id DESC LIMIT 1") or die(mysqli_error());
@@ -44,15 +33,13 @@ if (isset($_POST['addnpd']) && $_POST['npdNumber'] !== '') {
 	$empRemark = $_POST['empRemark'];
 	$bdName = $_POST['bdName'];
 
-	$query = mysqli_query($conn, "select * from tblnpd where NPDNumber = '$npdNumber'") or die(mysqli_error());
+	$query = mysqli_query($conn, "SELECT * FROM tblnpd WHERE NPDNumber = '$npdNumber'") or die(mysqli_error());
 	$count = mysqli_num_rows($query);
 
 	if ($count > 0) {
 		echo "<script>alert('NPD Already exist');</script>";
 	} else {
-		$query = mysqli_query($conn, "INSERT INTO tblnpd (NPDNumber, RevisionNo, Date, BDName, Department, EmpName, EmpCode, PackStyle, MaterialName, Division, Market, Unit, GenericName, 
-		Composition, PCN, SelfLife, Rate, MRP, EmpRemark)
-  		VALUES ('$npdNumber', '$revNumber', '$date', '$bdName', '$department', '$empName', '$empCode' ,'$packStyle','$materialName','$division','$market','$unit','$genericName','$composition', '$pcn', '$selfLife', '$rate','$mrp','$empRemark')") or die(mysqli_error());
+		$query = mysqli_query($conn, "INSERT INTO tblnpd (NPDNumber, RevisionNo, Date, BDName, Department, EmpName, EmpCode, PackStyle, MaterialName, Division, Market, Unit, GenericName, Composition, PCN, SelfLife, Rate, MRP, EmpRemark) VALUES ('$npdNumber', '$revNumber', '$date', '$bdName', '$department', '$empName', '$empCode' ,'$packStyle','$materialName','$division','$market','$unit','$genericName','$composition', '$pcn', '$selfLife', '$rate','$mrp','$empRemark')") or die(mysqli_error());
 
 		if ($query) {
 			echo "<script>alert('NPD Added Successfully');</script>";

@@ -41,6 +41,7 @@
 												<th class="table-plus">NPD No.</th>
 												<th>Revisions</th>
 												<th>Date</th>
+												<th>BD Name</th>
 												<th>Pack Style</th>
 												<th>Material Name</th>
 												<th>Division</th>
@@ -109,6 +110,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->RevisionNo); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 														<td><?php echo htmlentities($result->PackStyle); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Division); ?></td>
@@ -196,7 +198,7 @@
 													<input id="revNumber" name="revNumber" type="number" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<?php
 													date_default_timezone_set('Asia/Kolkata');
@@ -206,13 +208,19 @@
 													<input id="date" name="date" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="bdName">BD Name</label>
+													<input readonly id="bdName" name="bdName" type="text" class="form-control">
+												</div>
+											</div>
+											<div class="col-lg-5">
 												<div class="form-group">
 													<label for="packStyle">Pack Style</label>
 													<input readonly id="packStyle" name="packStyle" type="text" class="form-control">
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-7">
 												<div class="form-group">
 													<label for="materialName">Material Name</label>
 													<input readonly id="materialName" name="materialName" type="text" class="form-control">
@@ -230,19 +238,19 @@
 													<input id="marketDistribution" name="market" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-5">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="unit">Unit</label>
 													<input id="unit" name="unit" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="genericName">Generic Name</label>
 													<input id="genericName" name="genericName" type="text" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-6">
 												<div class="form-group">
 													<label for="composition">Composition</label>
 													<input id="composition" name="composition" type="text" class="form-control" readonly>
@@ -492,51 +500,52 @@
 				$('#npdNumber').val(data[1]);
 				$('#revNumber').val(data[2]);
 				$('#date').val(data[3]);
-				$('#packStyle').val(data[4]);
-				$('#materialName').val(data[5]);
-				$('#division').val(data[6]);
-				$('#marketDistribution').val(data[7]);
-				$('#unit').val(data[8]);
-				$('#genericName').val(data[9]);
-				$('#composition').val(data[10]);
-				$('#partyCodeName').val(data[11]);
-				$('#selfLife').val(data[12]);
-				$('#rate').val(data[13]);
-				$('#mrp').val(data[14]);
-				$('#emp1Remark').val(data[15]);
-				$('#emp1Name').html(data[16]);
-				$('#hod1Remark').val(data[17]);
-				$('#hod1Name').html(data[18]);
-				$('#batchSeries').val(data[19]);
-				$('#fdaApproval').val(data[20]);
-				$('#fdaApprovalDate').val(data[21]);
-				$('#colour').val(data[22]);
-				$('#averageWeight').val(data[23]);
-				$('#shape').val(data[24]);
-				$('#size').val(data[25]);
-				$('#generalInfo').val(data[26]);
-				$('#emp2Remark').val(data[27]);
-				$('#emp2Name').html(data[28]);
-				$('#hod2Remark').val(data[29]);
-				$('#hod2Name').html(data[30]);
-				$('#packingType').val(data[31]);
-				$('#lFColour').val(data[32]);
-				$('#baseFoil').val(data[33]);
-				$('#pVCPVDC').val(data[34]);
-				$('#changePart').val(data[35]);
-				$('#empRemark').val(data[36]);
-				$('#monoCarton').val(data[37]);
-				$('#insert3').val(data[38]);
-				$('#silicaGel').val(data[39]);
-				$('#outerCarton').val(data[40]);
-				$('#shrink').val(data[41]);
-				$('#shipperSpecs').val(data[42]);
-				$('#shipperPacking').val(data[43]);
-				$('#referenceProduct').val(data[44]);
-				$('#otherRemark').val(data[45]);
-				$('#hodRemark').val(data[46]);
-				$('#hodName').html(data[47]);
-				$('#empName').html(data[48]);
+				$('#bdName').val(data[4]);
+				$('#packStyle').val(data[5]);
+				$('#materialName').val(data[6]);
+				$('#division').val(data[7]);
+				$('#marketDistribution').val(data[8]);
+				$('#unit').val(data[9]);
+				$('#genericName').val(data[10]);
+				$('#composition').val(data[11]);
+				$('#partyCodeName').val(data[12]);
+				$('#selfLife').val(data[13]);
+				$('#rate').val(data[14]);
+				$('#mrp').val(data[15]);
+				$('#emp1Remark').val(data[16]);
+				$('#emp1Name').html(data[17]);
+				$('#hod1Remark').val(data[18]);
+				$('#hod1Name').html(data[19]);
+				$('#batchSeries').val(data[20]);
+				$('#fdaApproval').val(data[21]);
+				$('#fdaApprovalDate').val(data[22]);
+				$('#colour').val(data[23]);
+				$('#averageWeight').val(data[24]);
+				$('#shape').val(data[25]);
+				$('#size').val(data[26]);
+				$('#generalInfo').val(data[27]);
+				$('#emp2Remark').val(data[28]);
+				$('#emp2Name').html(data[29]);
+				$('#hod2Remark').val(data[30]);
+				$('#hod2Name').html(data[31]);
+				$('#packingType').val(data[312]);
+				$('#lFColour').val(data[33]);
+				$('#baseFoil').val(data[34]);
+				$('#pVCPVDC').val(data[35]);
+				$('#changePart').val(data[36]);
+				$('#empRemark').val(data[37]);
+				$('#monoCarton').val(data[38]);
+				$('#insert3').val(data[39]);
+				$('#silicaGel').val(data[40]);
+				$('#outerCarton').val(data[41]);
+				$('#shrink').val(data[42]);
+				$('#shipperSpecs').val(data[43]);
+				$('#shipperPacking').val(data[44]);
+				$('#referenceProduct').val(data[45]);
+				$('#otherRemark').val(data[46]);
+				$('#hodRemark').val(data[47]);
+				$('#hodName').html(data[48]);
+				$('#empName').html(data[49]);
 				printSection(el);
 			});
 		});

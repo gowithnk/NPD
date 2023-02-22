@@ -21,7 +21,7 @@
 						  if($session_role != 'Staff'){
 							echo '<script>
 									alert("Please login with Staff Account");
-									document.location = "/SynokemNPD/index.php";
+									document.location = "/index.php";
 								</script>';
 						} 
 						?>

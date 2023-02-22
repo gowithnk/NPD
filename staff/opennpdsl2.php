@@ -41,6 +41,7 @@
 											<th class="table-plus">NPD Num</th>
 											<th>Material Name</th>
 											<th>Date</th>
+											<th>BD Name</th>
 											<th>Level Status</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
@@ -63,6 +64,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 														<td data-color="#00cb0c"><?php echo htmlentities($result->LevelStatus); ?></td>
 														<td>
 															<div class="table-actions">

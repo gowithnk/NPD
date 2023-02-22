@@ -2,8 +2,7 @@
 <?php include('../includes/session.php') ?>
 <?php $npdNumber = $_GET['edit']; ?>
 <?php
-$query_staff = mysqli_query($conn, "SELECT * FROM tblemployees JOIN  tbldepartments WHERE emp_id = '$session_id'") 
-or die(mysqli_error());
+$query_staff = mysqli_query($conn, "SELECT * FROM tblemployees JOIN  tbldepartments WHERE emp_id = '$session_id'") or die(mysqli_error());
 $row_staff = mysqli_fetch_array($query_staff);
 
 if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
@@ -12,12 +11,16 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$fn = $row_staff['FirstName'];
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
-	$batchSize = $_POST['batchSize'];
+	$packingType = $_POST['packingType'];
+	$lFColour = $_POST['lFColour'];
+	$baseFoil = $_POST['baseFoil'];
+	$pVCPVDC = $_POST['pVCPVDC'];
+	$changePart = $_POST['changePart'];
 	$empRemark = $_POST['empRemark'];
-	$uom = $_POST['uom'];
-	$factor = $_POST['factor'];
-	$component = $_POST['component'];
-	$componentDesc = $_POST['componentDesc'];
+	$monoCarton = $_POST['monoCarton'];
+	$insert3 = $_POST['insert3'];
+	$silicaGel = $_POST['silicaGel'];
+	$outerCarton = $_POST['outerCarton'];
 	$shrink = $_POST['shrink'];
 	$shipperSpecs = $_POST['shipperSpecs'];
 	$shipperPacking = $_POST['shipperPacking'];
@@ -30,13 +33,13 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	if ($count > 0) {
 		echo "<script>alert('NPD Already Exists');</script>";
 	} else {
-		$query1 = mysqli_query($conn, "INSERT INTO l4npd (NPDNumber, Department, EmpName, EmpCode, BatchSize, EmpRemark, UOM, Factor, Component, ComponentDesc, Shrink, ShipperSpecs, ShipperPacking, ReferenceProduct, OtherRemark) VALUES ('$npdNumber', '$department', '$empName', '$empCode' ,'$batchSize', '$empRemark', '$uom', '$factor', '$component', '$componentDesc', '$shrink',	'$shipperSpecs', '$shipperPacking', '$referenceProduct', '$otherRemark')") or die(mysqli_error());
+		$query1 = mysqli_query($conn, "INSERT INTO l3npd (NPDNumber, Department, EmpName, EmpCode, PackingType, LFColour, BaseFoil, PVCPVDC, ChangePart, EmpRemark, MonoCarton, Insert3, SilicaGel, OuterCarton, Shrink, ShipperSpecs, ShipperPacking, ReferenceProduct, OtherRemark) VALUES ('$npdNumber', '$department', '$empName', '$empCode' ,'$packingType','$lFColour', '$baseFoil', '$pVCPVDC','$changePart', '$empRemark', '$monoCarton', '$insert3', '$silicaGel', '$outerCarton', '$shrink',	'$shipperSpecs', '$shipperPacking', '$referenceProduct', '$otherRemark')") or die(mysqli_error());
 
-		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '4' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
+		$query2 = mysqli_query($conn, "UPDATE tblnpd SET LevelStatus = '3' WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query1) {
 			echo "<script>alert('NPD Updated Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'pendingnpdsl4.php'; </script>";
+			echo "<script type='text/javascript'> document.location = 'pendingnpdsl3.php'; </script>";
 		}
 	}
 } else {
@@ -91,22 +94,21 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 									<hr id="l4" class="my-3">
 									<div class="lvl-4">
 										<div class="row">
-											<div class="col-lg-2">
+											<div class="col-lg-5">
 												<div class="form-group">
 													<label for="batchSize">Batch Size</label>
-													<input type="number" class="form-control" id="batchSize" name="batchSize" placeholder="Batch Size" required>
+													<input type="number" class="form-control" id="batchSize" name="batchSize" placeholder="Batch Size" id="batchSize" required>
 												</div>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-lg-3">
 												<div class="form-group">
 													<label for="uom">U.O.M</label>
-													<input type="text" class="form-control" id="uom" name="uom" placeholder="uom" required>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="overage">Overage </label>
-													<input type="text" class="form-control" id="overage" name="overage" placeholder="overage" required>
+													<select class="form-control custom-select" name="uom" id="uom">
+														<option value=""></option>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+													</select>
 												</div>
 											</div>
 											<div class="col-lg-4">
@@ -133,27 +135,9 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 												<div class="form-group">
 													<label for="componentDesc">Component Description</label>
 													<!-- <input type="text" id="desc"> -->
-													<select name="componentDesc" id="componentDesc" class="form-control custom-select" required>
-															<option value="">Component Description</option>
+													<select name="componentDesc1" id="componentDesc1" class="form-control custom-select" required>
+															<option >Component Description</option>
 													</select>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="claim">Claim</label>
-													<input type="text" class="form-control" name="claim" id="claim" placeholder="claim">
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="quantity">Quantity</label>
-													<input type="number" class="form-control" name="quantity" id="quantity" placeholder="quantity">
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="materialType">Material  Type</label>
-													<input type="text" class="form-control" name="materialType" id="materialType" placeholder="materialType">
 												</div>
 											</div>
 											<div class="col-sm-12">
@@ -175,6 +159,34 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	<!-- js -->
 
 	<div id="divLoading"></div>
+	<style>
+	#divLoading	{
+		display : none;
+	}
+	#divLoading.show{
+		display : block;
+		position : fixed;
+		z-index: 100;
+		background-image : url('http://loadinggif.com/images/image-selection/3.gif');
+		background-color:#666;
+		opacity : 0.4;
+		background-repeat : no-repeat;
+		background-position : center;
+		left : 0;
+		bottom : 0;
+		right : 0;
+		top : 0;
+	}
+	#loadinggif.show {left : 50%;
+		top : 50%;
+		position : absolute;
+		z-index : 101;
+		width : 32px;
+		height : 32px;
+		margin-left : -16px;
+		margin-top : -16px;
+	}
+	</style>
 		
 		<script>
 		$('#compo').selectize({ normalize: true });
@@ -216,14 +228,16 @@ function addOption(selecterId, options = []) {
 }
 
 	function getOption(Component) {
-		//$("#divLoading").addClass('show');
 		jQuery.ajax({
 			type:'post',
 			url:'get-data.php',
 			data:'Component='+Component,
 			success:function(result){
-				 //$("#divLoading").removeClass('show');
-				addOption('componentDesc', [{label: result, value: result, selected: true}])
+				// $("#divLoading").removeClass('show');
+				//jQuery('#componentDesc').val(result);
+				// document.getElementById("desc").value = result;
+				addOption('componentDesc1', [{label: result, value: result, selected: true}])
+				
 			}
 		});
 	}
@@ -238,7 +252,7 @@ function addOption(selecterId, options = []) {
 				getOption(value)
 			} else {
 
-				addOption('componentDesc', [])
+				addOption('componentDesc1', [])
 			}
         }
 	</script>

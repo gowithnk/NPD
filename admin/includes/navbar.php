@@ -11,7 +11,7 @@
 				if($session_role != 'Admin'){
 					echo '<script>
 							alert("Please login with Admin Account");
-							document.location = "/SynokemNPD/index.php";
+							document.location = "/index.php";
 						</script>';
 				}
 				?>

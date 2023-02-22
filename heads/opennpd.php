@@ -102,10 +102,16 @@ if (isset($_POST['reject'])) {
 												<input id="date" name="date" value="<?php echo $row['Date']; ?>" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-5">
+										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
 												<input readonly id="packStyle" name="packStyle" value="<?php echo $row['PackStyle']; ?>" type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="form-group">
+												<label for="bdName">BD Name</label>
+												<input readonly id="bdName" name="bdName" value="<?php echo $row['BDName']; ?>" type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-4">
@@ -150,19 +156,19 @@ if (isset($_POST['reject'])) {
 												<input id="partyCodeName" name="pcn" value="<?php echo $row['PCN']; ?>" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-2">
 											<div class="form-group">
 												<label for="selfLife">Self Life (In Months)</label>
 												<input id="selfLife" name="selfLife" value="<?php echo $row['SelfLife']; ?>" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-2">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<label for="rate">Rate</label>
 												<input id="rate" name="rate" value="<?php echo $row['Rate']; ?>" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-2">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<label for="mrp">MRP</label>
 												<input id="mrp" name="mrp" value="<?php echo $row['MRP']; ?>" type="number" class="form-control" readonly>
@@ -171,7 +177,7 @@ if (isset($_POST['reject'])) {
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="empRemark">Employee Remark <small>(<?php echo $row['EmpName']; ?>)</small></label>
-												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="1" ></textarea>
+												<textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2" ></textarea>
 											</div>
 										</div>
 									</div>

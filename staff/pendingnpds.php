@@ -41,7 +41,7 @@
 												<th class="table-plus">NPD No.</th>
 												<th>Revisions</th>
 												<th>Date</th>
-												<th>Pack Style</th>
+												<th>BD Name</th>
 												<th>Material Name</th>
 												<th>Division</th>
 												<th>Market</th>
@@ -53,8 +53,9 @@
 												<th>Rate</th>
 												<th>MRP</th>
 												<th>Employee Remark</th>
+												<th>Employee Name</th>
 												<th>HOD Remark</th>
-												<th>BD Name</th>
+												<th>Pack Style</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -76,7 +77,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->RevisionNo); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
-														<td><?php echo htmlentities($result->PackStyle); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Division); ?></td>
 														<td><?php echo htmlentities($result->Market); ?></td>
@@ -88,8 +89,10 @@
 														<td><?php echo htmlentities($result->Rate); ?></td>
 														<td><?php echo htmlentities($result->MRP); ?></td>
 														<td><?php echo htmlentities($result->EmpRemark); ?></td>
+														<td><?php echo htmlentities($result->EmpName); ?></td>
 														<td><?php echo htmlentities($result->HODRemark); ?></td>
-														<td><?php echo htmlentities($result->BDName); ?></td>
+														<td><?php echo htmlentities($result->PackStyle); ?></td>
+														
 													</tr>
 
 											<?php }} ?>
@@ -114,7 +117,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<div class="pb-10">
+							<div class="pb-10">
 									<div class="row">
 										<div class="col-lg-2">
 											<div class="form-group">
@@ -128,7 +131,7 @@
 												<input id="revNumber" name="revNumber" type="number" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-3">
 											<div class="form-group">
 												<?php
 												date_default_timezone_set('Asia/Kolkata');
@@ -138,13 +141,19 @@
 												<input id="date" name="date" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-5">
+											<div class="form-group">
+												<label for="bdName">BD Name</label>
+												<input id="bdName" name="bdName" type="text" class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="packStyle">Pack Style</label>
 												<input readonly id="packStyle" name="packStyle" type="text" class="form-control">
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="materialName">Material Name</label>
 												<input readonly id="materialName" name="materialName" type="text" class="form-control">
@@ -162,7 +171,7 @@
 												<input id="marketDistribution" name="market" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="unit">Unit</label>
 												<input id="unit" name="unit" type="text" class="form-control" readonly>
@@ -180,14 +189,6 @@
 												<input id="composition" name="composition" type="text" class="form-control" readonly>
 											</div>
 										</div>
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="bdName">BD Name</label>
-												<input id="bdName" name="bdName" type="text" class="form-control" readonly>
-											</div>
-										</div>
-									</div>
-									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="partyCodeName">Party Code & Name</label>
@@ -196,7 +197,7 @@
 										</div>
 										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="selfLife">Self Life (In Months)</label>
+												<label for="selfLife">Self Life</label>
 												<input id="selfLife" name="selfLife" type="text" class="form-control" readonly>
 											</div>
 										</div>
@@ -212,15 +213,13 @@
 												<input id="mrp" name="mrp" type="number" class="form-control" readonly>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-6">
+									<div class="col-lg-6">
 											<div class="form-group">
-												<label for="empRemark">Remarks</label>
+												<label for="empRemark">Employee Remark <small>(<label id="empName"></label>)</small></label>
 												<textarea readonly id="empRemark" name="empRemark" class="form-control" rows="2"></textarea>
 											</div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-sm-6">
 											<div class="form-group">
 												<label for="hodRemark">HOD Remark</label>
 												<textarea id="hodRemark" name="hodRemark" class="form-control" rows="2" readonly></textarea>
@@ -258,7 +257,7 @@
 				$('#npdNumber').val(data[1]);
 				$('#revNumber').val(data[2]);
 				$('#date').val(data[3]);
-				$('#packStyle').val(data[4]);
+				$('#bdName').val(data[4]);
 				$('#materialName').val(data[5]);
 				$('#division').val(data[6]);
 				$('#marketDistribution').val(data[7]);
@@ -270,8 +269,9 @@
 				$('#rate').val(data[13]);
 				$('#mrp').val(data[14]);
 				$('#empRemark').val(data[15]);
-				$('#hodRemark').val(data[16]);
-				$('#bdName').val(data[17]);
+				$('#empName').html(data[16]);
+				$('#hodRemark').val(data[17]);
+				$('#packStyle').val(data[18]);
 				printSection(el);
 			});
 		});

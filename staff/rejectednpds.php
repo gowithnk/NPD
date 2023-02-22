@@ -38,7 +38,7 @@
 									<thead>
 										<tr>
 											<th>SR NO.</th>
-											<th class="table-plus">NPD Num</th>
+											<th class="table-plus">NPD No.</th>
 											<th>Material Name</th>
 											<th>Date</th>
 											<th class="datatable-nosort">ACTION</th>
@@ -47,7 +47,7 @@
 									<tbody>
 
 										<?php 
-											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+											$query= mysqli_query($conn,"SELECT * FROM tblemployees WHERE emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
 											$sql = "SELECT * FROM tblnpd WHERE Status=2 AND LevelStatus=0 AND Department = '$empDept' ";
@@ -56,7 +56,7 @@
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
 											$cnt = 1;
 											if ($query->rowCount() > 0) {
-												foreach ($results as $result) {               ?>
+												foreach ($results as $result) { ?>
 													<tr>
 														<td> <?php echo htmlentities($cnt); ?></td>
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
