@@ -41,6 +41,7 @@
 											<th class="table-plus">NPD Num</th>
 											<th>Batch Series</th>
 											<th>FDA Approval</th>
+											<th>BD Name</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
 									</thead>
@@ -50,7 +51,7 @@
 											$query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 											$empDept = $row['Department'];
-											$sql = "SELECT * FROM l2npd WHERE Status=2 AND Department = '$empDept' ";
+											$sql = "SELECT * FROM l2npd JOIN tblnpd ON tblnpd.NPDNumber = l2npd.NPDNumber WHERE l2npd.Status=2 AND l2npd.Department = '$empDept' ";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -62,6 +63,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->BatchSeries); ?></td>
 														<td><?php echo htmlentities($result->FDAApproval); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 														<td>
 															<div class="table-actions">
 																<a href="rejectednpdl2.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">

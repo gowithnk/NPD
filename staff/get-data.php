@@ -6,7 +6,7 @@
 
 $id_C = $_POST['Component'];
 
-$query = mysqli_query($conn,"SELECT * FROM l4npd WHERE Component = '$id_C' ")or die(mysqli_error());
+$query = mysqli_query($conn,"SELECT * FROM tblcomponents WHERE Component = '$id_C' ")or die(mysqli_error());
 $desc = mysqli_fetch_array($query);
 
 echo $desc['ComponentDesc'];

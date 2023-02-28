@@ -4979,3 +4979,11 @@ body.IE .register-page-wrap .container {
     margin-left : -16px;
     margin-top : -16px;
 }
+button.close:hover {
+    color: red;
+    opacity: 1;
+}
+button.close {
+    color: rgb(255, 96, 96);
+    opacity: 0.9;
+}

@@ -17,6 +17,7 @@ if (isset($_POST['npdupdate'])) {
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
 	$packStyle = $_POST['packStyle'];
+	$bdName = $_POST['bdName'];
 	$materialName = $_POST['materialName'];
 	$division = $_POST['division'];
 	$market = $_POST['market'];
@@ -29,9 +30,7 @@ if (isset($_POST['npdupdate'])) {
 	$mrp = $_POST['mrp'];
 	$empRemark = $_POST['empRemark'];
 
-		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', NPDNumber = '$npdNumber', RevisionNo = '$revNumber', Date = '$date', Department = '$department', 
-		EmpCode = '$empCode', EmpName = '$empName', PackStyle = '$packStyle', MaterialName = '$materialName', Division = '$division', Market = '$market', Unit = '$unit', 
-		GenericName = '$genericName', Composition = '$composition', PCN = '$pcn', SelfLife = '$selfLife', Rate = '$rate', MRP = '$mrp', EmpRemark = '$empRemark'
+		$query = mysqli_query($conn, "UPDATE tblnpd SET Status = '$status', NPDNumber = '$npdNumber', RevisionNo = '$revNumber', Date = '$date', Department = '$department', EmpCode = '$empCode', EmpName = '$empName', PackStyle = '$packStyle', BDName = '$bdName', MaterialName = '$materialName', Division = '$division', Market = '$market', Unit = '$unit', GenericName = '$genericName', Composition = '$composition', PCN = '$pcn', SelfLife = '$selfLife', Rate = '$rate', MRP = '$mrp', EmpRemark = '$empRemark'
 		WHERE NPDNumber = $npdNumber") or die(mysqli_error());
 
 		if ($query) {
@@ -103,13 +102,35 @@ if (isset($_POST['npdupdate'])) {
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="packStyle">Pack Style</label>
-												<input  id="packStyle" name="packStyle" value="<?php echo $row['PackStyle']; ?>" type="text" class="form-control">
+												<label for="bdName">BD Name</label>
+												<select name="bdName" id="bdName" required="true" autocomplete="off">
+													<option value="<?php echo $row['BDName']; ?>"><?php echo $row['BDName']; ?></option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblbd");
+													
+													while($row1 = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row1['BDName']; ?>"><?php echo $row1['BDName']; ?></option>
+													<?php } ?>
+												</select>
 											</div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-4">
+											<div class="form-group">
+												<label for="packStyle">Pack Style</label>
+												<select name="packStyle" id="packStyle" required="true" autocomplete="off">
+													<option value="<?php echo $row['PackStyle']; ?>"><?php echo $row['PackStyle']; ?></option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblpack");
+													
+													while($row2 = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row2['PackStyle']; ?>"><?php echo $row2['PackStyle']; ?></option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="materialName">Material Name</label>
 												<input  id="materialName" name="materialName" value="<?php echo $row['MaterialName']; ?>" type="text" class="form-control">
@@ -170,11 +191,15 @@ if (isset($_POST['npdupdate'])) {
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="partyCodeName">Party Code & Name</label>
-												<select id="partyCodeName" name="pcn" class="custom-select form-control" required="true" autocomplete="off">
+												<label for="pcn">Party Code & Name</label>
+												<select name="pcn" id="pcn"  required="true" autocomplete="off">
 													<option value="<?php echo $row['PCN']; ?>"><?php echo $row['PCN']; ?></option>
-													<option value="Option 1">Option 1</option>
-													<option value="Option 2">Option 2</option>
+													<?php
+													$query = mysqli_query($conn,"SELECT * FROM tblpartyname");
+													
+													while($row3 = mysqli_fetch_array($query)){ ?>
+													<option value="<?php echo $row3['PartyName']; ?>"><?php echo $row3['PartyName']; ?></option>
+													<?php } ?>
 												</select>
 											</div>
 										</div>
@@ -231,7 +256,11 @@ if (isset($_POST['npdupdate'])) {
 		</div>
 	</div>
 	<!-- js -->
-
+	<script>
+		$('#packStyle').selectize({ normalize: true });
+		$('#pcn').selectize({ normalize: true });
+		$('#bdName').selectize({ normalize: true });
+	</script>
 	<?php include('includes/scripts.php') ?>
 </body>
 

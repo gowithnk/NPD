@@ -41,6 +41,7 @@
 											<th class="table-plus">NPD No.</th>
 											<th>Material Name</th>
 											<th>Date</th>
+											<th>BD Name</th>
 											<th class="datatable-nosort">ACTION</th>
 										</tr>
 									</thead>
@@ -62,6 +63,7 @@
 														<td><?php echo 'NP-' . htmlentities($result->NPDNumber); ?></td>
 														<td><?php echo htmlentities($result->MaterialName); ?></td>
 														<td><?php echo htmlentities($result->Date); ?></td>
+														<td><?php echo htmlentities($result->BDName); ?></td>
 														<td>
 															<div class="table-actions">
 																<a href="rejectednpd.php?edit=<?php echo htmlentities($result->NPDNumber); ?>" data-color="#265ed7">

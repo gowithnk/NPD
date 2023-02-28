@@ -84,16 +84,34 @@
 												<th>Shipper Packing</th>
 												<th>Reference Product</th>
 												<th>OtherRemark</th>
+												<th>Emp Name</th>
+												<th>HOD Remark</th>
+												<th>HOD Name</th>
+												<th>Batch Field</th>
+												<th>U.O.M</th>
+												<th>Overage</th>
+												<th>Factor</th>
+												<th>Component</th>
+												<th>Component Description</th>
+												<th>Claim</th>
+												<th>Quantity</th>
+												<th>Material Type</th>
+												<th>Emp Remarks</th>
+												<th>Emp Name</th>
 											</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name,	tblnpd.HODRemark as HOD1Remark, 
-											l2npd.EmpName as Emp2Name, l2npd.EmpRemark as Emp2Remark, l2npd.HODName as HOD2Name, l2npd.HODRemark as HOD2Remark 
+											<?php 
+											$sql = "SELECT *, tblnpd.EmpName as Emp1Name, tblnpd.EmpRemark as Emp1Remark, tblnpd.HODName as HOD1Name,	tblnpd.HODRemark as HOD1Remark, 
+											l2npd.EmpName as Emp2Name, l2npd.EmpRemark as Emp2Remark, l2npd.HODName as HOD2Name, l2npd.HODRemark as HOD2Remark, 
+											l3npd.EmpName as Emp3Name, l3npd.EmpRemark as Emp3Remark, l3npd.HODName as HOD3Name, l3npd.HODRemark as HOD3Remark 
 											FROM tblnpd 
 											JOIN l2npd ON tblnpd.NPDNumber = l2npd.NPDNumber 
-											JOIN l3npd ON l2npd.NPDNumber = l3npd.NPDNumber 
-											WHERE tblnpd.Status=1 AND tblnpd.LevelStatus=3 AND l2npd.Status=1 AND l3npd.Status=0 ";
+											JOIN l3npd ON l2npd.NPDNumber = l3npd.NPDNumber  
+											JOIN l4npd ON l3npd.NPDNumber = l4npd.NPDNumber 
+											WHERE tblnpd.Status=1 AND tblnpd.LevelStatus=4 AND l2npd.Status=1 AND l3npd.Status=1 AND l4npd.Status=0";
+
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -144,7 +162,7 @@
 														<td><?php echo htmlentities($result->BaseFoil); ?></td>
 														<td><?php echo htmlentities($result->PVCPVDC); ?></td>
 														<td><?php echo htmlentities($result->ChangePart); ?></td>
-														<td><?php echo htmlentities($result->EmpRemark); ?></td>
+														<td><?php echo htmlentities($result->Emp3Remark); ?></td>
 														<td><?php echo htmlentities($result->MonoCarton); ?></td>
 														<td><?php echo htmlentities($result->Insert3); ?></td>
 														<td><?php echo htmlentities($result->SilicaGel); ?></td>
@@ -154,6 +172,20 @@
 														<td><?php echo htmlentities($result->ShipperPacking); ?></td>
 														<td><?php echo htmlentities($result->ReferenceProduct); ?></td>
 														<td><?php echo htmlentities($result->OtherRemark); ?></td>
+														<td><?php echo htmlentities($result->Emp3Name); ?></td>
+														<td><?php echo htmlentities($result->HOD3Remark); ?></td>
+														<td><?php echo htmlentities($result->HOD3Name); ?></td>
+														<td><?php echo htmlentities($result->BatchField); ?></td>
+														<td><?php echo htmlentities($result->UOM); ?></td>
+														<td><?php echo htmlentities($result->Overage); ?></td>
+														<td><?php echo htmlentities($result->Factor); ?></td>
+														<td><?php echo htmlentities($result->Component); ?></td>
+														<td><?php echo htmlentities($result->ComponentDesc); ?></td>
+														<td><?php echo htmlentities($result->Claim); ?></td>
+														<td><?php echo htmlentities($result->Qty); ?></td>
+														<td><?php echo htmlentities($result->MaterialType); ?></td>
+														<td><?php echo htmlentities($result->EmpRemark); ?></td>
+														<td><?php echo htmlentities($result->EmpName); ?></td>
 													</tr>
 
 											<?php $cnt++;
@@ -396,8 +428,8 @@
 											</div>
 											<div class="col-lg-7">
 												<div class="form-group">
-													<label for="empRemark">Remarks</label>
-													<input id="empRemark" name="empRemark" type="text" class="form-control" readonly>
+													<label for="emp3Remark">Emp Remarks</label>
+													<input id="emp3Remark" name="emp3Remark" type="text" class="form-control" readonly>
 												</div>
 												
 											</div>
@@ -453,8 +485,80 @@
 											
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="otherRemark">Other Remarks</label>
+													<label for="otherRemark">Other Remarks <small>(<label id="emp3Name"></label>)</small></label>
 													<input id="otherRemark" name="otherRemark" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="hod3Remark">HOD Remark <small>(<label id="hod3Name"></label>)</small></label>
+													<input id="hod3Remark" name="hod3Remark" type="text" class="form-control" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Level 4 -->
+									<div class="lvl4">
+										<hr class="my-3">
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="batchField">Batch Field</label>
+													<input id="batchField" name="batchField" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-2">
+												<div class="form-group">
+													<label for="uom">U.O.M</label>
+													<input id="uom" name="uom" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="overage">Overage</label>
+													<input id="overage" name="overage" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label for="factor">Factor</label>
+													<input id="factor" name="factor" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="component">Component</label>
+													<input id="component" name="factcomponentor" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="componentDesc">Component Decription</label>
+													<input id="componentDesc" name="componentDesc" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="claim">Claim</label>
+													<input id="claim" name="claim" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="quantity">Quantity</label>
+													<input id="quantity" name="quantity" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="materialType">Material Type</label>
+													<input id="materialType" name="materialType" type="text" class="form-control" readonly>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group">
+													<label for="empRemark">Emp Remarks <small>(<label id="empName"></label>)</small></label>
+													<input id="empRemark" name="empRemark" type="text" class="form-control" readonly>
 												</div>
 											</div>
 											<!-- <div class="col-lg-6">
@@ -469,7 +573,6 @@
 							</div>
 							<div class="modal-footer">
 								<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-								<!-- <button type="button" class="btn btn-primary">Print</button> -->
 							</div>
 						</div>
 					</div>
@@ -529,7 +632,7 @@
 				$('#baseFoil').val(data[34]);
 				$('#pVCPVDC').val(data[35]);
 				$('#changePart').val(data[36]);
-				$('#empRemark').val(data[37]);
+				$('#emp3Remark').val(data[37]);
 				$('#monoCarton').val(data[38]);
 				$('#insert3').val(data[39]);
 				$('#silicaGel').val(data[40]);
@@ -539,6 +642,20 @@
 				$('#shipperPacking').val(data[44]);
 				$('#referenceProduct').val(data[45]);
 				$('#otherRemark').val(data[46]);
+				$('#emp3Name').html(data[47]);
+				$('#hod3Remark').val(data[48]);
+				$('#hod3Name').html(data[49]);
+				$('#batchField').val(data[50]);
+				$('#uom').val(data[51]);
+				$('#overage').val(data[52]);
+				$('#factor').val(data[53]);
+				$('#component').val(data[54]);
+				$('#componentDesc').val(data[55]);
+				$('#claim').val(data[56]);
+				$('#quantity').val(data[57]);
+				$('#materialType').val(data[58]);
+				$('#empRemark').val(data[59]);
+				$('#empName').html(data[60]);
 				printSection(el);
 			});
 		});

@@ -107,13 +107,13 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="empRemark">Remark <span style="font-size: 12px;">(<?php echo $row['EmpName']; ?>)</span></label>
-                <textarea readonly id="empRemark" name="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2"></textarea>
+                <textarea readonly id="empRemark" placeholder="<?php echo $row['EmpRemark']; ?>" class="form-control" rows="2"></textarea>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="hodRemark">HOD Remark (<small><?php echo $row['HODName']; ?></small>)</label>
-                <textarea id="hodRemark" name="hodRemark" placeholder="<?php echo $row['HODRemark']; ?>" class="form-control" rows="2" readonly></textarea>
+                <textarea id="hodRemark" placeholder="<?php echo $row['HODRemark']; ?>" class="form-control" rows="2" readonly></textarea>
             </div>
         </div>
     </div>

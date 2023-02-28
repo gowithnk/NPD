@@ -2,8 +2,8 @@
 <div class="lvl-3">
     <div class="row">
         <?php
-        $query = mysqli_query($conn, "SELECT * FROM l3npd WHERE NPDNumber = '$npdNumber' ") or die(mysqli_error());
-        $row = mysqli_fetch_array($query);
+            $query = mysqli_query($conn, "SELECT * FROM l3npd WHERE NPDNumber = '$npdNumber' ") or die(mysqli_error());
+            $row = mysqli_fetch_array($query);
         ?>
         <div class="col-lg-3">
             <div class="form-group">
@@ -38,7 +38,7 @@
         <div class="col-lg-7">
             <div class="form-group">
                 <label for="empRemark">Remarks</label>
-                <input id="empRemark" name="empRemark" type="text" value="<?php echo $row['EmpRemark']; ?>" class="form-control" readonly>
+                <input id="empRemark" type="text" value="<?php echo $row['EmpRemark']; ?>" class="form-control" readonly>
             </div>
 
         </div>
@@ -99,10 +99,10 @@
                 <input id="otherRemark" name="otherRemark" type="text" value="<?php echo $row['OtherRemark']; ?>" class="form-control" readonly>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="form-group">
                 <label for="hodRemark">HOD Remarks <small>(<?php echo $row['HODName']; ?>)</small></label>
-                <input id="hodRemark" name="hodRemark" type="text" value="<?php echo $row['HODRemark']; ?>" class="form-control" readonly>
+                <input id="hodRemark" type="text" value="<?php echo $row['HODRemark']; ?>" class="form-control" readonly>
             </div>
         </div>
 

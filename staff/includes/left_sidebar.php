@@ -49,7 +49,7 @@
 									 <li><a href="rejectednpdsl3.php">Rejected NPDs</a></li>
 								<?php }elseif($empDept == 'Production'){ ?>
 									<li><a href="opennpdsl4.php">Open NPDs</a></li>
-									<!-- <li><a href="pendingnpdsl4.php">Pending NPDs</a></li> -->
+									<li><a href="pendingnpdsl4.php">Pending NPDs</a></li>
 									<!-- <li><a href="inprocessnpdsl3.php">In Process NPDs</a></li>
 									 <li><a href="rejectednpdsl3.php">Rejected NPDs</a></li>	 -->
 								<?php }else{ ?>
