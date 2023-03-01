@@ -85,7 +85,7 @@ if (isset($_POST['reject'])) {
 									<div class="lvl4">
 										<hr class="my-3">
 										<?php 
-											$query = mysqli_query($conn, "SELECT * FROM l4npd WHERE NPDNumber = '$npdNumber' ") or die(mysqli_error());
+											$query = mysqli_query($conn, "SELECT * FROM l4npd JOIN l4npd_component ON l4npd.NPDNumber = l4npd_component.NPDNumber WHERE l4npd.NPDNumber = '$npdNumber' ") or die(mysqli_error());
 											$row = mysqli_fetch_array($query);
 										?>
 										<div class="row">
@@ -95,54 +95,104 @@ if (isset($_POST['reject'])) {
 													<input id="batchField" name="batchField" type="text" value="<?php echo $row['BatchField']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-2">
-												<div class="form-group">
-													<label for="uom">U.O.M</label>
-													<input id="uom" name="uom" type="text" value="<?php echo $row['UOM']; ?>" class="form-control" readonly>
-												</div>
-											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-4">
 												<div class="form-group">
 													<label for="overage">Overage</label>
 													<input id="overage" name="overage" type="text" value="<?php echo $row['Overage']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-3">
+											<div class="col-lg-4 mb-1">
 												<div class="form-group">
 													<label for="factor">Factor</label>
 													<input id="factor" name="factor" type="text"  value="<?php echo $row['Factor']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-6">
+											<!-- Repeater -->
+											
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="component">Component</label>
-													<input id="component" name="factcomponentor" type="text"  value="<?php echo $row['Component']; ?>" class="form-control" readonly>
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label for="componentDesc">Component Decription</label>
-													<input id="componentDesc" name="componentDesc" type="text"  value="<?php echo $row['ComponentDesc']; ?>" class="form-control" readonly>
+
 												</div>
 											</div>
 											<div class="col-lg-4">
+												<div class="form-group">
+													<label for="componentDesc">Component Description</label>
+												</div>
+											</div>
+											<div class="col-lg-1">
 												<div class="form-group">
 													<label for="claim">Claim</label>
-													<input id="claim" name="claim" type="text" value="<?php echo $row['Claim']; ?>" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-2">
 												<div class="form-group">
-													<label for="quantity">Quantity</label>
-													<input id="quantity" name="quantity" type="text" value="<?php echo $row['Qty']; ?>" class="form-control" readonly>
+													<label for="quantity">Qty</label>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-1">
+												<div class="form-group">
+													<label for="uom">U.O.M</label>
+												</div>
+											</div>
+											<div class="col-lg-2">
 												<div class="form-group">
 													<label for="materialType">Material Type</label>
-													<input id="materialType" name="materialType" type="text" value="<?php echo $row['MaterialType']; ?>" class="form-control" readonly>
 												</div>
 											</div>
+											<?php  
+												 $sql = "SELECT * FROM l4npd_component where NPDNumber = '$npdNumber'";
+												 $query2 = mysqli_query($conn, $sql);
+											 	 $data = '';
+												 while($row2 = mysqli_fetch_array($query2)){
+													
+												 if(!empty($row2['NPDNumber'])){
+												 $data .= '
+												 <div class="col-lg-2">
+													<div class="form-group">
+														<input id="component" name="component" type="text"  value=" ' .$row2['Component'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 $data .= '
+												 <div class="col-lg-4">
+													<div class="form-group">
+														<input id="componentDesc" name="componentDesc" type="text"  value=" ' .$row2['ComponentDesc'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 $data .= '
+												 <div class="col-lg-1">
+													<div class="form-group">
+														<input id="claim" name="claim" type="text"  value=" ' .$row2['Claim'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 $data .= '
+												 <div class="col-lg-2">
+													<div class="form-group">
+														<input id="quantity" name="quantity" type="text"  value=" ' .$row2['Qty'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 $data .= '
+												 <div class="col-lg-1">
+													<div class="form-group">
+														<input id="uom" name="uom" type="text" value=" ' .$row2['UOM'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 $data .= '
+												 <div class="col-lg-2">
+													<div class="form-group">
+														<input id="materialType" name="materialType" type="text" value=" ' .$row2['MaterialType'] .' " class="form-control" readonly>
+													</div>
+											 	 </div>
+												 ';
+												 }else{$data .= 'Nothing to show';}
+												 };
+												 echo $data;
+											?>
 											<div class="col-lg-12">
 												<div class="form-group">
 													<label for="empRemark">Emp Remarks <small>(<label id="empName"><?php echo $row['EmpName']; ?></label>)</small></label>

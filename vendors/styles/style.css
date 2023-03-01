@@ -823,7 +823,7 @@ p {
 .custom-file-input,
 .custom-select,
 .form-control {
-    font-size: 14px
+    font-size: 13px
 }
 
 .form-control.form-control-sm {
@@ -1000,7 +1000,7 @@ p {
 
 .btn-group-sm>.btn,
 .btn-sm {
-    padding: .4rem .8rem;
+    padding: .3rem .6rem;
     font-size: 14px
 }
 

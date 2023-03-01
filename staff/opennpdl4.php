@@ -29,12 +29,12 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	if ($count > 0) {
 		echo "<script>alert('NPD Already Exists');</script>";
 	} else {
-		$query1 = mysqli_query($conn, "INSERT INTO l4npd (NPDNumber, Department, EmpName, EmpCode, EmpRemark, BatchField, Factor, Overage) VALUES ('$npdNumber', '$department', '$empName', '$empCode','$empRemark', '$batchField', '$factor', '$overage')") 
-		or die(mysqli_error());
+		$query1 = mysqli_query($conn, "INSERT INTO l4npd (NPDNumber, Department, EmpName, EmpCode, EmpRemark, BatchField, Factor, Overage) VALUES ('$npdNumber', '$department', '$empName', '$empCode','$empRemark', '$batchField', '$factor', '$overage')")
+			or die(mysqli_error());
 
 		foreach ($component as $key => $value) {
 			$sql2 = "INSERT INTO l4npd_component(Component,ComponentDesc,Claim,Qty,MaterialType,UOM,NPDNumber) 
-					VALUE ('" . $value . "', '" . $componentDesc[$key] . "', '" . $claim[$key] . "', '" . $quantity[$key] . "', '".$materialType[$key] ."', '". $uom[$key] ."', '$npdNumber')";
+					VALUE ('" . $value . "', '" . $componentDesc[$key] . "', '" . $claim[$key] . "', '" . $quantity[$key] . "', '" . $materialType[$key] . "', '" . $uom[$key] . "', '$npdNumber')";
 
 			$query2 = mysqli_query($conn, $sql2);
 		}
@@ -84,14 +84,14 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 							<h2 class="mb-1 mt-1 h4">NPD Details</h2>
 							<hr>
 							<section>
-							<form method="post">
+								<form method="post">
 									<?php
-										// level 1
-										include_once('../level-data/l1.php');
-										// level 2
-										include_once('../level-data/l2.php');
-										// level 3
-										include_once('../level-data/l3.php');
+									// level 1
+									include_once('../level-data/l1.php');
+									// level 2
+									include_once('../level-data/l2.php');
+									// level 3
+									include_once('../level-data/l3.php');
 									?>
 									<hr id="l4" class="my-3">
 									<div class="lvl-4">
@@ -117,65 +117,65 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 											<!-- Component Repeater -->
 											<div id="show_item">
 												<div class="row mx-0">
-												<div class="col-lg-4">
-													<div class="form-group">
-														<label for="component">Component</label>
-														<select name="component[]" id="compo" class="form-control custom-select compo" onchange="abs(this, 0);" required="true" autocomplete="off">
-															<option value="">...</option>
-															<?php
-															$query = mysqli_query($conn, "SELECT * FROM tblcomponents");
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="component">Component</label>
+															<select name="component[]" id="compo" class="form-control custom-select compo" onchange="abs(this, 0);" required="true" autocomplete="off">
+																<option value="">...</option>
+																<?php
+																$query = mysqli_query($conn, "SELECT * FROM tblcomponents");
 
-															while ($row = mysqli_fetch_array($query)) { ?>
-																<option value="<?php echo $row['Component']; ?>" data-desc="<?php echo $row['ComponentDesc'] ?>"><?php echo $row['Component'] . ' - ' . $row['ComponentDesc']; ?></option>
-															<?php } ?>
-														</select>
+																while ($row = mysqli_fetch_array($query)) { ?>
+																	<option value="<?php echo $row['Component']; ?>" data-desc="<?php echo $row['ComponentDesc'] ?>"><?php echo $row['Component'] . ' - ' . $row['ComponentDesc']; ?></option>
+																<?php } ?>
+															</select>
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-6">
-													<div class="form-group">
-														<label for="componentDesc">Component Description</label>
-														<!-- <input type="text" id="desc"> -->
-														<select name="componentDesc[]" id="componentDesc0" class="form-control custom-select" required>
-															<option value="">Component Description</option>
-														</select>
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="componentDesc">Component Desc</label>
+															<!-- <input type="text" id="desc"> -->
+															<select name="componentDesc[]" id="componentDesc0" class="form-control custom-select" required>
+																<option value="">...</option>
+															</select>
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-2">
-													<div class="form-group">
-														<label for="claim">Claim</label>
-														<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim">
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="claim">Claim</label>
+															<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim">
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-3">
-													<div class="form-group">
-														<label for="quantity">Quantity</label>
-														<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity">
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="quantity">Qty</label>
+															<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity">
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-3">
-													<div class="form-group">
-														<label for="uom">U.O.M</label>
-														<input type="text" class="form-control" id="uom" name="uom[]" placeholder="uom" required>
+													<div class="col-lg-1">
+														<div class="form-group">
+															<label for="uom">U.O.M</label>
+															<input type="text" class="form-control" id="uom" name="uom[]" placeholder="uom" required>
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="form-group">
-														<label for="materialType">Material Type</label>
-														<select name="materialType[]" id="materialType" class="custom-select form-control">
-															<option value="">Select Material Type</option>
-															<option>ZSFG</option>
-															<option>ZRWA</option>
-															<option>ZRWE</option>
-															<option>ZPKP</option>
-															<option>ZPKN</option>
-														</select>
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="materialType">Material Type</label>
+															<select name="materialType[]" id="materialType" class="custom-select form-control">
+																<option value="">...</option>
+																<option>ZSFG</option>
+																<option>ZRWA</option>
+																<option>ZRWE</option>
+																<option>ZPKP</option>
+																<option>ZPKN</option>
+															</select>
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-2">
-													<div class="form-group">
-														<button class="btn btn-success add_item_btn mt-4">Add more</button>
+													<div class="col-lg-1">
+														<div class="form-group">
+															<button class="btn btn-success btn-sm add_item_btn mt-4">+</button>
+														</div>
 													</div>
-												</div>
 												</div>
 											</div>
 											<div class="col-lg-12">
@@ -205,6 +205,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	<div id="divLoading"></div>
 
 	<script>
+		//console.log('selectize', $('#compo99'));
 		$('#compo').selectize({
 			normalize: true
 		});
@@ -213,9 +214,35 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	<?php include('includes/scripts.php') ?>
 
 	<script>
+		function loadScript(src, callback) {
+			$(`script[src='{src}']`).remove()
+			var script;
+			var scriptTag;
+			script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = src;
+			script.onload = script.onreadystatechange = function() {
+				if (!this.readyState || this.readyState == 'complete') {
+					callback();
+				}
+			};
+			scriptTag = document.getElementsByTagName('script')[0];
+			scriptTag.parentNode.insertBefore(script, scriptTag);
+		}
+
+		function reInitSelectSearch(itemIdx = 0) {
+			// console.log('reInitSelectSearch', itemIdx);
+			// console.log('reInitSelectSearch', $('#compo' + itemIdx));
+
+			loadScript('../vendors/scripts/selectize-core.js', () => {
+				//console.log('loadScript', 'loadScript')
+				$('#compo' + itemIdx).selectize();
+			});
+		}
+
 		function addOption(selecterId, options = []) {
 			var productSelect = document.getElementById(selecterId);
-				productSelect.options.length = 0;
+			productSelect.options.length = 0;
 			for (var index = 0; index < options.length; index++) {
 				// console.log(options[index]);
 				var item = options[index];
@@ -228,7 +255,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 		}
 
 		function getOption(Component, itemIdx = 0) {
-			console.log('getOption', itemIdx);
+			//console.log('getOption', itemIdx);
 			$("#divLoading").addClass('show');
 			jQuery.ajax({
 				type: 'post',
@@ -246,7 +273,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 		}
 
 		function abs(sel, itemIdx = 0) {
-			console.log('abs', itemIdx);
+			//console.log('abs', itemIdx);
 
 			const seletedOption = sel.options[sel.selectedIndex];
 			const selected = seletedOption.selected;
@@ -263,21 +290,19 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	</script>
 	<!-- Item Repeater -->
 	<script>
-
-        $(document).ready(function() {
-            $(".add_item_btn").click(function(e) {
-                e.preventDefault();
-				var itemsLen = $("#show_item").children().length +1;
-				console.log(itemsLen);
-                $("#show_item").append(`
+		$(document).ready(function() {
+			$(".add_item_btn").click(function(e) {
+				e.preventDefault();
+				var itemsLen = $("#show_item").children().length + 1;
+				//console.log(itemsLen);
+				$("#show_item").append(`
 				<div class="row mx-0">
-					<div class="col-lg-12">
+					<!-- <div class="col-lg-12">
 						<hr class="bg-info">
-					</div>
-					<div class="col-lg-4">
+					</div> -->
+					<div class="col-lg-2">
 						<div class="form-group">
-							<label for="component">Component</label>
-							<select name="component[]" id="compo" class="form-control custom-select compo" onchange="abs(this, ${itemsLen});" required="true" autocomplete="off">
+							<select name="component[]" id="compo${itemsLen}" class="form-control custom-select compo" onchange="abs(this, ${itemsLen});" required="true" autocomplete="off">
 								<option value="">...</option>
 								<?php
 								$query = mysqli_query($conn, "SELECT * FROM tblcomponents");
@@ -288,38 +313,32 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 							</select>
 						</div>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-2">
 						<div class="form-group">
-							<label for="componentDesc">Component Description</label>
-							<!-- <input type="text" id="desc"> -->
 							<select name="componentDesc[]" id="componentDesc${itemsLen}" class="form-control custom-select" required>
-								<option value="">Component Description</option>
+								<option value="">...</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-lg-2">
 						<div class="form-group">
-							<label for="claim">Claim</label>
 							<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim">
 						</div>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-2">
 						<div class="form-group">
-							<label for="quantity">Quantity</label>
 							<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity">
 						</div>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-1">
 						<div class="form-group">
-							<label for="uom">U.O.M</label>
 							<input type="text" class="form-control" id="uom" name="uom[]" placeholder="uom" required>
 						</div>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-2">
 						<div class="form-group">
-							<label for="materialType">Material Type</label>
 							<select name="materialType[]" id="materialType" class="custom-select form-control">
-								<option value="">Select Material Type</option>
+								<option value="">...</option>
 								<option>ZSFG</option>
 								<option>ZRWA</option>
 								<option>ZRWE</option>
@@ -328,22 +347,25 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 							</select>
 						</div>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-1">
 						<div class="form-group">
-							<button class="btn btn-danger remove_item_btn mt-4"><i class="fa-solid fa-trash-can"></i>Delete</button>
+							<button class="btn btn-danger btn-sm remove_item_btn"><i class="fa-solid fa-trash-can"></i>X</button>
 						</div>
 					</div>
 				</div>
                 `);
-            });
 
-            $(document).on('click', '.remove_item_btn', function(e){
-                e.preventDefault();
-                let row_item = $(this).parent().parent().parent();
-                $(row_item).remove();
-            });
-        });
-    </script>
+				setTimeout(() => {
+					reInitSelectSearch(itemsLen)
+				}, 400)
+			});
+			$(document).on('click', '.remove_item_btn', function(e) {
+				e.preventDefault();
+				let row_item = $(this).parent().parent().parent();
+				$(row_item).remove();
+			});
+		});
+	</script>
 </body>
 
 </html>
