@@ -13,6 +13,7 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	$ln = $row_staff['LastName'];
 	$empName = $fn . ' ' . $ln;
 	$batchField = $_POST['batchField'];
+	$stage = $_POST['stage'];
 	$uom = $_POST['uom'];
 	$factor = $_POST['factor'];
 	$overage = $_POST['overage'];
@@ -29,12 +30,12 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 	if ($count > 0) {
 		echo "<script>alert('NPD Already Exists');</script>";
 	} else {
-		$query1 = mysqli_query($conn, "INSERT INTO l4npd (NPDNumber, Department, EmpName, EmpCode, EmpRemark, BatchField, Factor, Overage) VALUES ('$npdNumber', '$department', '$empName', '$empCode','$empRemark', '$batchField', '$factor', '$overage')")
+		$query1 = mysqli_query($conn, "INSERT INTO l4npd (NPDNumber, Department, EmpName, EmpCode, EmpRemark, BatchField, Stage) VALUES ('$npdNumber', '$department', '$empName', '$empCode','$empRemark', '$batchField', '$stage')")
 			or die(mysqli_error());
 
 		foreach ($component as $key => $value) {
-			$sql2 = "INSERT INTO l4npd_component(Component,ComponentDesc,Claim,Qty,MaterialType,UOM,NPDNumber) 
-					VALUE ('" . $value . "', '" . $componentDesc[$key] . "', '" . $claim[$key] . "', '" . $quantity[$key] . "', '" . $materialType[$key] . "', '" . $uom[$key] . "', '$npdNumber')";
+			$sql2 = "INSERT INTO l4npd_component(Component,ComponentDesc,Claim,Qty,MaterialType,UOM,Factor,Overage,NPDNumber) 
+					VALUE ('" . $value . "', '" . $componentDesc[$key] . "', '" . $claim[$key] . "', '" . $quantity[$key] . "', '" . $materialType[$key] . "', '" . $uom[$key] . "', '" . $factor[$key] . "', '" . $overage[$key] . "', '$npdNumber')";
 
 			$query2 = mysqli_query($conn, $sql2);
 		}
@@ -86,38 +87,38 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 							<section>
 								<form method="post">
 									<?php
-									// level 1
-									include_once('../level-data/l1.php');
-									// level 2
-									include_once('../level-data/l2.php');
-									// level 3
-									include_once('../level-data/l3.php');
+										// level 1
+										include_once('../level-data/l1.php');
+										// level 2
+										include_once('../level-data/l2.php');
+										// level 3
+										include_once('../level-data/l3.php');
 									?>
 									<hr id="l4" class="my-3">
 									<div class="lvl-4">
 										<div class="row">
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="batchField">Batch Field</label>
-													<input type="text" class="form-control" id="batchField" name="batchField" placeholder="Batch Field" required>
+													<label for="batchField">Batch Size</label>
+													<input type="text" class="form-control" id="batchField" name="batchField" placeholder="Batch Size" required>
 												</div>
 											</div>
-											<div class="col-lg-4">
+											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="overage">Overage </label>
-													<input type="text" class="form-control" id="overage" name="overage" placeholder="overage" required>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="form-group">
-													<label for="factor">Factor</label>
-													<input type="text" class="form-control" name="factor" id="factor" placeholder="Factor">
+													<label for="overage">Stage </label>
+													<select name="stage" id="stage" class="form-control custom-select" required>
+														<option value="">...</option>
+														<option>SFG1</option>
+														<option>SFG2</option>
+														<option>SFG3</option>
+														<option>FG</option>
+													</select>
 												</div>
 											</div>
 											<!-- Component Repeater -->
 											<div id="show_item">
 												<div class="row mx-0">
-													<div class="col-lg-2">
+													<div class="col-lg-5">
 														<div class="form-group">
 															<label for="component">Component</label>
 															<select name="component[]" id="compo" class="form-control custom-select compo" onchange="abs(this, 0);" required="true" autocomplete="off">
@@ -131,10 +132,9 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 															</select>
 														</div>
 													</div>
-													<div class="col-lg-2">
+													<div class="col-lg-5">
 														<div class="form-group">
 															<label for="componentDesc">Component Desc</label>
-															<!-- <input type="text" id="desc"> -->
 															<select name="componentDesc[]" id="componentDesc0" class="form-control custom-select" required>
 																<option value="">...</option>
 															</select>
@@ -142,17 +142,29 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													</div>
 													<div class="col-lg-2">
 														<div class="form-group">
+															<label for="overage">Overage </label>
+															<input type="text" class="form-control" id="overage" name="overage[]" placeholder="overage" required>
+														</div>
+													</div>
+													<div class="col-lg-2">
+														<div class="form-group">
+															<label for="factor">Factor</label>
+															<input type="text" class="form-control" name="factor[]" id="factor" placeholder="Factor" required>
+														</div>
+													</div>
+													<div class="col-lg-2">
+														<div class="form-group">
 															<label for="claim">Claim</label>
-															<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim">
+															<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim" required>
 														</div>
 													</div>
 													<div class="col-lg-2">
 														<div class="form-group">
 															<label for="quantity">Qty</label>
-															<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity">
+															<input type="number" class="form-control" name="quantity[]" id="quantity" step="any" placeholder="quantity" required>
 														</div>
 													</div>
-													<div class="col-lg-1">
+													<div class="col-lg-2">
 														<div class="form-group">
 															<label for="uom">U.O.M</label>
 															<input type="text" class="form-control" id="uom" name="uom[]" placeholder="uom" required>
@@ -161,17 +173,16 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 													<div class="col-lg-2">
 														<div class="form-group">
 															<label for="materialType">Material Type</label>
-															<select name="materialType[]" id="materialType" class="custom-select form-control">
+															<select name="materialType[]" id="materialType" class="custom-select form-control" required>
 																<option value="">...</option>
-																<option>ZSFG</option>
-																<option>ZRWA</option>
-																<option>ZRWE</option>
-																<option>ZPKP</option>
-																<option>ZPKN</option>
+																<option>Active</option>
+																<option>Excipient</option>
+																<option>Printed Pack</option>
+																<option>Non Printed Pack</option>
 															</select>
 														</div>
 													</div>
-													<div class="col-lg-1">
+													<div class="col-lg-2">
 														<div class="form-group">
 															<button class="btn btn-success btn-sm add_item_btn mt-4">+</button>
 														</div>
@@ -297,13 +308,13 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 				//console.log(itemsLen);
 				$("#show_item").append(`
 				<div class="row mx-0">
-					<!-- <div class="col-lg-12">
+					<div class="col-lg-12">
 						<hr class="bg-info">
-					</div> -->
-					<div class="col-lg-2">
+					</div> 
+					<div class="col-lg-5">
 						<div class="form-group">
-							<select name="component[]" id="compo${itemsLen}" class="form-control custom-select compo" onchange="abs(this, ${itemsLen});" required="true" autocomplete="off">
-								<option value="">...</option>
+							<select name="component[]" id="compo${itemsLen}" class="form-control custom-select compo" onchange="abs(this, ${itemsLen});" required="true">
+								<option value="">Search Component</option>
 								<?php
 								$query = mysqli_query($conn, "SELECT * FROM tblcomponents");
 
@@ -313,41 +324,50 @@ if (isset($_POST['updatenpd']) && $_POST['npdNumber'] !== '') {
 							</select>
 						</div>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-5">
 						<div class="form-group">
 							<select name="componentDesc[]" id="componentDesc${itemsLen}" class="form-control custom-select" required>
-								<option value="">...</option>
+								<option value="">Component Description</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-lg-2">
 						<div class="form-group">
-							<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim">
+							<input type="text" class="form-control" id="overage" name="overage[]" placeholder="overage" required>
 						</div>
 					</div>
 					<div class="col-lg-2">
 						<div class="form-group">
-							<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity">
+							<input type="text" class="form-control" name="factor[]" id="factor" placeholder="Factor" required>
 						</div>
 					</div>
-					<div class="col-lg-1">
+					<div class="col-lg-2">
+						<div class="form-group">
+							<input type="text" class="form-control" name="claim[]" id="claim" placeholder="claim" required>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="form-group">
+							<input type="number" step="any" class="form-control" name="quantity[]" id="quantity" placeholder="quantity" required>
+						</div>
+					</div>
+					<div class="col-lg-2">
 						<div class="form-group">
 							<input type="text" class="form-control" id="uom" name="uom[]" placeholder="uom" required>
 						</div>
 					</div>
 					<div class="col-lg-2">
 						<div class="form-group">
-							<select name="materialType[]" id="materialType" class="custom-select form-control">
-								<option value="">...</option>
-								<option>ZSFG</option>
-								<option>ZRWA</option>
-								<option>ZRWE</option>
-								<option>ZPKP</option>
-								<option>ZPKN</option>
+							<select name="materialType[]" id="materialType" class="custom-select form-control" required>
+								<option value="">Material Type</option>
+								<option>Active</option>
+								<option>Excipient</option>
+								<option>Printed Pack</option>
+								<option>Non Printed Pack</option>
 							</select>
 						</div>
 					</div>
-					<div class="col-lg-1">
+					<div class="col-lg-2">
 						<div class="form-group">
 							<button class="btn btn-danger btn-sm remove_item_btn"><i class="fa-solid fa-trash-can"></i>X</button>
 						</div>
