@@ -205,7 +205,7 @@ if (isset($_POST['npdupdate'])) {
 										</div>
 										<div class="col-lg-4">
 											<div class="form-group">
-												<label for="selfLife">Self Life</label>
+												<label for="selfLife">Self Life (In Months)</label>
 												<input id="selfLife" name="selfLife" value="<?php echo $row['SelfLife']; ?>" type="text" class="form-control" >
 											</div>
 										</div>
